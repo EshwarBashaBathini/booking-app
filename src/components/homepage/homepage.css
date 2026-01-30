@@ -1,0 +1,147 @@
+.top-home-container{
+    display: flex;
+    
+    background-color: white;
+    font-family: 'Poppins';
+    justify-content: space-between;
+    width: 100%;
+}
+.para-p{
+    font-size: 13px;
+}
+.header-color{
+    color: #0578ff;
+    font-weight: bold;
+    font-size: 24;
+    top: 0;
+    left: 0;
+    
+}
+.top-container{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    
+    
+}
+.span-color{
+    color: black;
+
+}
+.error{
+    color: red;
+    font-size: 15px;
+
+}
+.img-size{
+    width: 40%;
+    height: auto;
+    max-height: 100%;
+   
+}
+.metro{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    margin-right: 40px;
+    height: 70vh;   
+}
+
+.metro1{
+    width: 100%;
+    margin-right: 30px;
+    
+}
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+}
+
+
+.first-container{
+    margin: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 55%;
+    
+
+}
+
+.travellers-box{
+    width: 100%;
+    
+}
+.font-size{
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.travellers{
+    background-color: #0578ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 129px;
+    height: 27px;
+    border-radius: 50px;
+    padding:10px;
+    margin: 0px;
+}
+
+.para-h{
+    color: white;
+    margin: 0px;
+}
+
+.search-container{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  
+    align-items: center;
+    
+}
+.search-container1{
+    height: 30%;
+}
+
+.search-btn{
+    background-color: #0578ff;
+    color: white;
+    width: 100%;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+
+}
+
+.input-search{
+    width: 45%;
+    margin: 3px;
+    padding: 10px;
+    
+}
+
+.input-btn{
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    margin-left: 10px;
+    
+}
+
+.input-btn[type="date"] {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+}
