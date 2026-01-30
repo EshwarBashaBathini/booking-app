@@ -12,7 +12,7 @@ footer{
 .container-p{
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    width: 80%;
     max-width: 1200px;
 }
 .footer-container{

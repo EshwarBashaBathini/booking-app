@@ -18,12 +18,35 @@ const HomePage = () => {
 
     const onSourcePlace = (event) => {
         setSourcePlace(event.target.value)
+        setSourceError("");
     }
+
+    const onSourceBlur = (event) => {
+        if (sourcePlace ===""){
+            setSourceError("Please Enter the Source Place!..");
+        }
+    }
+
     const onDestinationPlace = (event) => {
         setDestinationPlace(event.target.value)
+        setDestinationError("")
     }
+
+    const onDestinationBlur = (event) => {
+        if (event.target.value === ""){
+            setDestinationError("Please Enter the Destination Place!..")
+        }
+    }
+
+    const onDateBlur = (event) => {
+        if (event.target.value === ""){
+            setSelectedDateError("Please Enter Date")
+        }
+    }
+
     const handleChange = (date) => {
         setSelectedDate(date);
+        setSelectedDateError("")
     };
 
     const onSubmitBtn = (event) => {
@@ -34,8 +57,12 @@ const HomePage = () => {
         setSelectedDateError('');
 
         if (selectedDate && sourcePlace && destinationPlace) {
+
             console.log("Hii, all details entered");
             alert("Hii details Entered");
+            setSelectedDate(null)
+            setDestinationPlace("")
+            setSourcePlace("")
         } else if (!selectedDate && !sourcePlace && !destinationPlace) {
             console.log("Please enter all details");
             setDestinationError("Please Enter the Destination Place!..");
@@ -79,17 +106,18 @@ const HomePage = () => {
                             <form onSubmit={onSubmitBtn} className="search-container1">
                                 <div className="search-container">
                                     <div className="input-search">
-                                        <input onChange={onSourcePlace} className="input-btn" type="search" placeholder="enter source place" />
+                                        <input onChange={onSourcePlace} onBlur={onSourceBlur} value={sourcePlace} className="input-btn" type="search" placeholder="enter source place" />
                                         <hr />
                                         <p className="error">{sourceError}</p>
                                     </div>
                                     <div className="input-search">
-                                        <input className="input-btn" onChange={onDestinationPlace} type="search" placeholder="enter destination place" />
+                                        <input className="input-btn" onBlur={onDestinationBlur} value={destinationPlace} onChange={onDestinationPlace} type="search" placeholder="enter destination place" />
                                         <hr />
                                         <p className="error">{destinationError}</p>
                                     </div>
                                     <div className="input-search">
                                         <DatePicker
+                                            onBlur={onDateBlur}
                                             selected={selectedDate}
                                             onChange={(date) => handleChange(date)}
                                             className="input-btn"
