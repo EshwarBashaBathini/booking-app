@@ -18,7 +18,7 @@ const Footer = () => {
                     </div>
                     <div className="sec-container">
                         <div className="email">
-                            <input type="text" className="input" placeholder="Enter Email ID" />
+                            <input type="text" className="input-email" placeholder="Enter Email ID" />
                             <FiSend />
                         </div>
                         <hr />
@@ -37,7 +37,7 @@ const Footer = () => {
                 </ul>
                 <ul className="ul-icons">
                     <li> <button className="button-icons"><FiFacebook color="white" size={20} /></button></li>
-                    <li><button className="button-icons"><FiInstagram color="white" size={20} /></button>    </li>
+                    <li><button className="button-icons"><IoLogoInstagram color="white" size={20} /></button>    </li>
                     <li><button className="button-icons"><FaXTwitter color="white" size={20} /></button></li>
                 </ul>
 

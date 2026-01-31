@@ -3,11 +3,15 @@ footer{
     padding: 40px;
     width: 100%;
     display: flex;
-    
+    height: 200px;
     flex-direction: column;
+    justify-content: center;
     font-family: 'Poppins', sans-serif;
     gap: 10px;
+   
 }
+
+
 
 .container-p{
     display: flex;
@@ -19,6 +23,22 @@ footer{
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+@media screen and (max-width:600px) {
+    .footer-container{
+        flex-direction: column;
+    }
+    .footer-btm{
+        flex-direction: column;
+    }
+    .ul-footer{
+        flex-wrap: wrap;
+    }
+    footer{
+        height: auto;
+    }
+
 }
 .span-way{
     color: black;
@@ -33,14 +53,14 @@ footer{
     justify-content: space-between;
 }
 
-.input{
+.input-email{
     border: none;
     outline: none;
     background: none;
     color: white;
 }
 
-.input::placeholder{
+.input-email::placeholder{
     color: white;
 }
 .sec-container{
@@ -89,12 +109,13 @@ footer{
     gap: 15px;
 }
 
-.button-icons{
-    background: none;
-    cursor: pointer;
-    border: none;
-    outline: none;
-   
+.button-icons {
+  background: none;
+  border: none;
+  outline: none;
+  color: #1e40ff; /* visible color */
+  font-size: 26px; /* big enough to see arrow */
+  cursor: pointer;
 }
 
 

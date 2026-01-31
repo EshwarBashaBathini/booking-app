@@ -3,6 +3,8 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
 import Footer from "../footer";
+import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
 
@@ -13,6 +15,7 @@ const HomePage = () => {
     const [selectedDateError, setSelectedDateError] = useState("")
     const [destinationError, setDestinationError] = useState("")
 
+    const navigate = useNavigate();  // Call useNavigate hook to get navigate function
 
 
 
@@ -22,7 +25,7 @@ const HomePage = () => {
     }
 
     const onSourceBlur = (event) => {
-        if (sourcePlace ===""){
+        if (sourcePlace === "") {
             setSourceError("Please Enter the Source Place!..");
         }
     }
@@ -33,13 +36,13 @@ const HomePage = () => {
     }
 
     const onDestinationBlur = (event) => {
-        if (event.target.value === ""){
+        if (event.target.value === "") {
             setDestinationError("Please Enter the Destination Place!..")
         }
     }
 
     const onDateBlur = (event) => {
-        if (event.target.value === ""){
+        if (event.target.value === "") {
             setSelectedDateError("Please Enter Date")
         }
     }
@@ -59,7 +62,7 @@ const HomePage = () => {
         if (selectedDate && sourcePlace && destinationPlace) {
 
             console.log("Hii, all details entered");
-            alert("Hii details Entered");
+            navigate("/book");
             setSelectedDate(null)
             setDestinationPlace("")
             setSourcePlace("")
@@ -90,9 +93,13 @@ const HomePage = () => {
 
     return (
         <div className="top-container">
+
             <div className="top-home-container" >
+
                 <div className="first-container">
-                    <header className="header-color">Metro<span className="span-color">way</span></header>
+
+                    <h3 ><Link className="header-color" to="/">Metro<span className="span-color">way</span></Link></h3>
+
                     <div className="metro">
                         <div className="metro1">
                             <div className="travellers-box">

@@ -3,7 +3,11 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import HomePage from './components/homepage'
-import Footer from './components/footer'
+import TrainList from './components/trainlist'
+import TrainItem from './components/trainItem'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+
 function App() {
   const [count, setCount] = useState(0)
 
@@ -30,9 +34,12 @@ function App() {
     //     Click on the Vite and React logos to learn more
     //   </p>
     // </>
-    <>
-    <HomePage />
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/book" element={<TrainList />} />
+      </Routes>
+    </Router>
   )
 }
 

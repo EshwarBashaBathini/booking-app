@@ -1,0 +1,164 @@
+.train-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100v;
+    flex: 1;
+    background-color: #f6f5f5;
+   min-height: 100vh;
+}
+
+
+
+.side-container {
+    width: 28%;
+    
+    display: flex;
+    flex-direction: column;
+
+}
+.p-train{
+    margin-left: 5px;
+    font-size: 10px;
+    
+}
+.top-container {
+    min-height: 100vh;
+
+}
+
+.head {
+    color: #0578ff;
+    font-size: 40px;
+}
+
+.search-container {
+    height: 136px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    
+
+}
+
+.input-container {
+    height: 53px;
+    width: 50%;
+    padding: 10px;
+}
+
+.input {
+    color: black;
+    width: 100%;
+    font-size: 14px;
+    background: none;
+     border: none;
+    outline: none;
+    background: none;
+    color: white;
+}
+
+
+
+.input::placeholder {
+    color: black;
+}
+
+.trains-btn {
+    background-color: #0578ff;
+    width: 100%;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    color: white;
+    font-size: 14px;
+}
+
+.plan-container {
+    background-image: url("https://res.cloudinary.com/dtc3rf1du/image/upload/v1769850336/Frame_5_1_fxnhar.png");
+    background-size: cover;
+    height: 70%;
+    width: 100%;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    margin-top: 10px;
+    padding: 20px;
+}
+
+.tour-container {
+    background-image: url("https://res.cloudinary.com/dtc3rf1du/image/upload/v1769850336/Frame_6_ppenjq.png");
+    background-size: cover;
+    height: 70%;
+    margin-top: 10px;
+    width: 100%;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    padding: 20px;
+}
+
+
+
+.container-height,
+.container-height1,
+.container-height2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+
+
+/* other container */
+
+.side-container2{
+    width: 65%;
+   
+
+}
+
+.available-trains{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.trains-available{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+
+}
+
+.hr{
+    margin: 0px;
+}
+
+.ul-trains-list{
+    width: 100%;
+    list-style-type: none;
+    padding: 0px;
+    height: 99vh;
+    overflow-y: auto;
+}
+
+.ul-trains-list::-webkit-scrollbar{
+    width: 8px;
+}
+
+.ul-trains-list::-webkit-scrollbar-thumb {
+  background-color: #1e40ff; /* Set the thumb color */
+  border-radius: 10px; /* Round the corners */
+  border: 2px solid #fff; /* White border around the thumb */
+}
+
+.ul-trains-list::-webkit-scrollbar-track {
+  background-color: #dfe1e2; /* Light gray track */
+  border-radius: 10px; /* Round the corners of the track */
+}

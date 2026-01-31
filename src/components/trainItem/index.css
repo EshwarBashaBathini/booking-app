@@ -1,0 +1,88 @@
+.list-train{
+    background-color: white;
+    border-radius: 20px;
+    width: 100%;
+    font-family: "Poppins";
+    padding: 15px;
+    margin-top: 10px;
+    font-size: 15px;
+
+}
+
+.container2{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container2-1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.train-h{
+    outline: 2px solid #0578ff;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 0px;
+
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.time-table{
+    color: #0578ff;
+    font-weight: bolder;
+    font-size: 15px;
+
+}
+
+.run{
+   margin: 5px 0px 3px 0px;
+   font-size: 15px;
+}
+.journey-details-from{
+    display: flex;
+    flex-direction: column;
+    
+}
+.journey-details-to{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end   ;
+}
+
+.journey-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.journey-time{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+}
+
+.hr-time{
+    width: 100%;
+}
+.margin-class{
+    margin: 2px;
+    font-size: 15px;
+    text-overflow: inherit;
+}
+
+.booking-seat{
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    padding: 0px;
+    margin-top: 6px;
+}
+
