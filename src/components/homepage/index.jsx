@@ -103,9 +103,9 @@ const HomePage = () => {
                     <div className="metro">
                         <div className="metro1">
                             <div className="travellers-box">
-                                <div className="travellers">
-                                    <p className="para-h">Hello Travellers</p>
-                                </div>
+
+                                <p className=" travellers para-h">Hello Travellers</p>
+
                                 <h1 className="font-size">made your booking experience easy!</h1>
                             </div>
                             <p className="para-p">Train booking is a process of choosing and purchasing train seats online. It is an easy process but were are here to make it much better & simple.</p>

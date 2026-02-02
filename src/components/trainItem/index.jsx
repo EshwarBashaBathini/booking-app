@@ -1,4 +1,4 @@
-import "./index.css"
+import "./trainItem.css"
 
 import Bhogi from "../bhogi"
 
@@ -14,7 +14,7 @@ const TrainItem = (props) => {
             <h3 className="margin-class">{trainNumber} - {trainName}</h3>
             <div className="container2">
                 <div className="container2-1">
-                    <h3 className="run">Run on</h3>
+                    <p className="run">Run on</p>
                     <p className="train-h"> {runsOn}</p>
 
                 </div>
@@ -24,8 +24,7 @@ const TrainItem = (props) => {
             <div className="journey-container">
                 <div className="journey-details-from">
                     <h3 className="margin-class">{journey.startDate}</h3>
-                    <p className="margin-class">{from.departureTime}</p>
-                    <p className="margin-class">{from.stationCode}, {from.stationName}</p>
+                    <p className="margin-class">{from.departureTime} <br/>{from.stationCode}, {from.stationName}</p>
                 </div>
                 <div className="journey-time">
                     <h3 className="margin-class">{journey.duration}</h3>
@@ -34,8 +33,7 @@ const TrainItem = (props) => {
                 </div>
                 <div className="journey-details-to">
                     <h3 className="margin-class">{journey.endDate}</h3>
-                    <p className="margin-class">{to.arrivalTime}</p>
-                    <p className="margin-class">{to.stationCode}, {from.stationName}</p>
+                    <p className="margin-class1">{to.arrivalTime} <br/>{to.stationCode}, {from.stationName}</p>
                 </div>
             </div>
             <ul className="booking-seat">

@@ -1,11 +1,13 @@
 .train-container {
     display: flex;
     justify-content: space-around;
-    width: 100v;
+    width: 100vw;
+    padding-top: 20px;
     flex: 1;
     background-color: #f6f5f5;
    min-height: 100vh;
 }
+
 
 
 
@@ -28,7 +30,7 @@
 
 .head {
     color: #0578ff;
-    font-size: 40px;
+    font-size: 32px;
 }
 
 .search-container {
@@ -54,7 +56,6 @@
      border: none;
     outline: none;
     background: none;
-    color: white;
 }
 
 
@@ -103,7 +104,7 @@
 
 
 
-.container-height,
+
 .container-height1,
 .container-height2 {
     display: flex;
@@ -112,6 +113,12 @@
     margin-top: 10px;
 }
 
+.container-height{
+     display: flex;
+    flex-direction: column;
+
+    margin-top: 10px;
+}
 
 
 /* other container */
@@ -162,3 +169,27 @@
   background-color: #dfe1e2; /* Light gray track */
   border-radius: 10px; /* Round the corners of the track */
 }
+
+
+
+@media only screen and (max-width:600px){
+    .train-container{
+        flex-direction: column;
+    }
+    .side-container{
+        width: 100%;
+        padding: 20px;
+    }
+    .search-container{
+        height: auto;
+       
+    }
+    .input-container{
+        width: 100%;
+    }
+    .side-container2{
+        width: 100%;
+        padding: 20px;
+    }
+}
+

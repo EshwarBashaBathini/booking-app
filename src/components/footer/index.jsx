@@ -36,9 +36,9 @@ const Footer = () => {
                     <li className="cursor-btn">Customer Service</li>
                 </ul>
                 <ul className="ul-icons">
-                    <li> <button className="button-icons"><FiFacebook color="white" size={20} /></button></li>
-                    <li><button className="button-icons"><IoLogoInstagram color="white" size={20} /></button>    </li>
-                    <li><button className="button-icons"><FaXTwitter color="white" size={20} /></button></li>
+                    <li className="icons-li"> <button className="button-icons"><FiFacebook color="white" size={20} /></button></li>
+                    <li className="icons-li"><button className="button-icons"><IoLogoInstagram color="white" size={20} /></button>    </li>
+                    <li className="icons-li"><button className="button-icons"><FaXTwitter color="white" size={20} /></button></li>
                 </ul>
 
             </div>

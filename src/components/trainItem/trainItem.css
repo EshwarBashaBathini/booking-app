@@ -2,7 +2,6 @@
     background-color: white;
     border-radius: 20px;
     width: 100%;
-    font-family: "Poppins";
     padding: 15px;
     margin-top: 10px;
     font-size: 15px;
@@ -18,30 +17,29 @@
 .container2-1{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     
 }
 
 .train-h{
-    outline: 2px solid #0578ff;
-    padding: 10px;
+    outline: 1px solid #0578ff;
     border-radius: 10px;
     margin: 0px;
-
-    font-weight: bold;
-    font-size: 15px;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 4px 10px 4px 10px;
 }
 
 .time-table{
     color: #0578ff;
-    font-weight: bolder;
+    font-weight: 500;
     font-size: 15px;
 
 }
 
 .run{
    margin: 5px 0px 3px 0px;
-   font-size: 15px;
+   font-size: 14px;
 }
 .journey-details-from{
     display: flex;
@@ -58,7 +56,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 .journey-time{
@@ -74,15 +72,28 @@
 }
 .margin-class{
     margin: 2px;
-    font-size: 15px;
-    text-overflow: inherit;
+    font-size: 14px;
+    font-weight: 500;
+}
+.margin-class1{
+    margin: 2px;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: end;
 }
 
 .booking-seat{
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
+    
     list-style-type: none;
     padding: 0px;
     margin-top: 6px;
 }
 
+@media only screen and (max-width:600px){
+    .booking-seat{
+        justify-content: center;
+    }
+}
