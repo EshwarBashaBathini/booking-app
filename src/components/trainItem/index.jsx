@@ -1,13 +1,30 @@
 import "./trainItem.css"
 
 import Bhogi from "../bhogi"
-
+import { useNavigate } from "react-router-dom"
 
 const TrainItem = (props) => {
     const {trainDetails} = props
-
-
+    const navigate = useNavigate()
+    
     const { trainNumber, trainName, runsOn, journey, from = {}, to, classes } = trainDetails
+
+    const onSelectedClass = (id) => {
+        const selectedClass =  classes.filter( eachClass => 
+            eachClass.id === id
+        )
+        navigate(`/book/${trainNumber}/${from.stationCode}-${to.stationCode}`,{
+            state: {
+                selectedClass,
+                trainDetails
+            }
+        })
+        
+
+    }
+
+
+    
  
     return (
         <li className="list-train">
@@ -38,7 +55,7 @@ const TrainItem = (props) => {
             </div>
             <ul className="booking-seat">
                 {classes.map(eachClass => (
-                    <Bhogi bhogiDetails={eachClass} key={eachClass.id} />
+                    <Bhogi onSelected={onSelectedClass} bhogiDetails={eachClass} key={eachClass.id} />
                 ))}
 
             </ul>

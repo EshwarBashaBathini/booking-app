@@ -1,0 +1,164 @@
+.confirm-head {
+    font-weight: 600;
+    font-size: 32px;
+    color: #0578FF;
+}
+.payment-containers{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.payment-container1{
+    width: 47%;
+}
+.payment-container2{
+    width: 50%;
+}
+
+.confirm-price {
+    color: #FF6060;
+}
+
+.top-container-payment {
+    padding: 30px;
+    color: #202020;
+    font-weight: 500;
+}
+
+.head-traveller {
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.persons-ul {
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+    list-style-type: none;
+}
+
+.person-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 5px 0 5px 0;
+    justify-content: space-between;
+}
+
+.list-train-1 {
+    background-color: #e0eeff;
+    border-radius: 15px;
+    width: 100%;
+    padding: 25px;
+    color: #202020;
+    margin: 0 0 20px 0;
+    font-size: 15px;
+}
+
+.travel-details-person {
+    margin: 20px 0 20px 0;
+}
+.container-bbb{
+    margin: 0 0 20px 0;
+}
+.option-text {
+    color: #606060;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.option-text-1 {
+    color: #202020;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.ticket-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0 10px 0;
+}
+
+.ticket-name {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.ticket-para {
+    font-weight: 500;
+    font-size: 16px;
+    align-self: flex-end;
+    color: #404040;
+}
+
+.payment-header{
+    font-size: 20px;
+    font-weight: 500px;
+}
+
+.payment-container-list{
+    padding: 25px;
+}
+.ul-payment-list{
+    display: flex;
+    flex-direction: column;
+   
+    padding: 0px;
+}
+.option-list{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0 10px 0;
+}
+
+.upi-description{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    
+}
+
+.container-upi{
+    display: flex;
+    align-items: center;
+    
+    
+}
+
+
+
+@media only screen and (max-width:600px) {
+    .confirm-head {
+        font-size: 20px;
+    }
+    .container-upi{
+        width: 90%;
+    }
+    .payment-containers{
+        flex-direction: column;
+    }
+    .payment-container1{
+        width: 100%;
+    }
+    .payment-container2{
+        width: 100%;
+    }
+    .upi-description{
+        margin-left: 0px;
+    }
+
+    .top-container-payment {
+        padding: 15px;
+    }
+    .ticket-para{
+        margin-top: 10px;
+    }
+
+    .ticket-details {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+}

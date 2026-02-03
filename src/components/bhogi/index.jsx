@@ -1,14 +1,13 @@
 import "./index.css"
-import { useNavigate } from "react-router-dom"
 
 const Bhogi = (props) => {
-    const { bhogiDetails } = props
-    const navigate = useNavigate()
-    const nameClass = bhogiDetails.class
+    const { bhogiDetails, onSelected } = props
+    
+    
      const { id, availability, quota, price } = bhogiDetails
 
-    const onSelectedClass = (id) => {
-        navigate(`/book/${nameClass}/${quota}`)
+    const onSelectedClass = () => {
+        onSelected(id)
         
     }
 

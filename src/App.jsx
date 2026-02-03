@@ -4,7 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import HomePage from './components/homepage'
 import TrainList from './components/trainlist'
-import TrainItem from './components/trainItem'
+import Payment from './components/payment'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import BookDetails from './components/bookdetails'
 
@@ -15,9 +15,10 @@ function App() {
 
     <Router>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/book" element={<TrainList />} />
-        <Route path="/book/:name/:date" element={ <BookDetails />} />
+        <Route exact path="/" element={<HomePage />} />
+        <Route exact path="/book" element={<TrainList />} />
+        <Route exact path="/book/:name/:date" element={ <BookDetails />} />
+        <Route exact path="/payment/:name/checkout" element={<Payment />} />
       </Routes>
     </Router>
 

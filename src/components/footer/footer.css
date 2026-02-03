@@ -41,6 +41,7 @@ footer{
 .input-email{
     border: none;
     outline: none;
+    width: 100%;
     background: none;
     color: white;
 }
