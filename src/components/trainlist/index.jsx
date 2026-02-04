@@ -143,67 +143,67 @@ const data = [
 
 const TrainList = () => {
 
-    return(
-        <div className='top-container' >
-            <Header />
-            <div className='train-container' >
-                <div className='side-container'>
-                    <h1 className='head'>Your Search Results</h1>
-                    <div className='container-height' >
-                        <form className='search-container'>
-                            <div className='input-container'>
-                                <input type='text' className='input' placeholder='source' />
-                                <hr/>
-                            </div>
-                            <div className='input-container'>
-                                <input className='input' placeholder='destination' type='text' />
-                                <hr/>
-                            </div>
-                            <button type='submit' className='trains-btn' >Search for trains</button>
-                        </form>
-                        <div>
-                            <HorizontalCalendar />
-                        </div>
-                        <div className='container-height1'>
-                            <div className='container-height2'>
-                                <div className='plan-container'>
-                                    <p>Planning your holidays</p>
+  return (
+    <div className='top-container' >
+      <Header />
+      <div className='train-container ' >
+        <div className='side-container'>
+          <h1 className='head'>Your Search Results</h1>
+          <div className='container-height' >
+            <form className='search-container'>
+              <div className='input-container-ee'>
+                <input type='text' className='input' placeholder='source' />
+                <hr />
+              </div>
+              <div className='input-container-ee'>
+                <input className='input' placeholder='destination' type='text' />
+                <hr />
+              </div>
+              <button type='submit' className='trains-btn' >Search for trains</button>
+            </form>
 
-                                </div>
-                                <div className='tour-container'>
-                                    <p>Train tourism packages</p>
+            <HorizontalCalendar />
 
-                                </div>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et olore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et olore magna aliqua</p>
-                        </div>
-
-                    </div>
+            <div className='container-height1'>
+              <div className='container-height2'>
+                <div className='plan-container'>
+                  <p className='name-plan-01'>Planning your holidays</p>
 
                 </div>
-                <div className='side-container2'>
-                    <div className='available-trains'>
-                        <div className='trains-available'>
-                            <h2 className='train-h1'>Available Trains</h2>
-                            <p className='p-train'>5 Trains Available </p>
-
-                        </div>
-                        <GiSettingsKnobs color='#0578ff'  size={20}/>
-
-                    </div>
-                    <hr className='hr' />
-                    <ul className='ul-trains-list'>
-                        {data.map(eachTrain => (
-                            <TrainItem trainDetails={eachTrain} key={eachTrain.trainNumber} />
-                        ))}
-                    </ul>
+                <div className='tour-container'>
+                  <p className='name-plan-01'>Train tourism packages</p>
 
                 </div>
+              </div>
+              <p className='last-para-home'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et olore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et olore magna aliqua</p>
+            </div>
+
+          </div>
+
+        </div>
+        <div className='side-container2'>
+          <div className='available-trains'>
+            <div className='trains-available'>
+              <h2 className='train-h1'>Available Trains</h2>
+              <p className='p-train'>5 Trains Available </p>
 
             </div>
-            <Footer />
+            <GiSettingsKnobs color='#0578ff' size={20} />
+
+          </div>
+          <hr className='hr' />
+          <ul className='ul-trains-list'>
+            {data.map(eachTrain => (
+              <TrainItem trainDetails={eachTrain} key={eachTrain.trainNumber} />
+            ))}
+          </ul>
+
         </div>
-    )
+
+      </div>
+      <Footer />
+    </div>
+  )
 
 }
 

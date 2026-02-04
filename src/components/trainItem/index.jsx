@@ -8,7 +8,7 @@ const TrainItem = (props) => {
     const navigate = useNavigate()
     
     const { trainNumber, trainName, runsOn, journey, from = {}, to, classes } = trainDetails
-
+ 
     const onSelectedClass = (id) => {
         const selectedClass =  classes.filter( eachClass => 
             eachClass.id === id
@@ -27,7 +27,7 @@ const TrainItem = (props) => {
     
  
     return (
-        <li className="list-train">
+        <li className="list-train12">
             <h3 className="margin-class">{trainNumber} - {trainName}</h3>
             <div className="container2">
                 <div className="container2-1">
@@ -35,25 +35,25 @@ const TrainItem = (props) => {
                     <p className="train-h"> {runsOn}</p>
 
                 </div>
-                <p className="margin-class time-table">View train time table</p>
+                <p className="time-table1">View train time table</p>
 
             </div>
             <div className="journey-container">
                 <div className="journey-details-from">
-                    <h3 className="margin-class">{journey.startDate}</h3>
-                    <p className="margin-class">{from.departureTime} <br/>{from.stationCode}, {from.stationName}</p>
+                    <h3 className="margin-class-14px">{journey.startDate}</h3>
+                    <p className="margin-class-14px">{from.departureTime} <br/>{from.stationCode}, {from.stationName}</p>
                 </div>
                 <div className="journey-time">
-                    <h3 className="margin-class">{journey.duration}</h3>
+                    <h3 className="margin-class-time">{journey.duration}</h3>
                     <hr className="hr-time  dotted-line margin-class" />
 
                 </div>
                 <div className="journey-details-to">
-                    <h3 className="margin-class">{journey.endDate}</h3>
-                    <p className="margin-class1">{to.arrivalTime} <br/>{to.stationCode}, {from.stationName}</p>
+                    <h3 className="margin-class-14px">{journey.endDate}</h3>
+                    <p className="margin-class-14px">{to.arrivalTime} <br/>{to.stationCode}, {from.stationName}</p>
                 </div>
             </div>
-            <ul className="booking-seat">
+            <ul className="booking-seat1">
                 {classes.map(eachClass => (
                     <Bhogi onSelected={onSelectedClass} bhogiDetails={eachClass} key={eachClass.id} />
                 ))}

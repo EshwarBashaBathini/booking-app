@@ -2,7 +2,9 @@
 .calendar-wrapper {
   display: flex;
   align-items: center;
-  gap: 10px;  /* Adds space between the calendar and arrows */
+  margin-top: 60px;
+  margin-bottom: 60px;
+  /* Adds space between the calendar and arrows */
 }
 
 /* Arrow button styles */

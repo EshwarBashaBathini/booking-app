@@ -1,8 +1,8 @@
 .train-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     width: 100vw;
-    padding-top: 20px;
+    padding: 27px 98px 36px 98px;
     flex: 1;
     background-color: #f6f5f5;
    min-height: 100vh;
@@ -19,8 +19,9 @@
 
 }
 .p-train{
-    margin-left: 5px;
-    font-size: 10px;
+    padding-left: 25px;
+    font-size: 12px;
+    font-weight: 500;
     
 }
 .top-container {
@@ -31,21 +32,24 @@
 .head {
     color: #0578ff;
     font-size: 32px;
+    font-weight: 600;
 }
 
 .search-container {
     height: 136px;
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: 10px;
+    justify-content: space-between;
+    width: 100%;
     
-
 }
 
-.input-container {
+
+
+.input-container-ee {
     height: 53px;
-    width: 50%;
-    padding: 10px;
+    width: 48%;
+    
 }
 
 .input {
@@ -53,7 +57,7 @@
     width: 100%;
     font-size: 14px;
     background: none;
-     border: none;
+    border: none;
     outline: none;
     background: none;
 }
@@ -61,7 +65,7 @@
 
 
 .input::placeholder {
-    color: black;
+    color: #808080;
 }
 
 .trains-btn {
@@ -72,12 +76,13 @@
     border: none;
     color: white;
     font-size: 14px;
+    margin-top: 30px;
 }
 
 .plan-container {
     background-image: url("https://res.cloudinary.com/dtc3rf1du/image/upload/v1769850336/Frame_5_1_fxnhar.png");
     background-size: cover;
-    height: 70%;
+    height: 140px;
     width: 100%;
     border-radius: 20px;
     display: flex;
@@ -87,12 +92,21 @@
     margin-top: 10px;
     padding: 20px;
 }
-
+.name-plan-01{
+    color: white;
+    font-weight: 500;
+    font-size: 20px;
+}
+.last-para-home{
+    font-size: 12px;
+    color: #808080;
+    margin-top: 30px;
+}
 .tour-container {
     background-image: url("https://res.cloudinary.com/dtc3rf1du/image/upload/v1769850336/Frame_6_ppenjq.png");
     background-size: cover;
-    height: 70%;
-    margin-top: 10px;
+    height: 140px;
+    margin-top: 30px;
     width: 100%;
     border-radius: 20px;
     display: flex;
@@ -105,19 +119,25 @@
 
 
 
-.container-height1,
-.container-height2 {
+.container-height1{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     margin-top: 10px;
 }
 
-.container-height{
-     display: flex;
+.container-height2 {
+    display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
 
-    margin-top: 10px;
+.container-height{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin-top: 60px;
 }
 
 
@@ -125,8 +145,12 @@
 
 .side-container2{
     width: 65%;
-   
+}
 
+.train-h1{
+    font-size: 32px;
+    font-weight: 500;
+    color: #202020;
 }
 
 .available-trains{

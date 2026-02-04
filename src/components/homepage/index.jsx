@@ -104,22 +104,22 @@ const HomePage = () => {
                         <div className="metro1">
                             <div className="travellers-box">
 
-                                <p className=" travellers para-h">Hello Travellers</p>
+                                <p className="  para-h">Hello Travellers</p>
 
                                 <h1 className="font-size">made your booking experience easy!</h1>
                             </div>
                             <p className="para-p">Train booking is a process of choosing and purchasing train seats online. It is an easy process but were are here to make it much better & simple.</p>
 
                             <form onSubmit={onSubmitBtn} className="search-container1">
-                                <div className="search-container">
+                                <div className="search-container2">
                                     <div className="input-search">
                                         <input onChange={onSourcePlace} onBlur={onSourceBlur} value={sourcePlace} className="input-btn" type="search" placeholder="enter source place" />
-                                        <hr />
+                                        <hr className="hr-line"  />
                                         <p className="error">{sourceError}</p>
                                     </div>
                                     <div className="input-search">
                                         <input className="input-btn" onBlur={onDestinationBlur} value={destinationPlace} onChange={onDestinationPlace} type="search" placeholder="enter destination place" />
-                                        <hr />
+                                        <hr className="hr-line" />
                                         <p className="error">{destinationError}</p>
                                     </div>
                                     <div className="input-search">
@@ -131,7 +131,7 @@ const HomePage = () => {
                                             minDate={new Date()}
                                             placeholderText="Select a date"
                                         />
-                                        <hr />
+                                        <hr className="hr-line"  />
                                         <p className="error">{selectedDateError}</p>
                                     </div>
 
