@@ -45,7 +45,7 @@ const BookDetails = (props) => {
     const [email, setEmail] = useState("")
 
     const [errorMobile, setErrorMobile] = useState(false)
-    const [errorEmail, setErrorEmail]  = useState(false)
+    const [errorEmail, setErrorEmail] = useState(false)
 
 
 
@@ -158,20 +158,20 @@ const BookDetails = (props) => {
     const onNextBtn = () => {
         if (isIrctcVerified && mobileNum && email) {
             console.log("Hi User Successfully Completed the Verification")
-            navigate(`/payment/${trainNumber}/checkout`,{
-                state : {
+            navigate(`/payment/${trainNumber}/checkout`, {
+                state: {
                     trainDetails, selectedClass, totalPrice, personsList, mobileNum, email, totalGst,
                 }
             })
-        } else if (mobileNum === ""  && email ==="") {
+        } else if (mobileNum === "" && email === "") {
             setErrorEmail(true)
             setErrorMobile(true)
-            
-        }else if (mobileNum === ""){
+
+        } else if (mobileNum === "") {
             setErrorMobile(true)
-        }else if (email === ""){
+        } else if (email === "") {
             setErrorMobile(true)
-        }else{
+        } else {
             setIrctcError(true)
         }
     }
@@ -204,26 +204,26 @@ const BookDetails = (props) => {
                                 <div className="travel-btm-container">
                                     <h2 className="heading-td">Traveller Details</h2>
                                     <form type="submit" onSubmit={onAddingPersons}  >
-                                        <div className="input-container">
+                                        <div className="input-container1">
                                             <div className="input-container-t1">
-                                                <input onChange={(e) =>{ setUserName(e.target.value),setErrorName(false)}} onBlur={(e) => e.target.value.trim() === "" ? setErrorName(true) : setErrorName(false)} value={userName} type="text" placeholder="Name of Traveller" className="input-t" />
-                                                <hr />
+                                                <input onChange={(e) => { setUserName(e.target.value), setErrorName(false) }} onBlur={(e) => e.target.value.trim() === "" ? setErrorName(true) : setErrorName(false)} value={userName} type="text" placeholder="Name of Traveller" className="input-t" />
+                                                <hr className="hr-line" />
                                                 {errorName && <p className="error-msg">* Please Enter the Details </p>}
                                             </div>
                                             <div className="input-container-t2">
-                                                <input onChange={(e) => {setAge(e.target.value),setErrorAge(false)}} onBlur={(e) => e.target.value.trim() === "" ? setErrorAge(true) : setErrorAge(false)} value={age} placeholder="Age" type="number" className="input-t" />
-                                                <hr />
+                                                <input onChange={(e) => { setAge(e.target.value), setErrorAge(false) }} onBlur={(e) => e.target.value.trim() === "" ? setErrorAge(true) : setErrorAge(false)} value={age} placeholder="Age" type="number" className="input-t" />
+                                                <hr className="hr-line" />
                                                 {errorAge && <p className="error-msg">* Please Enter the Details </p>}
                                             </div>
                                             <div className="input-container-t3">
-                                                <select value={gender} onChange={(e) => {setGender(e.target.value),setErrorGen(false)}} onBlur={(e) => e.target.value.trim() === "" ? setErrorGen(true) : setErrorGen(false)} className="input-t">
+                                                <select value={gender} onChange={(e) => { setGender(e.target.value), setErrorGen(false) }} onBlur={(e) => e.target.value.trim() === "" ? setErrorGen(true) : setErrorGen(false)} className="input-t">
                                                     <option value="">Gender</option>
                                                     <option value="male">Male</option>
                                                     <option value="female">Female</option>
                                                     <option value="other">Other</option>
                                                 </select>
 
-                                                <hr />
+                                                <hr className="hr-line" />
                                                 {errorGen && <p className="error-msg">* Please Enter the Details </p>}
                                             </div>
                                         </div>
@@ -232,7 +232,7 @@ const BookDetails = (props) => {
                                                 <input type="text" value={nationality} onBlur={(e) => e.target.value.trim() === "" ? setErrorNat(true) : setErrorNat(false)} onChange={(e) => {
                                                     setNationality(e.target.value), setErrorNat(false)
                                                 }} placeholder="Nationality" className="input-t" />
-                                                <hr />
+                                                <hr className="hr-line" />
                                                 {errorNat && <p className="error-msg">* Please Enter the Details </p>}
                                             </div>
                                             <div className="input-container-t1">
@@ -244,7 +244,7 @@ const BookDetails = (props) => {
                                                 </select>
 
 
-                                                <hr />
+                                                <hr className="hr-line" />
                                                 {errorBerth && <p className="error-msg">* Please Enter the Details </p>}
                                             </div>
                                             <button type="submit" className="save-btn">Save</button>
@@ -267,7 +267,7 @@ const BookDetails = (props) => {
                                         setIrctcVerified(false);
                                         setIrctcError(false);
                                     }} onBlur={(e) => e.target.value.trim() === "" ? setIrctcError(true) : setIrctcError(false)} className="input-irctc" placeholder="Enter IRCTC User ID" />
-                                    <hr />
+                                    <hr className="hr-line" />
                                     {errorIrctc && <p className="error-msg">*Please Verify the IRCTC Account. </p>}
                                 </div>
                                 <button type="submit" className={`save-btn ${isVerified}`}>{isContent}</button>
@@ -288,15 +288,15 @@ const BookDetails = (props) => {
                             </div>
                             <div className="contact-container">
                                 <div className="mobile-container">
-                                    <input type="number" onChange={(e) => {setMobileNum(e.target.value.trim()), setErrorMobile(false)}} onBlur={(e) => e.target.value.trim() === "" ? setErrorMobile(true) : setErrorMobile(false)}  placeholder="Mobile Number" className="input-mobile" />
-                                    <hr />
+                                    <input type="number" onChange={(e) => { setMobileNum(e.target.value.trim()), setErrorMobile(false) }} onBlur={(e) => e.target.value.trim() === "" ? setErrorMobile(true) : setErrorMobile(false)} placeholder="Mobile Number" className="input-mobile" />
+                                    <hr className="hr-line" />
                                     {errorMobile && <p className="error-msg">*Please enter mobile number. </p>}
-                                    
+
                                 </div>
                                 <div className="mobile-container">
-                                    <input type="text" onChange={(e) => {setEmail(e.target.value.trim()),setErrorEmail(false)}}  onBlur={(e) => e.target.value.trim() === "" ? setErrorEmail(true) : setErrorEmail(false)} placeholder="Email" className="input-mobile" />
-                                    <hr />
-                                     {errorEmail && <p className="error-msg">*Please enter email address. </p>}
+                                    <input type="text" onChange={(e) => { setEmail(e.target.value.trim()), setErrorEmail(false) }} onBlur={(e) => e.target.value.trim() === "" ? setErrorEmail(true) : setErrorEmail(false)} placeholder="Email" className="input-mobile" />
+                                    <hr className="hr-line" />
+                                    {errorEmail && <p className="error-msg">*Please enter email address. </p>}
                                 </div>
                             </div>
 
@@ -304,31 +304,31 @@ const BookDetails = (props) => {
                     </div>
                     <div className="container22">
                         <div className="list-train">
-                            <h2 className ="boarding-name">Boarding Details</h2>
+                            <h2 className="boarding-name">Boarding Details</h2>
+                            <div className="chng-container-book">
+                                <div className="container218">
+                                    <h3 className="train-name">{trainNumber}-{trainName}</h3>
 
-                            <div className="container2">
-                                <h3 className="train-name">{trainNumber}-{trainName}</h3>
+                                    <p className="margin-class time-table">Class {selectedClass[0].class} & {quota} Quota</p>
 
-                                <p className="margin-class time-table">Class {selectedClass[0].class} & {quota} Quota</p>
+                                </div>
+                                <div className="journey-container">
+                                    <div className="journey-details-from">
+                                        <h3 className="margin-class">{journey.startDate}</h3>
+                                        <p className="margin-class">{from.departureTime} <br />{from.stationCode}, {from.stationName}</p>
+                                    </div>
+                                    <div className="journey-time">
+                                        <h3 className="margin-class">{journey.duration}</h3>
+                                        <hr className="hr-time  dotted-line margin-class" />
 
+                                    </div>
+                                    <div className="journey-details-to">
+                                        <h3 className="margin-class">{journey.endDate}</h3>
+                                        <p className="margin-class1">{to.arrivalTime} <br />{to.stationCode}, {from.stationName}</p>
+                                    </div>
+                                </div>
+                                <button type="button" className="chne-boarding">Change Boarding Station</button>
                             </div>
-                            <div className="journey-container">
-                                <div className="journey-details-from">
-                                    <h3 className="margin-class">{journey.startDate}</h3>
-                                    <p className="margin-class">{from.departureTime} <br />{from.stationCode}, {from.stationName}</p>
-                                </div>
-                                <div className="journey-time">
-                                    <h3 className="margin-class">{journey.duration}</h3>
-                                    <hr className="hr-time  dotted-line margin-class" />
-
-                                </div>
-                                <div className="journey-details-to">
-                                    <h3 className="margin-class">{journey.endDate}</h3>
-                                    <p className="margin-class1">{to.arrivalTime} <br />{to.stationCode}, {from.stationName}</p>
-                                </div>
-                            </div>
-                            <button type="button" className="chne-boarding">Change Boarding Station</button>
-
                         </div>
                         <hr className="hr-m" />
                         <div className="offer-container">
@@ -358,7 +358,7 @@ const BookDetails = (props) => {
                                 </div>
                                 <div className="apply-code-input-container">
                                     <input className="input-apply" placeholder="Enter code" type="text" />
-                                    <hr />
+                                    <hr className="hr-line" />
 
                                 </div>
 
@@ -371,16 +371,16 @@ const BookDetails = (props) => {
                                 <h2 className="bill-head">Bill details</h2>
                                 <div className="bill-container-box">
                                     <div className="bill-details1">
-                                        <p >Base Ticket Fare</p>
-                                        <p>₹{price}.00</p>
+                                        <p className="bill-name-p" >Base Ticket Fare</p>
+                                        <p  className="bill-name-p">₹{price}.00</p>
                                     </div>
                                     <div className="bill-details1">
-                                        <p >Total Travellers</p>
-                                        <p>{personsList.length}</p>
+                                        <p  className="bill-name-p" >Total Travellers</p>
+                                        <p  className="bill-name-p">{personsList.length}</p>
                                     </div>
                                     <div className="bill-details1">
-                                        <p >CGST & SGST</p>
-                                        <p>₹{totalGst}.00</p>
+                                        <p  className="bill-name-p" >CGST & SGST</p>
+                                        <p  className="bill-name-p">₹{totalGst}.00</p>
                                     </div>
 
                                 </div>

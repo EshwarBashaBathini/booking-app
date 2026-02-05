@@ -11,6 +11,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    margin-top: 60px;
     
 }
 
@@ -18,6 +19,7 @@
     display: flex;
     flex-direction: column;
     width: 45%;
+    
 }
 .container22{
     display: flex;
@@ -29,7 +31,7 @@
     display: flex;
     flex-direction: column;
     border: 1px solid #808080;
-    padding: 30px;
+    padding: 45px;
     margin: 0 0 20px 0;
     border-radius: 20px;
 }
@@ -37,7 +39,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 20px 0px 20px 0px ;
+    
 }
 
 .heading-t{
@@ -63,7 +65,7 @@
     display: flex;
     flex-direction: column;
     height: fit-content;
-    margin: 20px 0 20px 0;
+    
 }
 
 
@@ -88,6 +90,9 @@ select {
 }
 .input-container-t1{
     width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
     color: #808080;
 }
 .input-t{
@@ -103,20 +108,33 @@ select {
 
 .input-container-t2{
     width: 23%;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
     color: #808080;
 }
 .input-container-t3{
     width: 23%;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
     color: #808080;
+}
+hr-line{
+    width: 100%;
 }
 .input-container-t4{
     width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
 }
 .save-btn{
     background-color: #0578FF;
     padding: 10px 30px 10px 30px;
     width: max-content;
     color: white;
+    font-size: 16px;
     outline: none  !important;
     border: none ;
 }
@@ -131,19 +149,29 @@ select {
     width: 100%;
     height: fit-content;
     padding: 0px;
-    margin-bottom: 10px;
-    align-items: center;
+    
+    align-items: baseline;
     justify-content: space-between;
 }
 
+.input-container1{
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    padding: 0px;
+    margin: 30px 0 30px 0;
+    align-items: center;
+    justify-content: space-between;
+}
 .ul-person-list{
     padding: 0px;
-    margin: 20px 0px 20px 0px ;
+    margin-top: 30px ;
+    margin-bottom: 60px;
 }
 
 .irctc-name{
     font-weight: 500;
-    font-size: 20;
+    font-size: 20px;
     color: #202020;
 }
 
@@ -155,14 +183,14 @@ select {
     color: #808080;
     font-weight: 500;
     font-size: 12px;
-    padding-left: 10px;
+    padding-left: 30px;
 }
 .verification-container{
     display: flex;
     align-items: center;
     width: 100%;
     justify-content: space-between;
-    margin-top: 10px;
+    margin: 30px 0 30px 0;
 }
 
 .input-irctc{
@@ -179,9 +207,9 @@ select {
 .irctc-cred-container{
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    width: 60%;
-    margin-top: 10px;
+    justify-content: space-between;
+    width: 40%;
+    
 }
 
 .irctc-name-link{
@@ -193,10 +221,10 @@ select {
     display: flex;
     align-items: center;
     width: 100%;
-    margin: 10px 0 10px 0;
+    margin-top: 30px;
 }
 .top-container-css{
-    padding: 15px;
+    padding: 30px 100px 30px 100px;
 }
 .mobile-container{
     width: 50%;
@@ -221,7 +249,7 @@ select {
 .privacy-container{
     display: flex;
     position: static;
-
+    margin-top: 65px;
     align-items: center;
     flex-wrap: wrap;
     width: 450px;
@@ -237,18 +265,18 @@ select {
     outline: 1px solid #0578FF;
     color: #0578FF;
     font-weight: 500;
-    margin-top: 10px;
+    margin-top: 30px;
     font-size: 12px;
     width: max-content;
     background: none;
 }
 
 .hr-m{
-    margin: 10px 0 10px 0;
+    margin: 30px 0 30px 0;
 }
 
 .offer-container{
-    padding: 20px;
+    padding: 30px;
     border: 3px  dashed #0578FF;
     border-radius: 10px;
 
@@ -284,14 +312,15 @@ select {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 20px;
 }
 
 .apply-container-border{
     display: flex;
     flex-direction: column;
     border: 1px solid #808080;
-    padding: 30px 20px 30px 20px;
-    margin: 20px 0 10px 0;
+    padding: 30px;
+    margin-top: 30px;
     border-radius: 20px;
 
 }
@@ -309,6 +338,7 @@ select {
 .apply-code-container{
     display: flex;
     align-items: center;
+    height: 57px;
   
     justify-content: space-between;
 }
@@ -332,7 +362,7 @@ select {
     color: #202020;
 }
 .bill-container-box{
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .bill-details1{
@@ -341,8 +371,14 @@ select {
     color: #808080;
     display: flex;
     align-items: center;
+    margin-top: 10px;
     justify-content: space-between;
     padding: 3px 0 3px 0;
+}
+.bill-name-p{
+    color: #808080;
+    font-weight: 500;
+    font-size: 12px;
 }
 
 .bill-amount-head{
@@ -350,7 +386,7 @@ select {
     font-size: 20px;
 }
 .bill-amount{
-    margin-top: 20px;
+    margin-top: 30px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -379,7 +415,7 @@ select {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 20px 0 20px 0;
+    margin-top: 30px;
 }
 .cancel-btn{
     background: none;
@@ -406,6 +442,7 @@ select {
     }
     .container22{
         width: 100%;
+        margin-top: 10px;
     }
     .apply-code-container{
         flex-direction: column;
@@ -426,7 +463,7 @@ select {
         padding: 20px;
     }
     .top-container-css{
-        padding: 15px;
+       padding: 10px 40px 10px 40px;
     }
     .container1{
         width: 100%;
@@ -442,7 +479,11 @@ select {
     }
     .input-container-t1,.input-container-t2,.input-container-t3,.input-container-t4{
         width: 100%;
-        margin-bottom: 5px;
+        margin-bottom: 10px;
+    }
+    .input-container1{
+        flex-direction: column;
+        margin: 10px 0 0 0;
     }
     .save-btn{
         width: fit-content;
@@ -494,13 +535,15 @@ select {
 
 
 
-
+.chng-container-book{
+    margin-top: 20px;
+}
 
 .list-train{
     background-color: #e0eeff ;
     border-radius: 15px;
     width: 100%;
-    padding: 15px;
+    padding: 30px;
     color: #202020;
     margin: 0 0 20px 0;
     font-size: 15px;
@@ -508,7 +551,7 @@ select {
 
 }
 
-.container2{
+.container218{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -556,7 +599,7 @@ select {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 10px;
+    margin-top: 30px;
 }
 
 .journey-time{

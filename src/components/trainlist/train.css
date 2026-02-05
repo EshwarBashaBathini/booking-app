@@ -175,7 +175,7 @@
     width: 100%;
     list-style-type: none;
     padding: 0px;
-    height: 99vh;
+    height: 100vh;
     overflow-y: auto;
 }
 
@@ -199,21 +199,35 @@
 @media only screen and (max-width:600px){
     .train-container{
         flex-direction: column;
+        padding: 27px 30px 20px 30px;
     }
     .side-container{
         width: 100%;
-        padding: 20px;
+        
     }
     .search-container{
         height: auto;
+        width: 100%;
        
     }
-    .input-container{
+    .plan-container{
+        height: 105px;
+    }
+    .tour-container{
+        height: 105px;
+    }
+    .name-plan-01{
+        font-size: 14px;
+    }
+    .trains-btn{
+        margin-top: 15px;
+    }
+    .input-container-ee{
         width: 100%;
     }
     .side-container2{
         width: 100%;
-        padding: 20px;
+        margin-top: 20px;
     }
 }
 

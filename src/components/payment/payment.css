@@ -2,9 +2,11 @@
     font-weight: 600;
     font-size: 32px;
     color: #0578FF;
+    margin-top: 30px;
+    margin-bottom: 60px;
 }
 .payment-containers{
-    margin-top: 20px;
+   
     display: flex;
     justify-content: space-between;
 }
@@ -20,7 +22,7 @@
 }
 
 .top-container-payment {
-    padding: 30px;
+    padding: 0 100px 0 100px ;
     color: #202020;
     font-weight: 500;
 }
@@ -36,30 +38,29 @@
     padding: 0px;
     list-style-type: none;
 }
-
+.travel-details-person{
+    margin-bottom: 60px;
+}
 .person-list {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    margin: 5px 0 5px 0;
+    margin-top: 10px;
     justify-content: space-between;
 }
 
 .list-train-1 {
-    background-color: #e0eeff;
+    background-color: #cce4ff;
     border-radius: 15px;
     width: 100%;
-    padding: 25px;
+    padding: 30px;
     color: #202020;
-    margin: 0 0 20px 0;
     font-size: 15px;
 }
 
-.travel-details-person {
-    margin: 20px 0 20px 0;
-}
+   
 .container-bbb{
-    margin: 0 0 20px 0;
+    margin-bottom: 60px;
 }
 .option-text {
     color: #606060;
@@ -77,7 +78,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 10px 0 10px 0;
+   
 }
 
 .ticket-name {
@@ -95,28 +96,32 @@
 .payment-header{
     font-size: 20px;
     font-weight: 500px;
+    margin-left: 30px;
 }
 
 .payment-container-list{
-    padding: 25px;
+    margin-top: 60px;
+   
 }
 .ul-payment-list{
     display: flex;
     flex-direction: column;
-   
+    margin-top: 30px;
     padding: 0px;
 }
 .option-list{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 10px 0 10px 0;
+   padding: 25px;
+   border-bottom: 1px solid #c0bdbd;
+   
 }
 
 .upi-description{
     display: flex;
     flex-direction: column;
-    margin-left: 10px;
+    margin-left: 30px;
     
 }
 
@@ -144,13 +149,14 @@
     }
     .payment-container2{
         width: 100%;
+        margin-top: 40px;
     }
     .upi-description{
         margin-left: 0px;
     }
 
     .top-container-payment {
-        padding: 15px;
+         padding: 0 30px 0 30px ;
     }
     .ticket-para{
         margin-top: 10px;

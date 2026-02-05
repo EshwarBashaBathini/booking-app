@@ -148,9 +148,9 @@ const Payment = (props) => {
                             <p className="payment-header">All Payment Options</p>
                             <ul className="ul-payment-list">
                                 {paymentOptions.map(eachOption => (
-                                    <li className="option-list">
+                                    <li key={eachOption.title} className="option-list">
                                         <div className="container-upi">
-                                            <TbCoinRupeeFilled size={20} />
+                                            <TbCoinRupeeFilled size={40} />
                                             <div className="upi-description">
                                                 <p>{eachOption.title}</p>
                                                 <p>{eachOption.description}</p>

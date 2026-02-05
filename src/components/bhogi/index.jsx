@@ -21,18 +21,18 @@ const Bhogi = (props) => {
         return (
             (availability === "Not Available") ? (
                 <li className=" bhogi-li not-available">
-                    <p className="margin-classes">{bhogiDetails.class}</p>
-                    <p className="margin-classes">{availability}</p>
+                    <p className="bhogi-p-class2">{bhogiDetails.class}</p>
+                    <p className="bhogi-p-class2">{availability}</p>
                 </li>
             ) : (
                 <li onClick={onSelectedClass} className={`bhogi-li ${bg}`} >
                     <div className="display-row">
-                        <p>{bhogiDetails.class}</p>
-                        <p>{availability}</p>
+                        <p className="bhogi-p-class">{bhogiDetails.class}</p>
+                        <p className="bhogi-p-class">{availability}</p>
                     </div>
                     <div className="display-row">
-                        <p>{quota}</p>
-                        <p>{price}</p>
+                        <p className="bhogi-p-class">{quota}</p>
+                        <p className="bhogi-p-class">{price}</p>
                     </div>
                 </li >
 
