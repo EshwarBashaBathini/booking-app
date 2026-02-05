@@ -196,7 +196,7 @@ const BookDetails = (props) => {
                             <div>
                                 <ul className="ul-person-list">
                                     {personsList.map(eachPerson => (
-                                        <PersonList details={eachPerson} onEdit={onEditBtn} onDelete={onDeleteBtn} key={eachPerson.id} />
+                                        <PersonList  details={eachPerson} onEdit={onEditBtn} onDelete={onDeleteBtn} key={eachPerson.id} />
                                     ))
 
                                     }
@@ -294,7 +294,7 @@ const BookDetails = (props) => {
 
                                 </div>
                                 <div className="mobile-container">
-                                    <input type="text" onChange={(e) => { setEmail(e.target.value.trim()), setErrorEmail(false) }} onBlur={(e) => e.target.value.trim() === "" ? setErrorEmail(true) : setErrorEmail(false)} placeholder="Email" className="input-mobile" />
+                                    <input type="email" onChange={(e) => { setEmail(e.target.value.trim()), setErrorEmail(false) }} onBlur={(e) => e.target.value.trim() === "" ? setErrorEmail(true) : setErrorEmail(false)} placeholder="Email" className="input-mobile" />
                                     <hr className="hr-line" />
                                     {errorEmail && <p className="error-msg">*Please enter email address. </p>}
                                 </div>

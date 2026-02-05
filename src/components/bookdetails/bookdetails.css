@@ -249,10 +249,11 @@ hr-line{
 .privacy-container{
     display: flex;
     position: static;
-    margin-top: 65px;
+    margin-top: 60px;
     align-items: center;
     flex-wrap: wrap;
     width: 450px;
+    margin-bottom: 30px;
     justify-content: space-between;
 }
 

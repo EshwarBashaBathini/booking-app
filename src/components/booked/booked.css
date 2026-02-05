@@ -1,0 +1,190 @@
+.booked-top-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 500;
+    padding: 0 100px 0 100px ;
+    width: 100%;
+}
+
+.success-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 60px 0 60px 0;
+}
+.success-img{
+    width: 10%;
+}
+.success-top-container{
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.cong-name{
+    font-size: 32px;
+    color: #31A91D;
+    margin-bottom: 10px;
+}
+.cong-msg{
+    font-size: 16px;
+    color: #808080;
+}
+
+.success-container-2{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+
+
+.list-train-sucess{
+    background-color: white;
+    color: #202020;
+    border: 1px solid #808080;
+    border-radius: 5px ;
+    padding: 50px;
+    width: 65%;
+}
+.pnr-container{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.trans-name{
+    font-size: 16px;
+
+}
+.train-name-sucess{
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+.container-sucess01{
+    margin-bottom: 30px;
+}
+.journey-container-success{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.success-name{
+    font-size: 16px;
+}
+.passenger-list-success{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+
+}
+.travel-details-person-success{
+    margin: 30px 0 30px 0;
+}
+
+.person-details-success{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+.age-container{
+    text-align: start;
+    margin-top: 5px;
+}
+.seat-container{
+    text-align: end;
+    margin-top: 5px;
+}
+
+.total-price-success-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.price-name-success{
+    font-size: 20px;
+    font-weight: 600;
+    color: #404040;
+}
+
+.img-container{
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+    align-self: center;
+}
+.qr-img{
+   
+    width: 70%;
+    
+}
+.scan-p{
+    color: #808080;
+    font-size: 16px;
+    margin: 20px 0 20px 0;
+}
+
+.qr-scanner-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+}
+
+.success-btn-01{
+    width: 100%;
+    font-size: 16px;
+    color: #000000 ;
+    margin-bottom: 20px;
+    background: none;
+    border: 1px solid #0578FF;
+    border-radius: 5px;
+
+}
+
+.success-btn-02{
+    width: 100%;
+    font-size: 14px;
+    color: white ;
+    margin-bottom: 20px;
+    background-color: #0578FF;
+    
+    border-radius: 5px;
+}
+
+
+
+@media only screen and (max-width:600px){
+    .booked-top-container{
+         padding: 0 30px 0 30px ;
+    }
+    .success-container-2{
+        flex-direction: column;
+    }
+    .success-img{
+        width: 23%;
+    }
+    .cong-name{
+        font-size: 25px;
+    }
+    .cong-msg{
+        font-size: 12px;
+    }
+    .list-train-sucess{
+        width: 100%;
+        padding: 25px;
+    }
+    .pnr-container{
+        flex-direction: column;
+    }
+    .ticket-details{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .qr-scanner-container{
+        width: 100%;
+        margin-top: 30px;
+    }
+}

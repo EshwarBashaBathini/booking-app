@@ -81,7 +81,17 @@ const Payment = (props) => {
     console.log(personsList)
 
 
-   
+    const onBookNavigation = (id) => {
+        console.log(id)
+        navigate(`/payment/${trainNumber}/booked/${id}`, {
+            state: {
+                trainDetails, personsList, totalGst, email, totalPrice
+            }
+
+        })
+    }
+
+
 
 
 
@@ -148,7 +158,7 @@ const Payment = (props) => {
                             <p className="payment-header">All Payment Options</p>
                             <ul className="ul-payment-list">
                                 {paymentOptions.map(eachOption => (
-                                    <li key={eachOption.title} className="option-list">
+                                    <li key={eachOption.id} onClick={() => onBookNavigation(eachOption.id)} className="option-list">
                                         <div className="container-upi">
                                             <TbCoinRupeeFilled size={40} />
                                             <div className="upi-description">
@@ -235,7 +245,7 @@ const Payment = (props) => {
                     </div>
 
                 </div>
-                 <div className="privacy-container">
+                <div className="privacy-container">
                     <p className="text-p">Cancellation Policy</p>
                     <p className="text-p">Terms & Conditions</p>
                     <p className="text-p">Travel Insurance</p>

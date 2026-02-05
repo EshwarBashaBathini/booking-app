@@ -7,6 +7,7 @@ import TrainList from './components/trainlist'
 import Payment from './components/payment'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import BookDetails from './components/bookdetails'
+import BookedStatus from './components/booked'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -19,6 +20,7 @@ function App() {
         <Route exact path="/book" element={<TrainList />} />
         <Route exact path="/book/:name/:date" element={ <BookDetails />} />
         <Route exact path="/payment/:name/checkout" element={<Payment />} />
+        <Route exact path='/payment/:trainNumber/booked/:id' element={<BookedStatus />} />
       </Routes>
     </Router>
 
