@@ -4,6 +4,8 @@ import HorizontalCalendar from '../calender'
 import Footer from '../footer'
 import { GiSettingsKnobs } from "react-icons/gi";
 import TrainItem from '../trainItem';
+import { useEffect, useState } from 'react';
+
 
 
 const data = [
@@ -143,6 +145,40 @@ const data = [
 
 const TrainList = () => {
 
+  const [trainsLists, setTrainsList] = useState([])
+
+  
+
+  useEffect(() => {
+    
+    const fetchtrains = async () => {
+      const response = await fetch(`http://localhost:3000/route`,
+
+        {
+          method: "GET",   // specify the method
+          headers: {
+            "Content-Type": "application/json"  // headers go here
+          }
+        },[]  
+      )
+
+      const trainsList = await response.json()
+     
+
+      if (response.ok){
+        const trainList = trainsList[0]  
+        console.log(trainList.all_trains)   
+        setTrainsList(trainList.all_trains)
+
+      }
+     
+
+    }
+    fetchtrains()
+  }, [])
+
+
+
   return (
     <div className='top-container' >
       <Header />
@@ -193,7 +229,7 @@ const TrainList = () => {
           </div>
           <hr className='hr' />
           <ul className='ul-trains-list'>
-            {data.map(eachTrain => (
+            {trainsLists.map(eachTrain => (
               <TrainItem trainDetails={eachTrain} key={eachTrain.trainNumber} />
             ))}
           </ul>

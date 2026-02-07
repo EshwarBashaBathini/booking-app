@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom"
 const TrainItem = (props) => {
     const {trainDetails} = props
     const navigate = useNavigate()
+    const train_info = trainDetails
+ 
     
     const { trainNumber, trainName, runsOn, journey, from = {}, to, classes } = trainDetails
  

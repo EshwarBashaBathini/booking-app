@@ -14,6 +14,8 @@ const HomePage = () => {
     const [sourceError, setSourceError] = useState("")
     const [selectedDateError, setSelectedDateError] = useState("")
     const [destinationError, setDestinationError] = useState("")
+    
+    
 
     const navigate = useNavigate();  // Call useNavigate hook to get navigate function
 
@@ -87,7 +89,7 @@ const HomePage = () => {
         }
     };
 
-
+   
 
 
 
@@ -114,8 +116,9 @@ const HomePage = () => {
                                 <div className="search-container2">
                                     <div className="input-search">
                                         <input onChange={onSourcePlace} onBlur={onSourceBlur} value={sourcePlace} className="input-btn" type="search" placeholder="enter source place" />
-                                        <hr className="hr-line"  />
+                                        <hr className="hr-line" />
                                         <p className="error">{sourceError}</p>
+
                                     </div>
                                     <div className="input-search">
                                         <input className="input-btn" onBlur={onDestinationBlur} value={destinationPlace} onChange={onDestinationPlace} type="search" placeholder="enter destination place" />
@@ -131,7 +134,7 @@ const HomePage = () => {
                                             minDate={new Date()}
                                             placeholderText="Select a date"
                                         />
-                                        <hr className="hr-line"  />
+                                        <hr className="hr-line" />
                                         <p className="error">{selectedDateError}</p>
                                     </div>
 

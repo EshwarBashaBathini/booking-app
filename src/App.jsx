@@ -8,6 +8,8 @@ import Payment from './components/payment'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import BookDetails from './components/bookdetails'
 import BookedStatus from './components/booked'
+import Login from './components/authentication/login'
+import Register from './components/authentication/register'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -16,13 +18,16 @@ function App() {
 
     <Router>
       <Routes>
+        <Route exact path='/login' element={ <Login />} />
+        <Route exact path='/register' element={ <Register />} />
         <Route exact path="/" element={<HomePage />} />
         <Route exact path="/book" element={<TrainList />} />
         <Route exact path="/book/:name/:date" element={ <BookDetails />} />
         <Route exact path="/payment/:name/checkout" element={<Payment />} />
         <Route exact path='/payment/:trainNumber/booked/:id' element={<BookedStatus />} />
       </Routes>
-    </Router>
+    </Router> 
+   
 
    
   )

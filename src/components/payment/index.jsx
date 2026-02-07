@@ -6,7 +6,8 @@ import { MdArrowForwardIos } from "react-icons/md";
 import { BiSolidOffer } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import Footer from "../footer"
-
+import { useEffect } from "react";
+import Cookies from "js-cookie"
 
 
 
@@ -90,6 +91,14 @@ const Payment = (props) => {
 
         })
     }
+    useEffect(() => {
+        const cookiesss = Cookies.get('auth_token')
+        console.log(cookiesss)
+        if (!cookiesss) {
+            navigate('/login')
+        }
+
+    }, [])
 
 
 
