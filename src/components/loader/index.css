@@ -1,0 +1,47 @@
+/* Reset and normalize styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Set up the spinner container */
+.spinner {
+  width: 20px; /* Size set to 10px */
+  height: 20px; /* Size set to 10px */
+  background-color: #4d4f4e; /* Color updated to #4d4f4e (dark grayish) */
+  animation: spin 1.5s linear infinite, morph 1.5s ease-in-out infinite;
+  transition: all 0.4s ease-in-out;
+}
+
+/* Spinner rotation animation */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Morphing animation between various shapes */
+@keyframes morph {
+  0% {
+    clip-path: circle(50%); /* Circle */
+  }
+  20% {
+    clip-path: polygon(50% 0%, 100% 38%, 81% 100%, 19% 100%, 0% 38%); /* Pentagon */
+  }
+  40% {
+    clip-path: inset(0 0 0 0 round 5px); /* Rounded rectangle */
+  }
+  60% {
+    clip-path: ellipse(50% 60% at 50% 50%); /* Egg shape */
+  }
+  80% {
+    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%); /* Hexagon */
+  }
+  100% {
+    clip-path: circle(50%); /* Back to circle */
+  }
+}
