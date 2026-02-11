@@ -24,11 +24,7 @@ const HomePage = () => {
 
     const [sourceSelected, setSourceSelected] = useState(false)
     const [destinationSelected, setDestinationSelected] = useState(false)
-    console.log(sourcePlace)
-    console.log(destinationPlace)
-    console.log(sourceCode)
-    console.log(destinationCode)
-
+   
     const navigate = useNavigate();
 
 
@@ -97,13 +93,12 @@ const HomePage = () => {
 
         if (selectedDate && sourcePlace && destinationPlace) {
 
-            console.log("Hii, all details entered");
+          
             navigate(`/book?from=${sourceCode}&to=${destinationCode}`);
             setSelectedDate(null)
             setDestinationPlace("")
             setSourcePlace("")
         } else if (!selectedDate && !sourcePlace && !destinationPlace) {
-            console.log("Please enter all details");
             setDestinationError("Please Enter the Destination Place!..");
             setSelectedDateError("Please Select the Date!..");
             setSourceError("Please Enter the Source Place!..");
@@ -157,7 +152,6 @@ const HomePage = () => {
                                                 {stationList.map(eachStations => (
                                                     <li key={eachStations.id} className="list-stations"
                                                          onMouseDown={() => {
-                                                            console.log("hiiii")
                                                             setSourceCode(eachStations.code),
                                                             setSourcePlace(eachStations.name)
                                                             setSourceSelected(false);

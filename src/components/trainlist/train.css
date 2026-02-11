@@ -52,6 +52,14 @@
     position: relative;
     
 }
+.loader-container{
+    height: 70vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
 
 .ul-stations-book {
     padding: 0;

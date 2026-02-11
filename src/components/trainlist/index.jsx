@@ -7,6 +7,7 @@ import TrainItem from '../trainItem';
 import url from '../url'
 
 import { useEffect, useState } from 'react';
+import LoadingSpinner from '../loader';
 
 import { useSearchParams } from 'react-router-dom';
 
@@ -156,6 +157,8 @@ const TrainList = () => {
   const [destinationCode, setDestinationCode] = useState('')
   const [trainsList, setTrainList] = useState([])
 
+  const [isLoading, setLoader] = useState(true)
+
   const [stationList, setStationList] = useState([])
 
   const [searchParams] = useSearchParams();
@@ -163,7 +166,6 @@ const TrainList = () => {
   useEffect(() => {
     const from1 = searchParams.get('from')
     setSourceCode(from1)
-    console.log(from1)
 
     const to = searchParams.get('to')
     setDestinationCode(to)
@@ -175,6 +177,7 @@ const TrainList = () => {
  useEffect(() => {
   if (!sourceCode || !destinationCode) return;
 
+
   const fetchTrains = async () => {
     const response = await fetch(
       `${url}/trains/search?from=${sourceCode}&to=${destinationCode}`
@@ -184,9 +187,17 @@ const TrainList = () => {
 
     if (response.ok) {
       console.log(res);
+      setLoader(false)
       setTrainList(res.data);
+      
     }
   };
+
+  console.log(sourceCode === "" || destinationCode === "")
+
+  if (sourceCode === null || destinationCode === null){
+    setLoader(false)
+  }
 
   fetchTrains();
 }, [sourceCode, destinationCode]);
@@ -226,6 +237,24 @@ const TrainList = () => {
 
   }
 
+  const onFormSubmit = async(e) => {
+    e.preventDefault()
+    setLoader(true)
+
+    if (sourcePlace && destinationPlace){
+
+      const response = await fetch(`${url}/trains/search?from=${sourceCode}&to=${destinationCode}`)
+      const res = await response.json()
+
+      if (response.ok){
+        setTrainList(res.data)
+        setLoader(false)
+      }
+      
+
+    }
+  }
+
 
 
 
@@ -238,7 +267,7 @@ const TrainList = () => {
         <div className='side-container'>
           <h1 className='head'>Your Search Results</h1>
           <div className='container-height' >
-            <form className='search-container'>
+            <form onSubmit={onFormSubmit} className='search-container'>
               <div className='input-container-ee'>
                 <input type='text' value={sourcePlace} onBlur={() => setSourceSelected(false)} onChange={onSourceChange} className='input' placeholder='source' />
                 <hr />
@@ -329,9 +358,11 @@ const TrainList = () => {
           </div>
           <hr className='hr' />
           <ul className='ul-trains-list'>
-            {trainsList.map(eachTrain => (
+            {!isLoading ? trainsList.map(eachTrain => (
               <TrainItem trainDetails={eachTrain} key={eachTrain.trainNo} />
-            ))}
+            )) : <div className='loader-container'><LoadingSpinner /></div>
+            
+            }
           </ul>
 
         </div>
