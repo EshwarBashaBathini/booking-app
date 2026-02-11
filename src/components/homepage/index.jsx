@@ -6,6 +6,8 @@ import Footer from "../footer";
 import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
 
+import url from '../url'
+
 const HomePage = () => {
 
     const [selectedDate, setSelectedDate] = useState(null);
@@ -15,30 +17,64 @@ const HomePage = () => {
     const [selectedDateError, setSelectedDateError] = useState("")
     const [destinationError, setDestinationError] = useState("")
 
-    const navigate = useNavigate();  // Call useNavigate hook to get navigate function
+    const [stationList, setStationList] = useState([])
 
+    const [sourceCode, setSourceCode] = useState("")
+    const [destinationCode, setDestinationCode] = useState("")
+
+    const [sourceSelected, setSourceSelected] = useState(false)
+    const [destinationSelected, setDestinationSelected] = useState(false)
+    console.log(sourcePlace)
+    console.log(destinationPlace)
+    console.log(sourceCode)
+    console.log(destinationCode)
+
+    const navigate = useNavigate();
 
 
     const onSourcePlace = (event) => {
         setSourcePlace(event.target.value)
         setSourceError("");
+        setSourceSelected(true)
+
+        const fetchStations = async () => {
+            const response = await fetch(`${url}/stations/search?q=${event.target.value}`)
+            const res = await response.json()
+            setStationList(res)
+
+        }
+
+        fetchStations()
     }
 
     const onSourceBlur = (event) => {
         if (sourcePlace === "") {
             setSourceError("Please Enter the Source Place!..");
         }
+        setSourceSelected(false)
     }
 
     const onDestinationPlace = (event) => {
         setDestinationPlace(event.target.value)
         setDestinationError("")
+        setDestinationSelected(true)
+
+        const fetchStations = async () => {
+            const response = await fetch(`${url}/stations/search?q=${event.target.value}`)
+            const res = await response.json()
+            setStationList(res)
+
+        }
+
+        fetchStations()
+
     }
 
     const onDestinationBlur = (event) => {
         if (event.target.value === "") {
             setDestinationError("Please Enter the Destination Place!..")
         }
+        setDestinationSelected(false)
     }
 
     const onDateBlur = (event) => {
@@ -62,7 +98,7 @@ const HomePage = () => {
         if (selectedDate && sourcePlace && destinationPlace) {
 
             console.log("Hii, all details entered");
-            navigate("/book");
+            navigate(`/book?from=${sourceCode}&to=${destinationCode}`);
             setSelectedDate(null)
             setDestinationPlace("")
             setSourcePlace("")
@@ -114,13 +150,56 @@ const HomePage = () => {
                                 <div className="search-container2">
                                     <div className="input-search">
                                         <input onChange={onSourcePlace} onBlur={onSourceBlur} value={sourcePlace} className="input-btn" type="search" placeholder="enter source place" />
-                                        <hr className="hr-line"  />
+                                        <hr className="hr-line" />
                                         <p className="error">{sourceError}</p>
+                                        {sourceSelected &&
+                                            <ul className="ul-stations">
+                                                {stationList.map(eachStations => (
+                                                    <li key={eachStations.id} className="list-stations"
+                                                         onMouseDown={() => {
+                                                            console.log("hiiii")
+                                                            setSourceCode(eachStations.code),
+                                                            setSourcePlace(eachStations.name)
+                                                            setSourceSelected(false);
+                                                            setStationList([])
+                                                            
+                                                        }}
+
+
+                                                    >
+                                                        <p className="stations-p" >{eachStations.code}</p>
+                                                        <p className="stations-p"   >{eachStations.name}</p>
+
+                                                    </li>
+                                                ))}
+
+                                            </ul>
+                                        }
+
                                     </div>
                                     <div className="input-search">
                                         <input className="input-btn" onBlur={onDestinationBlur} value={destinationPlace} onChange={onDestinationPlace} type="search" placeholder="enter destination place" />
                                         <hr className="hr-line" />
                                         <p className="error">{destinationError}</p>
+                                        {destinationSelected &&
+                                            <ul className="ul-stations">
+                                                {stationList.map(eachStations => (
+                                                    <li key={eachStations.id} className="list-stations"  onMouseDown={() => {
+                                                        setDestinationCode(eachStations.code)
+                                                        setDestinationPlace(eachStations.name)
+                                                        setDestinationSelected(false)
+                                                        setStationList([])
+                                                    }}  >
+                                                        <p className="stations-p" >{eachStations.code}</p>
+                                                        <p className="stations-p"   >{eachStations.name}</p>
+
+                                                    </li>
+                                                ))}
+
+                                            </ul>
+                                        }
+
+
                                     </div>
                                     <div className="input-search">
                                         <DatePicker
@@ -131,7 +210,7 @@ const HomePage = () => {
                                             minDate={new Date()}
                                             placeholderText="Select a date"
                                         />
-                                        <hr className="hr-line"  />
+                                        <hr className="hr-line" />
                                         <p className="error">{selectedDateError}</p>
                                     </div>
 

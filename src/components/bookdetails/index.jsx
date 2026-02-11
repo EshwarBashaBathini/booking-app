@@ -51,13 +51,13 @@ const BookDetails = (props) => {
 
     const { state } = useLocation()
     const { selectedClass, trainDetails } = state || {};
-    const { trainNumber, trainName, journey, from = {}, to, } = trainDetails
-    const { id, quota, price } = selectedClass[0]
+    const { trainNo, name, source, destination, runsOnDays,  fromStation = {}, toStation= {}, travelDuration, fares } = trainDetails
+    const { classCode, quotaCode, fare } = selectedClass[0]
 
 
-    const totalGst = (price * personsList.length) * 0.18
+    const totalGst = (fare * personsList.length) * 0.18
 
-    const totalPrice = (price * personsList.length) + totalGst
+    const totalfare = (fare * personsList.length) + totalGst
 
 
 
@@ -158,9 +158,9 @@ const BookDetails = (props) => {
     const onNextBtn = () => {
         if (isIrctcVerified && mobileNum && email) {
             console.log("Hi User Successfully Completed the Verification")
-            navigate(`/payment/${trainNumber}/checkout`, {
+            navigate(`/payment/${trainNo}/checkout`, {
                 state: {
-                    trainDetails, selectedClass, totalPrice, personsList, mobileNum, email, totalGst,
+                    trainDetails, selectedClass, totalfare, personsList, mobileNum, email, totalGst,
                 }
             })
         } else if (mobileNum === "" && email === "") {
@@ -307,24 +307,24 @@ const BookDetails = (props) => {
                             <h2 className="boarding-name">Boarding Details</h2>
                             <div className="chng-container-book">
                                 <div className="container218">
-                                    <h3 className="train-name">{trainNumber}-{trainName}</h3>
+                                    <h3 className="train-name">{trainNo}-{name}</h3>
 
-                                    <p className="margin-class time-table">Class {selectedClass[0].class} & {quota} Quota</p>
+                                    <p className="margin-class time-table">Class {classCode} & {quotaCode} Quota</p>
 
                                 </div>
                                 <div className="journey-container">
                                     <div className="journey-details-from">
-                                        <h3 className="margin-class">{journey.startDate}</h3>
-                                        <p className="margin-class">{from.departureTime} <br />{from.stationCode}, {from.stationName}</p>
+                                        <h3 className="margin-class">{source}</h3>
+                                        <p className="margin-class">{fromStation.dep} <br />{fromStation.code}, {fromStation.name}</p>
                                     </div>
                                     <div className="journey-time">
-                                        <h3 className="margin-class">{journey.duration}</h3>
+                                        <h3 className="margin-class">{travelDuration}</h3>
                                         <hr className="hr-time  dotted-line margin-class" />
 
                                     </div>
                                     <div className="journey-details-to">
-                                        <h3 className="margin-class">{journey.endDate}</h3>
-                                        <p className="margin-class1">{to.arrivalTime} <br />{to.stationCode}, {from.stationName}</p>
+                                        <h3 className="margin-class">{destination}</h3>
+                                        <p className="margin-class1">{toStation.arr} <br />{toStation.code}, {fromStation.name}</p>
                                     </div>
                                 </div>
                                 <button type="button" className="chne-boarding">Change Boarding Station</button>
@@ -372,7 +372,7 @@ const BookDetails = (props) => {
                                 <div className="bill-container-box">
                                     <div className="bill-details1">
                                         <p className="bill-name-p" >Base Ticket Fare</p>
-                                        <p  className="bill-name-p">₹{price}.00</p>
+                                        <p  className="bill-name-p">₹{fare}.00</p>
                                     </div>
                                     <div className="bill-details1">
                                         <p  className="bill-name-p" >Total Travellers</p>
@@ -388,12 +388,12 @@ const BookDetails = (props) => {
                             </div>
                             <div className="bill-amount">
                                 <h2 className="bill-amount-head">Total Charge</h2>
-                                <h2 className="bill-amount-head">₹{totalPrice}.00</h2>
+                                <h2 className="bill-amount-head">₹{totalfare}.00</h2>
                             </div>
 
                         </div>
                         <div className="last-container">
-                            <p className="last-offer-p">Discounts, offers and price concessions will be applied later during payment</p>
+                            <p className="last-offer-p">Discounts, offers and fare concessions will be applied later during payment</p>
                             <button type="button" onClick={onNextBtn} className="book-btn">Book</button>
                             <button type="button" onClick={onPreviousBtn} className="cancel-btn">Cancel</button>
                         </div>

@@ -4,10 +4,10 @@ const Bhogi = (props) => {
     const { bhogiDetails, onSelected } = props
     
     
-     const { id, availability, quota, price } = bhogiDetails
+     const { classCode, currency, quotaCode, fare } = bhogiDetails
 
     const onSelectedClass = () => {
-        onSelected(id)
+        onSelected(classCode)
         
     }
 
@@ -15,24 +15,19 @@ const Bhogi = (props) => {
 
    
 
-    const bg = availability.includes("AVL") ? "available-green" : "waitlist"
+    const bg = "available-green"
     
     const availabe = () => {
         return (
-            (availability === "Not Available") ? (
-                <li className=" bhogi-li not-available">
-                    <p className="bhogi-p-class2">{bhogiDetails.class}</p>
-                    <p className="bhogi-p-class2">{availability}</p>
-                </li>
-            ) : (
+           (
                 <li onClick={onSelectedClass} className={`bhogi-li ${bg}`} >
                     <div className="display-row">
-                        <p className="bhogi-p-class">{bhogiDetails.class}</p>
-                        <p className="bhogi-p-class">{availability}</p>
+                        <p className="bhogi-p-class">{classCode}</p>
+                        <p className="bhogi-p-class">{quotaCode}</p>
                     </div>
                     <div className="display-row">
-                        <p className="bhogi-p-class">{quota}</p>
-                        <p className="bhogi-p-class">{price}</p>
+                        <p className="bhogi-p-class">{fare}</p>
+                        <p className="bhogi-p-class">{currency}</p>
                     </div>
                 </li >
 

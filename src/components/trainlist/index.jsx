@@ -4,6 +4,11 @@ import HorizontalCalendar from '../calender'
 import Footer from '../footer'
 import { GiSettingsKnobs } from "react-icons/gi";
 import TrainItem from '../trainItem';
+import url from '../url'
+
+import { useEffect, useState } from 'react';
+
+import { useSearchParams } from 'react-router-dom';
 
 
 const data = [
@@ -143,6 +148,89 @@ const data = [
 
 const TrainList = () => {
 
+  const [sourcePlace, setSourcePlace] = useState('')
+  const [destinationPlace, setDestinationPlace] = useState('')
+  const [sourceSelected, setSourceSelected] = useState(false)
+  const [destinationSelected, setDestinationSelected] = useState(false)
+  const [sourceCode, setSourceCode] = useState('')
+  const [destinationCode, setDestinationCode] = useState('')
+  const [trainsList, setTrainList] = useState([])
+
+  const [stationList, setStationList] = useState([])
+
+  const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    const from1 = searchParams.get('from')
+    setSourceCode(from1)
+    console.log(from1)
+
+    const to = searchParams.get('to')
+    setDestinationCode(to)
+
+
+  }, [searchParams])
+
+
+ useEffect(() => {
+  if (!sourceCode || !destinationCode) return;
+
+  const fetchTrains = async () => {
+    const response = await fetch(
+      `${url}/trains/search?from=${sourceCode}&to=${destinationCode}`
+    );
+
+    const res = await response.json();
+
+    if (response.ok) {
+      console.log(res);
+      setTrainList(res.data);
+    }
+  };
+
+  fetchTrains();
+}, [sourceCode, destinationCode]);
+
+
+
+  const onSourceChange = (e) => {
+    setSourcePlace(e.target.value)
+    setSourceSelected(true)
+
+    const fetchStations = async () => {
+      const response = await fetch(`${url}/stations/search?q=${e.target.value}`)
+      const res = await response.json()
+      setStationList(res)
+
+    }
+    console.log(stationList)
+
+    fetchStations()
+
+  }
+
+  const onDestinationChange = (e) => {
+    setDestinationPlace(e.target.value)
+
+    setDestinationSelected(true)
+    const fetchStations = async () => {
+      const response = await fetch(`${url}/stations/search?q=${e.target.value}`)
+      const res = await response.json()
+      setStationList(res)
+
+    }
+    console.log(stationList)
+
+    fetchStations()
+
+
+  }
+
+
+
+
+
+
   return (
     <div className='top-container' >
       <Header />
@@ -152,12 +240,60 @@ const TrainList = () => {
           <div className='container-height' >
             <form className='search-container'>
               <div className='input-container-ee'>
-                <input type='text' className='input' placeholder='source' />
+                <input type='text' value={sourcePlace} onBlur={() => setSourceSelected(false)} onChange={onSourceChange} className='input' placeholder='source' />
                 <hr />
+                {sourceSelected &&
+                  <ul className="ul-stations-book">
+                    {stationList.map(eachStations => (
+                      <li key={eachStations.id} className="list-stations"
+                        onMouseDown={() => {
+                          console.log("hiiii")
+                          setSourceCode(eachStations.code)
+                          setSourcePlace(eachStations.name)
+                          setSourceSelected(false);
+                          setStationList([])
+
+                        }}
+
+
+                      >
+                        <p className="stations-p" >{eachStations.code}</p>
+                        <p className="stations-p"   >{eachStations.name}</p>
+
+                      </li>
+                    ))}
+
+                  </ul>
+                }
+
               </div>
               <div className='input-container-ee'>
-                <input className='input' placeholder='destination' type='text' />
+                <input className='input' value={destinationPlace} onChange={onDestinationChange} onBlur={() => setDestinationSelected(false)} placeholder='destination' type='text' />
                 <hr />
+                {destinationSelected &&
+                  <ul className="ul-stations-book">
+                    {stationList.map(eachStations => (
+                      <li key={eachStations.id} className="list-stations"
+                        onMouseDown={() => {
+                          console.log("hiiii")
+                          setDestinationCode(eachStations.code)
+                          setDestinationPlace(eachStations.name)
+                          setDestinationSelected(false);
+                          setStationList([])
+
+                        }}
+
+
+                      >
+                        <p className="stations-p" >{eachStations.code}</p>
+                        <p className="stations-p"   >{eachStations.name}</p>
+
+                      </li>
+                    ))}
+
+                  </ul>
+                }
+
               </div>
               <button type='submit' className='trains-btn' >Search for trains</button>
             </form>
@@ -193,8 +329,8 @@ const TrainList = () => {
           </div>
           <hr className='hr' />
           <ul className='ul-trains-list'>
-            {data.map(eachTrain => (
-              <TrainItem trainDetails={eachTrain} key={eachTrain.trainNumber} />
+            {trainsList.map(eachTrain => (
+              <TrainItem trainDetails={eachTrain} key={eachTrain.trainNo} />
             ))}
           </ul>
 

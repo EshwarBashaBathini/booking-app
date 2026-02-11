@@ -1,89 +1,98 @@
-.top-home-container{
+.top-home-container {
     display: flex;
     background-color: white;
     justify-content: space-between;
     width: 100%;
 }
-.container-flex{
+
+.container-flex {
     display: flex;
     justify-content: space-between;
 }
 
 
-.para-p{
+.para-p {
     font-size: 16px;
     color: #606060;
 }
-.header-color{
+
+.header-color {
     color: #0578ff;
     font-weight: bold;
     font-size: 24;
     padding: 40px 100px 40px 100px;
-    
+
 }
-.top-container{
+
+.top-container {
     display: flex;
     flex-direction: column;
-    
+
     width: 100vw;
-    
-    
+
+
 }
-.span-color{
+
+.span-color {
     color: black;
 
 }
-.error{
+
+.error {
     color: red;
     font-size: 15px;
 
 }
-.img-size{
+
+.img-size {
     width: 40%;
-    height:auto;
+    height: auto;
     max-height: 100%;
-   
+
 }
-.metro{
+
+.metro {
     display: flex;
     flex-direction: column;
     width: 100%;
     justify-content: center;
-    
-      
+
+
     padding: 169px 100px 165px 100px;
 }
-.travellers-box{
+
+.travellers-box {
     width: 100%;
     margin-bottom: 30px;
 }
-.metro1{
+
+.metro1 {
     width: 100%;
-   
-    
+
+
 }
 
-*{
+* {
     box-sizing: border-box;
 }
 
-body{
+body {
     margin: 0;
 }
 
 
-.first-container{
-    
+.first-container {
+
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     width: auto;
-    
+
 
 }
 
 
-.font-size{
+.font-size {
     font-size: 64px;
     font-weight: 500;
     font-family: "Poppins";
@@ -93,9 +102,9 @@ body{
 }
 
 
-.para-h{
+.para-h {
     color: white;
-   
+
     font-weight: 500;
     font-size: 16px;
     background-color: #0578ff;
@@ -105,24 +114,25 @@ body{
     width: fit-content;
     height: 27px;
     border-radius: 50px;
-    padding:10px 20px 10px 20px;
-    
+    padding: 10px 20px 10px 20px;
+
 }
 
-.search-container2{
+.search-container2 {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: 30px;  
-    align-items: center;
-    
-}
-.search-container1{
-    height: auto;
-    
+    margin-bottom: 30px;
+    align-items: baseline;
+
 }
 
-.search-btn{
+.search-container1 {
+    height: auto;
+
+}
+
+.search-btn {
     background-color: #0578ff;
     color: white;
     width: 100%;
@@ -132,20 +142,52 @@ body{
 
 }
 
-.input-search{
+.input-search {
     width: 45%;
     margin: 3px;
     padding: 10px;
     align-items: baseline;
+    position: relative;
     display: flex;
     flex-direction: column;
-    
+
 }
-.hr-line{
+.ul-stations {
+    padding: 0;
+    position: absolute; /* crucial for overlapping */
+    display: flex;
+    margin-left: 10px;
+    flex-direction: column;
+    list-style-type: none;
+    max-height: 160px;
+   
+    top: 100%;       /* removed quotes */
+    left: 0;
+    right: 0;
+    width: 96%;     /* optional, ensures it matches parent width */
+    overflow-y: auto; /* scroll if content exceeds height */
+    background-color: white; /* important if overlapping other content */
+    z-index: 800;    /* ensures dropdown is above other components */
+    border: 1px solid #ccc; /* optional, makes dropdown visible */
+}
+
+.list-stations{
+    display: flex;
+    padding: 10px;
+    box-shadow: 1px 1px 10px #edeaea;
+}
+.stations-p{
+    margin-left: 5px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+
+.hr-line {
     width: 100%;
 }
 
-.input-btn{
+.input-btn {
     width: 100%;
     align-items: baseline;
     border: none;
@@ -153,54 +195,60 @@ body{
     color: #202020;
     font-size: 15px;
     margin-left: 10px;
-    
+
 }
 
 .input-btn[type="date"] {
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 5px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
 }
 
 
-@media only screen and (max-width:600px){
-    .top-home-container{
+@media only screen and (max-width:600px) {
+    .top-home-container {
         display: flex;
         flex-direction: column;
         align-items: center;
-        
+
     }
-    .first-container{
-        min-height: 100%;  
+
+    .first-container {
+        min-height: 100%;
     }
-    .font-size{
+
+    .font-size {
         font-size: 30px;
     }
-    .metro{
-       
-       
+
+    .metro {
+
+
         padding: 80px 50px 85px 50px;
-       
+
     }
-    .header-color{
+
+    .header-color {
         padding: 20px 50px 20px 50px;
     }
 
-    .search-container{
+    .search-container {
         display: flex;
         flex-direction: column;
         width: 100%;
     }
-    .input-search{
+
+    .input-search {
         width: 100% !important;
     }
-    .img-size{
+
+    .img-size {
         width: 100%;
     }
 }
 
-.logo{
+.logo {
     padding-top: 20px;
 }

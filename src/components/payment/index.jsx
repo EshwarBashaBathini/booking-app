@@ -74,18 +74,18 @@ const paymentOptions = [
 const Payment = (props) => {
 
     const { state } = useLocation()
-    const { trainDetails, selectedClass, totalPrice, personsList, mobileNum, totalGst, email } = state
-    const { trainNumber, trainName, journey, from = {}, to, } = trainDetails
-    const { id, quota, price } = selectedClass[0]
+    const { trainDetails, selectedClass, totalfare, personsList, mobileNum, totalGst, email } = state
+    const { trainNo, name, source, destination, runsOnDays,  fromStation = {}, toStation= {}, travelDuration, fares } = trainDetails
+    const { id, quotaCode, fare } = selectedClass[0]
     const navigate = useNavigate()
     console.log(personsList)
 
 
     const onBookNavigation = (id) => {
         console.log(id)
-        navigate(`/payment/${trainNumber}/booked/${id}`, {
+        navigate(`/payment/${trainNo}/booked/${id}`, {
             state: {
-                trainDetails, personsList, totalGst, email, totalPrice
+                trainDetails, personsList, totalGst, email, totalfare
             }
 
         })
@@ -100,7 +100,7 @@ const Payment = (props) => {
         <div>
             <Header />
             <div className="top-container-payment">
-                <h1 className="confirm-head">Pay <span className="confirm-price"> ₹{totalPrice}</span> to confirm booking</h1>
+                <h1 className="confirm-head">Pay <span className="confirm-fare"> ₹{totalfare}</span> to confirm booking</h1>
                 <div className="payment-containers">
                     <div className="payment-container1">
                         <div className="list-train-1">
@@ -108,24 +108,24 @@ const Payment = (props) => {
                                 <h2 className="boarding-name">Boarding Details</h2>
 
                                 <div className="container2">
-                                    <h3 className="train-name">{trainNumber}-{trainName}</h3>
+                                    <h3 className="train-name">{trainNo}-{name}</h3>
 
-                                    <p className="margin-class time-table">Class {selectedClass[0].class} & {quota} Quota</p>
+                                    <p className="margin-class time-table">Class {selectedClass[0].classCode} & {quotaCode} Quota</p>
 
                                 </div>
                                 <div className="journey-container">
                                     <div className="journey-details-from">
-                                        <h3 className="margin-class">{journey.startDate}</h3>
-                                        <p className="margin-class">{from.departureTime} <br />{from.stationCode}, {from.stationName}</p>
+                                        <h3 className="margin-class">{source}</h3>
+                                        <p className="margin-class">{fromStation.dep} <br />{fromStation.code}, {fromStation.name}</p>
                                     </div>
                                     <div className="journey-time">
-                                        <h3 className="margin-class">{journey.duration}</h3>
+                                        <h3 className="margin-class">{travelDuration}</h3>
                                         <hr className="hr-time  dotted-line margin-class" />
 
                                     </div>
                                     <div className="journey-details-to">
-                                        <h3 className="margin-class">{journey.endDate}</h3>
-                                        <p className="margin-class1">{to.arrivalTime} <br />{to.stationCode}, {from.stationName}</p>
+                                        <h3 className="margin-class">{destination}</h3>
+                                        <p className="margin-class1">{toStation.arr} <br />{toStation.code}, {fromStation.name}</p>
                                     </div>
 
                                 </div>
@@ -134,7 +134,7 @@ const Payment = (props) => {
                                 <h2 className="head-traveller">Traveller Details</h2>
                                 <ul className="persons-ul">
                                     {personsList.map(eachPerson => (
-                                        <li className="person-list">
+                                        <li key={eachPerson.id} className="person-list">
                                             <p>{eachPerson.name}</p>
                                             <p className="option-text">{eachPerson.age}</p>
                                             <p className="option-text">{eachPerson.gender}</p>
@@ -218,7 +218,7 @@ const Payment = (props) => {
                                 <div className="bill-container-box">
                                     <div className="bill-details1">
                                         <p >Base Ticket Fare</p>
-                                        <p>₹{price}.00</p>
+                                        <p>₹{fare}.00</p>
                                     </div>
                                     <div className="bill-details1">
                                         <p >Total Travellers</p>
@@ -234,7 +234,7 @@ const Payment = (props) => {
                             </div>
                             <div className="bill-amount">
                                 <h2 className="bill-amount-head">Total Charge</h2>
-                                <h2 className="bill-amount-head">₹{totalPrice}.00</h2>
+                                <h2 className="bill-amount-head">₹{totalfare}.00</h2>
                             </div>
 
                         </div>

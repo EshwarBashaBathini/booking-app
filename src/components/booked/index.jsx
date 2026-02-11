@@ -5,8 +5,8 @@ import { useLocation,useNavigate } from "react-router-dom"
 
 const BookedStatus = () => {
     const { state } = useLocation()
-    const { trainDetails, personsList, totalGst, email, totalPrice } = state
-    const { trainNumber, trainName, journey, from = {}, to, } = trainDetails
+    const { trainDetails, personsList, totalGst, email, totalfare } = state
+    const { trainNo, name, source, destination, runsOnDays,  fromStation = {}, toStation= {}, travelDuration, fares } = trainDetails
     const navigate = useNavigate()
 
     const onBookAnotherTicket = () => {
@@ -36,20 +36,20 @@ const BookedStatus = () => {
                                 <p className="trans-name">Transaction ID : 351511859256378</p>
 
                             </div>
-                            <p className="train-name-sucess">{trainNumber}-{trainName}</p>
+                            <p className="train-name-sucess">{trainNo}-{name}</p>
                             <div className="journey-container-success">
                                 <div className="journey-details-from">
-                                    <h3 className="margin-class">{journey.startDate}</h3>
-                                    <p className="margin-class">{from.departureTime} <br />{from.stationCode}, {from.stationName}</p>
+                                    <h3 className="margin-class">{source}</h3>
+                                    <p className="margin-class">{fromStation.dep} <br />{fromStation.code}, {fromStation.name}</p>
                                 </div>
                                 <div className="journey-time">
-                                    <h3 className="margin-class">{journey.duration}</h3>
+                                    <h3 className="margin-class">{travelDuration}</h3>
                                     <hr className="hr-time  dotted-line margin-class" />
 
                                 </div>
                                 <div className="journey-details-to">
-                                    <h3 className="margin-class">{journey.endDate}</h3>
-                                    <p className="margin-class1">{to.arrivalTime} <br />{to.stationCode}, {from.stationName}</p>
+                                    <h3 className="margin-class">{destination}</h3>
+                                    <p className="margin-class1">{toStation.arr} <br />{toStation.code}, {fromStation.name}</p>
                                 </div>
 
                             </div>
@@ -83,7 +83,7 @@ const BookedStatus = () => {
                         </div>
                         <div className="total-price-success-container">
                             <h3 className="price-name-success">Total Fare</h3>
-                            <h3 className="price-name-success">{`₹${totalPrice}.00`}</h3>
+                            <h3 className="price-name-success">{`₹${totalfare}.00`}</h3>
                         </div>
 
 

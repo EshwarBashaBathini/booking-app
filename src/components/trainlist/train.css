@@ -47,9 +47,29 @@
 
 
 .input-container-ee {
-    height: 53px;
+    height: auto;
     width: 48%;
+    position: relative;
     
+}
+
+.ul-stations-book {
+    padding: 0;
+    position: absolute; /* crucial for overlapping */
+    display: flex;
+    
+    flex-direction: column;
+    list-style-type: none;
+    max-height: 160px;
+   
+    top: 100%;       /* removed quotes */
+    left: 0;
+    right: 0;
+    width: 100%;     /* optional, ensures it matches parent width */
+    overflow-y: auto; /* scroll if content exceeds height */
+    background-color: white; /* important if overlapping other content */
+    z-index: 600;    /* ensures dropdown is above other components */
+    border: 1px solid #ccc; /* optional, makes dropdown visible */
 }
 
 .input {
