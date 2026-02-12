@@ -1,18 +1,28 @@
 import "./booked.css"
 import Header from "../header"
 import Footer from "../footer"
-import { useLocation,useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
+import Cookies from 'js-cookie'
 
 const BookedStatus = () => {
     const { state } = useLocation()
     const { trainDetails, personsList, totalGst, email, totalfare } = state
-    const { trainNo, name, source, destination, runsOnDays,  fromStation = {}, toStation= {}, travelDuration, fares } = trainDetails
+    const { trainNo, name, source, destination, runsOnDays, fromStation = {}, toStation = {}, travelDuration, fares } = trainDetails
     const navigate = useNavigate()
 
     const onBookAnotherTicket = () => {
         navigate("/book")
 
     }
+
+    useEffect(() => {
+
+        const token = Cookies.get('auth_token')
+        if (token === "") {
+            navigate('/login')
+        }
+
+    }, [])
 
 
 
@@ -65,7 +75,7 @@ const BookedStatus = () => {
                                     <li className="passenger-list-success">
                                         <p className="success-name">{eachPerson.name}</p>
                                         <div className="person-details-success">
-                                            <div  className="seat-container-margin">
+                                            <div className="seat-container-margin">
                                                 <p className="age-container">{`Age: ${eachPerson.age} Yrs `} </p>
                                                 <p className="age-container">{` Gender: ${eachPerson.gender}`}</p>
                                             </div>
@@ -92,7 +102,7 @@ const BookedStatus = () => {
                     </div>
                     <div className="qr-scanner-container">
                         <div className="img-container">
-                        <img src="https://res.cloudinary.com/dtc3rf1du/image/upload/v1770295005/image_15_mxc3at.png" className="qr-img" alt="QR-img" />
+                            <img src="https://res.cloudinary.com/dtc3rf1du/image/upload/v1770295005/image_15_mxc3at.png" className="qr-img" alt="QR-img" />
                         </div><p className="scan-p">Scan the code to view in any device</p>
                         <button className="success-btn-01" >Print ticket (English)</button>
                         <button className="success-btn-01">Print ticket (Hindi)</button>

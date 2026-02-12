@@ -1,11 +1,13 @@
 import "./payment.css"
-import { useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import Header from "../header"
 import { TbCoinRupeeFilled } from "react-icons/tb";
 import { MdArrowForwardIos } from "react-icons/md";
 import { BiSolidOffer } from "react-icons/bi";
-import { useNavigate } from "react-router-dom";
 import Footer from "../footer"
+import { useEffect } from "react";
+
+import Cookies from 'js-cookie'
 
 
 
@@ -73,12 +75,22 @@ const paymentOptions = [
 
 const Payment = (props) => {
 
+
+
     const { state } = useLocation()
     const { trainDetails, selectedClass, totalfare, personsList, mobileNum, totalGst, email } = state
     const { trainNo, name, source, destination, runsOnDays,  fromStation = {}, toStation= {}, travelDuration, fares } = trainDetails
     const { id, quotaCode, fare } = selectedClass[0]
     const navigate = useNavigate()
-    console.log(personsList)
+
+    useEffect(() => {
+
+        const token = Cookies.get('auth_token')
+        if (token === undefined){
+            navigate('/login')
+        }
+
+    },[])
 
 
     const onBookNavigation = (id) => {

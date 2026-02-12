@@ -1,0 +1,258 @@
+.container-train-details {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Poppins';
+    background-color: #fdfafa;
+
+}
+
+.heading-details{
+    text-align: start;
+    align-self: center;
+    margin-top: 30px;
+    font-size: 40px;
+}
+
+.train-top-container {
+    box-shadow: 0 0 10px #c7c6c6e8;
+    width: 80%;
+    padding: 40px;
+    margin: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.train-name {
+    font-size: 35px;
+}
+
+.zone {
+    font-size: 20px;
+    color: rgb(167, 168, 167);
+    margin: 10px 0 10px 0;
+}
+
+.container-types {
+    display: flex;
+    flex-wrap: wrap;
+
+
+}
+
+.type-head {
+    color: #c7c6c6e8;
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.type-container {
+    margin: 10px;
+    padding: 10px;
+}
+
+.type-name {
+    color: black;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.station-code {
+    font-size: 40px;
+    color: #0587ff;
+    font-weight: 700;
+    margin: 5px 0 5px 0;
+}
+
+.station-name {
+    color: #959798;
+    margin: 5px 0 5px 0;
+}
+
+.dep-time {
+    font-size: 25px;
+    font-weight: 600;
+    margin: 5px 0 5px 0;
+}
+
+.dep-name {
+    color: #959798;
+    font-size: 15px;
+    margin: 5px 0 5px 0;
+}
+.top-container-route{
+    margin: 40px 0 40px 0 ;
+
+}
+
+.container-km{
+    background-color: #eceaea;
+    border-radius: 10px;
+    padding: 30px;
+    margin: 20px;
+}
+
+.km-heading{
+    color: #0587ff;
+    font-size: 30px;
+}
+.km-para{
+    color: #787979;
+    font-size: 15px;
+}
+
+.secnd-container-route{
+   margin: 40px 0 40px 0 ;
+   display: flex;
+   flex-wrap: wrap;
+
+}
+.line-hr{
+    width: 80%;
+}
+
+.list-run-day{
+    background-color: #0587ff;
+    color: white;
+    height: 50px;
+    width: 50px;   
+    font-size: 20px;
+    text-align: center;
+    align-self: center;
+    padding: 10px;
+    font-weight: 700;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.runs-train-container{
+    display: flex;
+    align-items: center;
+    align-self: flex-start;
+    width: 100%;
+    overflow-y: auto;
+    scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none;
+  margin-top: 20px;
+    
+}
+
+.route-heading{
+    font-size: 30px;
+    font-weight: 600;
+    text-align: start;
+}
+
+.route-container{
+    box-shadow: 0 0 10px #c7c6c6e8;
+    width: 80%;
+    padding: 40px;
+    margin: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.table-top{
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    color: #959798;
+    justify-content: space-between;
+}
+
+.table-btm{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0 10px 0;
+    padding: 10px;
+    border-bottom: 1px solid #bdc0c0;
+    transition: 0.5s ease-in-out;
+}
+
+.table-btm:hover{
+    background-color: #bdc0c0;
+    border-radius: 10px;
+}
+
+.class-station{
+    margin-left: 20px;
+    width: 150px;
+}
+
+.sno{
+    width: 40px;
+}
+
+.code{
+    width: 60px;
+}
+
+.arr{
+    width: 100px;
+}
+
+.dep{
+    width: 150px;
+}
+.distance{
+    width: 100px;
+}
+
+.table-top-container{
+    margin-top: 40px;
+}
+
+.fare-list-item{
+    margin-right: 20px;
+    padding: 20px;
+    background-color: #f6f5f5;
+    border-left: 3px solid #0587ff;
+    border-radius: 10px;
+    box-shadow: 0px 1px 10px #dedddd;
+    list-style-type: none;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 200px;
+    width: fit-content;
+}
+.coach-list-item{
+    margin-right: 20px;
+    padding: 20px;
+    background-color: #f6f5f5;
+    border-left: 3px solid #0587ff;
+    border-radius: 10px;
+    box-shadow: 0px 1px 10px #dedddd;
+    list-style-type: none;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: fit-content !important;
+    width: fit-content;
+
+}
+.classCode{
+    font-size: 25px;
+    color: black;
+    font-weight: 600;
+}
+
+.quota-code{
+    font-size: 16px;
+    color: #959798;
+    font-weight: 400;
+}
+
+.fare-i{
+    font-size: 25px;
+    color: #0587ff;
+    font-weight: 600;
+}

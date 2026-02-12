@@ -204,7 +204,7 @@
     list-style-type: none;
     padding: 0px;
     height: 100vh;
-    overflow-y: auto;
+    overflow-y: scroll;
 }
 
 .ul-trains-list::-webkit-scrollbar{

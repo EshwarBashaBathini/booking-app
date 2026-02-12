@@ -2,9 +2,24 @@ import "./trainItem.css"
 
 import Bhogi from "../bhogi"
 import { useNavigate } from "react-router-dom"
+// import AOS from "aos";
+// import "aos/dist/aos.css";
+// import { useEffect } from "react";
+
+
 
 const TrainItem = (props) => {
-    const {trainDetails} = props
+     const {trainDetails} = props
+
+
+//      useEffect(() => {
+//     AOS.init({
+//       duration: 1000,   // animation time
+//       once: true        // animation only once
+//     });
+//     AOS.refresh()
+//   }, [trainDetails]);
+   
     const navigate = useNavigate()
     
     const { trainNo, name, source, destination, runsOnDays,  fromStation = {}, toStation= {}, travelDuration, fares } = trainDetails
@@ -23,19 +38,23 @@ const TrainItem = (props) => {
 
     }
 
+    const  onTrainDetails = () => {
+        navigate(`/train/${trainNo}`)
+    }
+
 
     
  
     return (
-        <li className="list-train12">
-            <h3 className="margin-class">{trainNo} - {name}</h3>
+        <li  className="list-train12 ">
+            <h3  onClick={onTrainDetails} className="margin-class">{trainNo} - {name}</h3>
             <div className="container2">
                 <div className="container2-1">
                     <p className="run">Run on</p>
                     <p className="train-h"> {runsOnDays}</p>
 
                 </div>
-                <p className="time-table1">View train time table</p>
+                <p  onClick={onTrainDetails} className="time-table1">View train time table</p>
 
             </div>
             <div className="journey-container">

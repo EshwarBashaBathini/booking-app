@@ -11,6 +11,10 @@ import LoadingSpinner from '../loader';
 
 import { useSearchParams } from 'react-router-dom';
 
+import { useRef } from "react";
+
+
+
 
 const data = [
   {
@@ -162,6 +166,8 @@ const TrainList = () => {
   const [stationList, setStationList] = useState([])
 
   const [searchParams] = useSearchParams();
+      const timeoutRef = useRef(null);
+
 
   useEffect(() => {
     const from1 = searchParams.get('from')
@@ -174,49 +180,77 @@ const TrainList = () => {
   }, [searchParams])
 
 
- useEffect(() => {
-  if (!sourceCode || !destinationCode) return;
+  useEffect(() => {
+    if (!sourceCode || !destinationCode) return;
 
 
-  const fetchTrains = async () => {
-    const response = await fetch(
-      `${url}/trains/search?from=${sourceCode}&to=${destinationCode}`
-    );
+    const fetchTrains = async () => {
+      const response = await fetch(
+        `${url}/trains/search?from=${sourceCode}&to=${destinationCode}`
+      );
 
-    const res = await response.json();
+      const res = await response.json();
 
-    if (response.ok) {
-      console.log(res);
+      if (response.ok) {
+        console.log(res);
+        setLoader(false)
+        setTrainList(res.data);
+
+      }
+    };
+
+    console.log(sourceCode === "" || destinationCode === "")
+
+    if (sourceCode === null || destinationCode === null) {
       setLoader(false)
-      setTrainList(res.data);
-      
     }
+
+    fetchTrains();
+  }, [sourceCode, destinationCode]);
+
+  const searchStations = (query) => {
+
+    const fetchStations = async () => {
+
+      try {
+        const response = await fetch(
+          `${url}/stations/search?q=${query}`
+        );
+
+        const res = await response.json();
+
+        setStationList(res);
+        console.log(res);
+
+      } catch (error) {
+        console.error("Error fetching stations:", error);
+      }
+
+    };
+
+    fetchStations();
   };
 
-  console.log(sourceCode === "" || destinationCode === "")
 
-  if (sourceCode === null || destinationCode === null){
-    setLoader(false)
-  }
+  // const debouncedSearch = useMemo(
+  //   () => debounce(searchStations, 500),
+  //   [searchStations]
+  // );
 
-  fetchTrains();
-}, [sourceCode, destinationCode]);
 
 
 
   const onSourceChange = (e) => {
     setSourcePlace(e.target.value)
     setSourceSelected(true)
-
-    const fetchStations = async () => {
-      const response = await fetch(`${url}/stations/search?q=${e.target.value}`)
-      const res = await response.json()
-      setStationList(res)
-
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
     }
-    console.log(stationList)
 
-    fetchStations()
+    // 🔥 Set new timer
+    timeoutRef.current = setTimeout(() => {
+      searchStations(e.target.value);
+    }, 500);
 
   }
 
@@ -224,33 +258,44 @@ const TrainList = () => {
     setDestinationPlace(e.target.value)
 
     setDestinationSelected(true)
-    const fetchStations = async () => {
-      const response = await fetch(`${url}/stations/search?q=${e.target.value}`)
-      const res = await response.json()
-      setStationList(res)
+    // const fetchStations = async () => {
+    //   const response = await fetch(`${url}/stations/search?q=${e.target.value}`)
+    //   const res = await response.json()
+    //   setStationList(res)
 
+    // }
+    // console.log(stationList)
+
+    // fetchStations()
+
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
     }
-    console.log(stationList)
 
-    fetchStations()
+    // 🔥 Set new timer
+    timeoutRef.current = setTimeout(() => {
+      searchStations(e.target.value);
+    }, 500);
+
+
 
 
   }
 
-  const onFormSubmit = async(e) => {
+  const onFormSubmit = async (e) => {
     e.preventDefault()
     setLoader(true)
 
-    if (sourcePlace && destinationPlace){
+    if (sourcePlace && destinationPlace) {
 
       const response = await fetch(`${url}/trains/search?from=${sourceCode}&to=${destinationCode}`)
       const res = await response.json()
 
-      if (response.ok){
+      if (response.ok) {
         setTrainList(res.data)
         setLoader(false)
       }
-      
+
 
     }
   }
@@ -350,7 +395,7 @@ const TrainList = () => {
           <div className='available-trains'>
             <div className='trains-available'>
               <h2 className='train-h1'>Available Trains</h2>
-              <p className='p-train'>5 Trains Available </p>
+              <p className='p-train'>{trainsList.length} Trains Available </p>
 
             </div>
             <GiSettingsKnobs color='#0578ff' size={20} />
@@ -361,7 +406,7 @@ const TrainList = () => {
             {!isLoading ? trainsList.map(eachTrain => (
               <TrainItem trainDetails={eachTrain} key={eachTrain.trainNo} />
             )) : <div className='loader-container'><LoadingSpinner /></div>
-            
+
             }
           </ul>
 

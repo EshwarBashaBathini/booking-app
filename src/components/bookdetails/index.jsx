@@ -5,10 +5,12 @@ import { IoMdAdd } from "react-icons/io";
 import { BiSolidOffer } from "react-icons/bi";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import PersonList from "../personList"
 import Footer from "../footer"
+import Cookies from 'js-cookie'
+
 
 const data = {
     id: "1a2b3c4d",
@@ -58,6 +60,16 @@ const BookDetails = (props) => {
     const totalGst = (fare * personsList.length) * 0.18
 
     const totalfare = (fare * personsList.length) + totalGst
+
+    useEffect(() => {
+    
+            const token = Cookies.get('auth_token')
+            if (token === ""){
+                navigate('/login')
+            }
+    
+        },[])
+    
 
 
 

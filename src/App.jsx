@@ -10,6 +10,7 @@ import BookDetails from './components/bookdetails'
 import BookedStatus from './components/booked'
 import Register from './components/autho/register'
 import Login from './components/autho/login'
+import TrainDetails from './components/trainDetails'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -25,9 +26,11 @@ function App() {
         <Route exact path='/payment/:trainNumber/booked/:id' element={<BookedStatus />} />
         <Route exact path='/register' element={<Register />} />
         <Route exact path='/login' element={<Login />} />
+        <Route exact path='/train/:id' element={<TrainDetails />} />
       </Routes>
     </Router>
 
+    // <TrainDetails />
    
   )
 }

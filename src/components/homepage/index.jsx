@@ -1,10 +1,13 @@
 import "./homepage.css"
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Footer from "../footer";
 import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
+import { useRef } from "react";
+
+
 
 import url from '../url'
 
@@ -24,23 +27,72 @@ const HomePage = () => {
 
     const [sourceSelected, setSourceSelected] = useState(false)
     const [destinationSelected, setDestinationSelected] = useState(false)
-   
+    const timeoutRef = useRef(null);
+
     const navigate = useNavigate();
+
+    // function debounce(func, delay) {
+    //     let timeoutId;
+
+    //     return function (...args) {
+    //         clearTimeout(timeoutId);
+
+    //         timeoutId = setTimeout(() => {
+    //             func(...args);
+    //         }, delay);
+    //     };
+    // }
+
+
+
+    const searchStations = (query) => {
+
+        const fetchStations = async () => {
+
+            try {
+                const response = await fetch(
+                    `${url}/stations/search?q=${query}`
+                );
+
+                const res = await response.json();
+
+                setStationList(res);
+                console.log(res);
+
+            } catch (error) {
+                console.error("Error fetching stations:", error);
+            }
+
+        };
+
+        fetchStations();
+    };
+
+
+    // const debouncedSearch = useMemo(
+    //     () => debounce(searchStations, 500),
+    //     [searchStations]
+    // );
+
+
 
 
     const onSourcePlace = (event) => {
         setSourcePlace(event.target.value)
         setSourceError("");
         setSourceSelected(true)
+        // debouncedSearch(event.target.value);
+        console.log(event.target.value)
 
-        const fetchStations = async () => {
-            const response = await fetch(`${url}/stations/search?q=${event.target.value}`)
-            const res = await response.json()
-            setStationList(res)
-
+        if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current);
         }
 
-        fetchStations()
+        // 🔥 Set new timer
+        timeoutRef.current = setTimeout(() => {
+            searchStations(event.target.value);
+        }, 500);
+
     }
 
     const onSourceBlur = (event) => {
@@ -55,14 +107,16 @@ const HomePage = () => {
         setDestinationError("")
         setDestinationSelected(true)
 
-        const fetchStations = async () => {
-            const response = await fetch(`${url}/stations/search?q=${event.target.value}`)
-            const res = await response.json()
-            setStationList(res)
-
+        if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current);
         }
 
-        fetchStations()
+        // 🔥 Set new timer
+        timeoutRef.current = setTimeout(() => {
+            searchStations(event.target.value);
+        }, 500);
+
+
 
     }
 
@@ -93,7 +147,7 @@ const HomePage = () => {
 
         if (selectedDate && sourcePlace && destinationPlace) {
 
-          
+
             navigate(`/book?from=${sourceCode}&to=${destinationCode}`);
             setSelectedDate(null)
             setDestinationPlace("")
@@ -151,12 +205,12 @@ const HomePage = () => {
                                             <ul className="ul-stations">
                                                 {stationList.map(eachStations => (
                                                     <li key={eachStations.id} className="list-stations"
-                                                         onMouseDown={() => {
+                                                        onMouseDown={() => {
                                                             setSourceCode(eachStations.code),
-                                                            setSourcePlace(eachStations.name)
+                                                                setSourcePlace(eachStations.name)
                                                             setSourceSelected(false);
                                                             setStationList([])
-                                                            
+
                                                         }}
 
 
@@ -178,7 +232,7 @@ const HomePage = () => {
                                         {destinationSelected &&
                                             <ul className="ul-stations">
                                                 {stationList.map(eachStations => (
-                                                    <li key={eachStations.id} className="list-stations"  onMouseDown={() => {
+                                                    <li key={eachStations.id} className="list-stations" onMouseDown={() => {
                                                         setDestinationCode(eachStations.code)
                                                         setDestinationPlace(eachStations.name)
                                                         setDestinationSelected(false)
