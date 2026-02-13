@@ -1,71 +1,68 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import { useState, useRef } from "react";
-import { addDays, format, isBefore } from "date-fns"; // Import date-fns methods
-import "./index.css";
+import { useState } from "react";
+import './index.css'
 
-function HorizontalCalendar() {
-  const today = new Date();  // Always start with the current date
-  const [selected, setSelected] = useState(today);  // Initially select today's date
-  const [startDate, setStartDate] = useState(today);  // Initialize start date with today's date
-  const swiperRef = useRef(null);
+function HorizontalDatePicker() {
+  const [startDate, setStartDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
-  // Prevent going back to previous dates, only allow moving forward
-  const handlePrev = () => {
-    const newStart = addDays(startDate, -1);  // Shift back by 1 day
-    // Prevent moving past today (disable previous button when it's already on today)
-    if (isBefore(newStart, today)) {
-      setStartDate(today); // Reset to today if going back
-    } else {
-      setStartDate(newStart);
+  // Generate 5 days from startDate
+  const getFiveDays = () => {
+    const arr = [];
+    for (let i = 0; i < 8; i++) {
+      const d = new Date(startDate);
+      d.setDate(d.getDate() + i);
+      arr.push(new Date(d));
     }
-    swiperRef.current?.slideTo(0, 0);  // Reset Swiper to start
+    return arr;
   };
 
-  const handleNext = () => {
-    const newStart = addDays(startDate, 1);  // Shift forward by 1 day
-    setStartDate(newStart);
-    swiperRef.current?.slideTo(0, 0);  // Reset Swiper to start
+  const dates = getFiveDays();
+
+  // Move Forward 5 Days
+  const nextDays = () => {
+    const newDate = new Date(startDate);
+    newDate.setDate(newDate.getDate() + 5);
+    setStartDate(newDate);
+  };
+
+  // Move Back 5 Days (But don't go before today)
+  const prevDays = () => {
+    const today = new Date();
+    const newDate = new Date(startDate);
+    newDate.setDate(newDate.getDate() - 5);
+
+    if (newDate >= today.setHours(0, 0, 0, 0)) {
+      setStartDate(newDate);
+    }
   };
 
   return (
     <div className="calendar-wrapper">
-      {/* Disable prev button if start date is today */}
-      <button
-        className="nav-arrow left"
-        onClick={handlePrev}
-        disabled={isBefore(startDate, today)}  // Disable if trying to go past today
-      >
-        ‹
-      </button>
+      <button onClick={prevDays}>◀</button>
 
-      <Swiper
-        slidesPerView={6}
-        spaceBetween={10}
-        onSwiper={(swiper) => (swiperRef.current = swiper)}
-        allowTouchMove={false}  // Optional: disable swipe
-      >
-        {[...Array(7)].map((_, i) => {
-          const date = addDays(startDate, i);  // Generate the dates for the calendar
-          const isActive = format(date, "yyyy-MM-dd") === format(selected, "yyyy-MM-dd");
+      <div className="date-container">
+        {dates.map((date, index) => (
+          <div
+            key={index}
+            className={`date-item ${
+              selectedDate.toDateString() === date.toDateString()
+                ? "active-date"
+                : ""
+            }`}
+            onClick={() => setSelectedDate(date)}
+          >
+            <p>
+              {date.toLocaleDateString("en-US", { weekday: "short" })}
+            </p>
+            <h3>{date.getDate()}</h3>
+            
+          </div>
+        ))}
+      </div>
 
-          return (
-            <SwiperSlide key={i}>
-              <div
-                className={`day-box ${isActive ? "active" : ""}`}
-                onClick={() => setSelected(date)}
-              >
-                <span>{format(date, "EEE")}</span>
-                <strong>{format(date, "d")}</strong>
-              </div>
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
-
-      <button className="nav-arrow right" onClick={handleNext}>›</button>
+      <button onClick={nextDays}>▶</button>
     </div>
   );
 }
 
-export default HorizontalCalendar;
+export default HorizontalDatePicker;

@@ -168,3 +168,20 @@
     }
     
 }
+
+@media screen and (min-width:600px) and (max-width:910px) {
+    .top-container-payment{
+        padding: 40px 70px 40px 70px;
+    }
+    .payment-containers{
+        flex-direction: column;
+    }
+    .payment-container1{
+        width: 100%;
+    }
+    .payment-container2{
+        width: 100%;
+        margin-top: 30px;
+    }
+    
+}

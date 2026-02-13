@@ -1,7 +1,8 @@
 import "./header.css"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import Cookies from 'js-cookie'
 import { CgProfile } from "react-icons/cg";
+
 
 
 
@@ -9,6 +10,13 @@ import { CgProfile } from "react-icons/cg";
 const Header = () => {
 
     const token = Cookies.get('auth_token')
+    const navigate = useNavigate()
+
+    const onLogoutBtn = () => {
+        Cookies.remove('auth_token')
+        navigate('/login')
+
+    }
 
     return (
         <header>
@@ -17,8 +25,8 @@ const Header = () => {
             <nav>
                 <ul className="nav-ul">
                     <li className="booking">My Booking</li>
-                    {token ? (<><li className="login">
-                        <Link to='/login' className="login"> Logout</Link>
+                    {token ? (<><li onClick={onLogoutBtn}  className="login">
+                         Logout
                     </li>
                       <li> <CgProfile size={25} />   </li>
                     

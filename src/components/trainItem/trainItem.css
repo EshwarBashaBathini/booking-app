@@ -86,6 +86,25 @@
     font-weight: 500;
 }
 
+.outline-bg{
+    outline: 2px solid #FF8888;
+    outline-offset: 2px;
+    
+}
+.book-btn-itm{
+    color: white;
+    background-color: #0578ff;
+    width:200px;
+
+    font-size: 17px;
+    padding: 10px;
+    margin: 20px 0 20px 0;
+    align-self: flex-end;
+   
+}
+
+
+
 .margin-class-14px{
     color: #202020;
     font-size: 14px;

@@ -1,77 +1,96 @@
-/* Container that holds the calendar and arrows */
+/* Wrapper */
 .calendar-wrapper {
   display: flex;
   align-items: center;
-  margin-top: 60px;
-  margin-bottom: 60px;
-  /* Adds space between the calendar and arrows */
+  flex-direction: row;
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  position: relative;
 }
 
-/* Arrow button styles */
-.nav-arrow {
-  width: 35px;
-  /* Decrease the button width */
-  height: 35px;
-  /* Decrease the button height */
-  border-radius: 8px;
-  background-color: #1e40ff;
-  /* Blue background for the arrow button */
-  color: white;
-  border: none;
-  font-size: 16px;
-  /* Decrease font size for the arrows */
-  cursor: pointer;
+/* Date Scroll Container */
+.date-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  overflow-x: auto;
+  gap: 12px;
+  padding: 10px;
+  width: 100%;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+}
+.date-container {
+  display: flex;
+  flex-direction: row;   /* 👈 IMPORTANT */
+  overflow-x: auto;
+  gap: 12px;
 }
 
-/* Date box styling */
-.day-box {
-  width: 45px;
-  /* Decrease the width of the date box */
-  height: 60px;
-  /* Decrease the height of the date box */
-  border-radius: 8px;
-  background: #f5f5f5;
-  /* Light gray background */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+
+.date-container::-webkit-scrollbar {
+  display: none; /* Chrome */
+}
+
+/* Date Card */
+.date-item {
+  min-width: fit-content;
+  padding: 12px;
+  border-radius: 10px;
+  background-color: white;
   text-align: center;
   cursor: pointer;
+  box-shadow: 0 2px 10px #afaeae;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  border: 1px solid transparent;
 }
 
-/* Day name (smaller font size) */
-.day-box span {
-  font-size: 8px;
-  /* Smaller font size for the day name */
-  color: #555;
+.date-item:hover {
+  background-color: #dbe7ff;
+  transform: translateY(-3px);
 }
 
-/* Day number (smaller font size) */
-.day-box strong {
-  font-size: 10px;
-  /* Smaller font size for the day number */
-}
-
-/* Active date box style */
-.day-box.active {
-  background: #1e40ff;
-  /* Blue background for active dates */
+/* Active Selected Date */
+.active-date {
+  background-color: #0578ff;
   color: white;
+  border: 1px solid #0356b6;
+  box-shadow: 0px 4px 10px rgba(5, 120, 255, 0.3);
 }
 
-/* Active day name color */
-.day-box.active span {
-  color: #dbe4ff;
-  /* Light blue color for the active day name */
+/* Text Styles */
+.day {
+  font-size: 13px;
+  margin: 0;
 }
 
+.date-number {
+  margin: 5px 0;
+  font-size: 18px;
+}
 
-@media only screen and (max-width:600px) {
-  .calendar-wrapper {
-    margin-top: 30px;
-    margin-bottom: 30px;
-  }
+.month {
+  font-size: 12px;
+  margin: 0;
+}
+
+/* Arrow Buttons */
+.arrow-btn {
+  background-color: #0578ff;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.arrow-btn:hover {
+  background-color: #0356b6;
+  transform: scale(1.1);
+}
+
+.arrow-btn:active {
+  transform: scale(0.95);
 }

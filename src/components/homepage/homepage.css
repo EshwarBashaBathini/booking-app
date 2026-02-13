@@ -20,7 +20,7 @@
     color: #0578ff;
     font-weight: bold;
     font-size: 24;
-    padding: 40px 100px 40px 100px;
+    
 
 }
 
@@ -152,34 +152,61 @@ body {
     flex-direction: column;
 
 }
+
 .ul-stations {
     padding: 0;
-    position: absolute; /* crucial for overlapping */
+    position: absolute;
+    /* crucial for overlapping */
     display: flex;
     margin-left: 10px;
     flex-direction: column;
     list-style-type: none;
-    max-height: 160px;
-   
-    top: 100%;       /* removed quotes */
+    max-height: 200px;
+    min-height: 160px;
+
+    top: 100%;
+    /* removed quotes */
     left: 0;
     right: 0;
-    width: 96%;     /* optional, ensures it matches parent width */
-    overflow-y: auto; /* scroll if content exceeds height */
-    background-color: white; /* important if overlapping other content */
-    z-index: 800;    /* ensures dropdown is above other components */
-    border: 1px solid #ccc; /* optional, makes dropdown visible */
+    width: 96%;
+    /* optional, ensures it matches parent width */
+    overflow-y: auto;
+    /* scroll if content exceeds height */
+    background-color: white;
+    /* important if overlapping other content */
+    z-index: 800;
+    /* ensures dropdown is above other components */
+    border: 1px solid #ccc;
+    /* optional, makes dropdown visible */
 }
 
-.list-stations{
+.class-loader {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100px;
+    position: absolute;
+    top: 100%;
+
+    z-index: 700;
+    width: 100%;
+    background-color: white;
+}
+
+
+.list-stations {
     display: flex;
     padding: 10px;
-    box-shadow: 1px 1px 10px #edeaea;
+    box-shadow: 0px 0px 10px #ecebeb;
+    width: 100%;
 }
-.stations-p{
+
+.stations-p {
     margin-left: 5px;
     font-size: 15px;
     font-weight: 500;
+    text-overflow: inherit;
 }
 
 
@@ -205,6 +232,11 @@ body {
     font-size: 16px;
     border-radius: 5px;
 }
+.header-color1{
+        padding: 40px 100px 40px 100px;
+       
+    }
+    
 
 
 @media only screen and (max-width:600px) {
@@ -230,7 +262,7 @@ body {
 
     }
 
-    .header-color {
+    .header-color1 {
         padding: 20px 50px 20px 50px;
     }
 
@@ -251,4 +283,22 @@ body {
 
 .logo {
     padding-top: 20px;
+}
+
+
+@media only screen and (min-width:600px) and (max-width:910px)  {
+    .top-home-container{
+        flex-direction: column;
+    }
+    .img-size{
+        width: 100%;
+    }
+    .metro{
+        padding: 129px 70px 125px 70px;
+    }
+    .header-color1{
+        padding: 20px 70px 20px 70px;
+        
+    }
+    
 }

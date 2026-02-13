@@ -653,3 +653,24 @@ hr-line{
         font-size: 12px;
     }
 }
+
+
+@media screen and (min-width:600px) and (max-width:910px) {
+    .top-container-css{
+        padding: 40px 70px 40px 70px;
+    }
+    .review-containers{
+        flex-direction: column;
+    }
+    .container1{
+        width: 100%;
+    }
+    .container22{
+        width: 100%;
+        margin-top: 30px;
+    }
+    .list-train{
+        padding: 30px;
+    }
+    
+}

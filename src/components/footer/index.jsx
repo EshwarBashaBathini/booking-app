@@ -26,22 +26,27 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
+            <div className="footer-btm-top-container">
             <div className="footer-btm">
-                <ul className="ul-footer">
-                    <li className="cursor-btn">About us</li>
-                    <li  className="cursor-btn">Mobile</li>
-                    <li className="cursor-btn">Privacy</li>
-                    <li className="cursor-btn">Terms of use</li>
-                    <li className="cursor-btn">Career</li>
-                    <li className="cursor-btn">Customer Service</li>
-                </ul>
-                <ul className="ul-icons">
-                    <li className="icons-li"> <button className="button-icons"><FiFacebook color="white" size={20} /></button></li>
-                    <li className="icons-li"><button className="button-icons"><IoLogoInstagram color="white" size={20} /></button>    </li>
-                    <li className="icons-li"><button className="button-icons"><FaXTwitter color="white" size={20} /></button></li>
-                </ul>
+                <div className="ul-footer">
+                    <p className="cursor-btn">About us</p>
+                    <p  className="cursor-btn">Mobile</p>
+                    <p className="cursor-btn">Privacy</p>
+                    <p className="cursor-btn">Terms of use</p>
+                    <p className="cursor-btn">Career</p>
+                    <p className="cursor-btn">Customer Service</p>
+                </div>
+               
 
             </div>
+             <div>
+                    <ul className="ul-icons">
+                    <li className="icons-li"> <button className="button-icons"><FiFacebook  className="footer-icons" /></button></li>
+                    <li className="icons-li"><button className="button-icons"><IoLogoInstagram className="footer-icons" /></button>    </li>
+                    <li className="icons-li"><button className="button-icons footer-icons"><FaXTwitter  className="footer-icons" /></button></li>
+                </ul>
+                </div>
+                </div>
         </footer>
     )
 }

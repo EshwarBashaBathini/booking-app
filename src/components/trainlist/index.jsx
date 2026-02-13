@@ -1,10 +1,11 @@
 import './train.css'
 import Header from '../header'
-import HorizontalCalendar from '../calender'
+
 import Footer from '../footer'
 import { GiSettingsKnobs } from "react-icons/gi";
 import TrainItem from '../trainItem';
 import url from '../url'
+import HorizontalDatePicker from '../calender';
 
 import { useEffect, useState } from 'react';
 import LoadingSpinner from '../loader';
@@ -149,6 +150,11 @@ const data = [
   }
 ]
 
+const statusOfTrains = {
+  "empty": "empty",
+  'pending': 'pending',
+  'success': 'success'
+}
 
 
 const TrainList = () => {
@@ -160,21 +166,24 @@ const TrainList = () => {
   const [sourceCode, setSourceCode] = useState('')
   const [destinationCode, setDestinationCode] = useState('')
   const [trainsList, setTrainList] = useState([])
+  const [status, setStatus] = useState('empty')
 
   const [isLoading, setLoader] = useState(true)
 
   const [stationList, setStationList] = useState([])
 
   const [searchParams] = useSearchParams();
-      const timeoutRef = useRef(null);
+  const timeoutRef = useRef(null);
 
 
   useEffect(() => {
     const from1 = searchParams.get('from')
     setSourceCode(from1)
+    setSourcePlace(from1)
 
     const to = searchParams.get('to')
     setDestinationCode(to)
+    setDestinationPlace(to)
 
 
   }, [searchParams])
@@ -182,9 +191,11 @@ const TrainList = () => {
 
   useEffect(() => {
     if (!sourceCode || !destinationCode) return;
+    setStatus('pending')
 
 
     const fetchTrains = async () => {
+
       const response = await fetch(
         `${url}/trains/search?from=${sourceCode}&to=${destinationCode}`
       );
@@ -194,6 +205,7 @@ const TrainList = () => {
       if (response.ok) {
         console.log(res);
         setLoader(false)
+        setStatus('success')
         setTrainList(res.data);
 
       }
@@ -231,15 +243,6 @@ const TrainList = () => {
     fetchStations();
   };
 
-
-  // const debouncedSearch = useMemo(
-  //   () => debounce(searchStations, 500),
-  //   [searchStations]
-  // );
-
-
-
-
   const onSourceChange = (e) => {
     setSourcePlace(e.target.value)
     setSourceSelected(true)
@@ -258,15 +261,7 @@ const TrainList = () => {
     setDestinationPlace(e.target.value)
 
     setDestinationSelected(true)
-    // const fetchStations = async () => {
-    //   const response = await fetch(`${url}/stations/search?q=${e.target.value}`)
-    //   const res = await response.json()
-    //   setStationList(res)
 
-    // }
-    // console.log(stationList)
-
-    // fetchStations()
 
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
@@ -276,15 +271,51 @@ const TrainList = () => {
     timeoutRef.current = setTimeout(() => {
       searchStations(e.target.value);
     }, 500);
+  }
 
+  const renderEmpty = () => {
+    return (
+      <div className='loader-container'>
+        <p>No Trains Listed</p>
+      </div>
+    )
+  }
 
+  const renderLoader = () => {
+    return (
+      <div className='loader-container'>
+        <LoadingSpinner />
+      </div>
+    )
+  }
 
+  const renderTrains = () => {
+    return (
+      <ul className='ul-trains-list'>
+        {trainsList.map(eachTrain => (
+          <TrainItem trainDetails={eachTrain} key={eachTrain.trainNo} />
+        ))}
 
+      </ul>
+    )
+
+  }
+
+  const renderStatus = () => {
+    switch (status) {
+      case statusOfTrains.empty:
+        return renderEmpty()
+      case statusOfTrains.pending:
+        return renderLoader()
+      default:
+        return renderTrains()
+    }
   }
 
   const onFormSubmit = async (e) => {
     e.preventDefault()
-    setLoader(true)
+    setStatus('pending')
+
 
     if (sourcePlace && destinationPlace) {
 
@@ -293,7 +324,7 @@ const TrainList = () => {
 
       if (response.ok) {
         setTrainList(res.data)
-        setLoader(false)
+        setStatus('success')
       }
 
 
@@ -372,7 +403,7 @@ const TrainList = () => {
               <button type='submit' className='trains-btn' >Search for trains</button>
             </form>
 
-            <HorizontalCalendar />
+            <HorizontalDatePicker />
 
             <div className='container-height1'>
               <div className='container-height2'>
@@ -402,14 +433,14 @@ const TrainList = () => {
 
           </div>
           <hr className='hr' />
-          <ul className='ul-trains-list'>
+          {/* <ul className='ul-trains-list'>
             {!isLoading ? trainsList.map(eachTrain => (
               <TrainItem trainDetails={eachTrain} key={eachTrain.trainNo} />
             )) : <div className='loader-container'><LoadingSpinner /></div>
 
             }
-          </ul>
-
+          </ul> */}
+          {renderStatus()}
         </div>
 
       </div>

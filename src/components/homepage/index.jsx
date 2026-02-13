@@ -29,6 +29,8 @@ const HomePage = () => {
     const [destinationSelected, setDestinationSelected] = useState(false)
     const timeoutRef = useRef(null);
 
+    const [stationsLoader, setStationsLoader] = useState(false)
+
     const navigate = useNavigate();
 
     // function debounce(func, delay) {
@@ -57,6 +59,7 @@ const HomePage = () => {
                 const res = await response.json();
 
                 setStationList(res);
+                setStationsLoader(false)
                 console.log(res);
 
             } catch (error) {
@@ -80,6 +83,7 @@ const HomePage = () => {
     const onSourcePlace = (event) => {
         setSourcePlace(event.target.value)
         setSourceError("");
+        setStationsLoader(true)
         setSourceSelected(true)
         // debouncedSearch(event.target.value);
         console.log(event.target.value)
@@ -105,6 +109,7 @@ const HomePage = () => {
     const onDestinationPlace = (event) => {
         setDestinationPlace(event.target.value)
         setDestinationError("")
+        setStationsLoader(true)
         setDestinationSelected(true)
 
         if (timeoutRef.current) {
@@ -183,7 +188,7 @@ const HomePage = () => {
 
                 <div className="first-container">
 
-                    <h3 ><Link className="header-color" to="/">Metro<span className="span-color">way</span></Link></h3>
+                    <h3 className="header-color1" ><Link className="header-color" to="/">Metro<span className="span-color">way</span></Link></h3>
 
                     <div className="metro">
                         <div className="metro1">
@@ -202,7 +207,7 @@ const HomePage = () => {
                                         <hr className="hr-line" />
                                         <p className="error">{sourceError}</p>
                                         {sourceSelected &&
-                                            <ul className="ul-stations">
+                                            ( !stationsLoader ? (<ul className="ul-stations" >
                                                 {stationList.map(eachStations => (
                                                     <li key={eachStations.id} className="list-stations"
                                                         onMouseDown={() => {
@@ -221,7 +226,10 @@ const HomePage = () => {
                                                     </li>
                                                 ))}
 
-                                            </ul>
+                                            </ul>) : (<div className="class-loader">
+
+                                              <p>Loading....</p>
+                                            </div>))
                                         }
 
                                     </div>
@@ -230,7 +238,7 @@ const HomePage = () => {
                                         <hr className="hr-line" />
                                         <p className="error">{destinationError}</p>
                                         {destinationSelected &&
-                                            <ul className="ul-stations">
+                                            ( !stationsLoader ? <ul className="ul-stations">
                                                 {stationList.map(eachStations => (
                                                     <li key={eachStations.id} className="list-stations" onMouseDown={() => {
                                                         setDestinationCode(eachStations.code)
@@ -244,7 +252,10 @@ const HomePage = () => {
                                                     </li>
                                                 ))}
 
-                                            </ul>
+                                            </ul>: (<div className="class-loader">
+
+                                              <p>Loading....</p>
+                                            </div>))
                                         }
 
 

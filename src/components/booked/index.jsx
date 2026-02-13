@@ -3,6 +3,7 @@ import Header from "../header"
 import Footer from "../footer"
 import { useLocation, useNavigate } from "react-router-dom"
 import Cookies from 'js-cookie'
+import { useEffect } from "react"
 
 const BookedStatus = () => {
     const { state } = useLocation()

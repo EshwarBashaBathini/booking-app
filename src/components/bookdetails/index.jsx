@@ -64,8 +64,8 @@ const BookDetails = (props) => {
     useEffect(() => {
     
             const token = Cookies.get('auth_token')
-            if (token === ""){
-                navigate('/login')
+            if (token === undefined){
+                navigate('/login', {replace: true})
             }
     
         },[])
