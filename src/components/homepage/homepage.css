@@ -199,12 +199,14 @@ body {
     display: flex;
     padding: 10px;
     box-shadow: 0px 0px 10px #ecebeb;
-    width: 100%;
+   
 }
 
 .stations-p {
     margin-left: 5px;
-    font-size: 15px;
+    font-size: 10px;
+    text-wrap: wrap;
+    width: 100%;
     font-weight: 500;
     text-overflow: inherit;
 }

@@ -169,6 +169,7 @@ const TrainList = () => {
   const [status, setStatus] = useState('empty')
 
   const [isLoading, setLoader] = useState(true)
+  const [stationsLoader, setStationLoader] = useState(true)
 
   const [stationList, setStationList] = useState([])
 
@@ -233,6 +234,7 @@ const TrainList = () => {
 
         setStationList(res);
         console.log(res);
+        setStationLoader(false)
 
       } catch (error) {
         console.error("Error fetching stations:", error);
@@ -246,6 +248,7 @@ const TrainList = () => {
   const onSourceChange = (e) => {
     setSourcePlace(e.target.value)
     setSourceSelected(true)
+    setStationLoader(true)
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
@@ -259,7 +262,7 @@ const TrainList = () => {
 
   const onDestinationChange = (e) => {
     setDestinationPlace(e.target.value)
-
+    setStationLoader(true)
     setDestinationSelected(true)
 
 
@@ -348,13 +351,12 @@ const TrainList = () => {
                 <input type='text' value={sourcePlace} onBlur={() => setSourceSelected(false)} onChange={onSourceChange} className='input' placeholder='source' />
                 <hr />
                 {sourceSelected &&
-                  <ul className="ul-stations-book">
+                  (!stationsLoader ? (<ul className="ul-stations-book" >
                     {stationList.map(eachStations => (
                       <li key={eachStations.id} className="list-stations"
                         onMouseDown={() => {
-                          console.log("hiiii")
-                          setSourceCode(eachStations.code)
-                          setSourcePlace(eachStations.name)
+                          setSourceCode(eachStations.code),
+                            setSourcePlace(eachStations.name)
                           setSourceSelected(false);
                           setStationList([])
 
@@ -368,37 +370,34 @@ const TrainList = () => {
                       </li>
                     ))}
 
-                  </ul>
-                }
+                  </ul>) : (<div className="class-loader">
+
+                    <p>Loading....</p>
+                  </div>))}
 
               </div>
               <div className='input-container-ee'>
                 <input className='input' value={destinationPlace} onChange={onDestinationChange} onBlur={() => setDestinationSelected(false)} placeholder='destination' type='text' />
                 <hr />
                 {destinationSelected &&
-                  <ul className="ul-stations-book">
+                  (!stationsLoader ? <ul className="ul-stations-book">
                     {stationList.map(eachStations => (
-                      <li key={eachStations.id} className="list-stations"
-                        onMouseDown={() => {
-                          console.log("hiiii")
-                          setDestinationCode(eachStations.code)
-                          setDestinationPlace(eachStations.name)
-                          setDestinationSelected(false);
-                          setStationList([])
-
-                        }}
-
-
-                      >
+                      <li key={eachStations.id} className="list-stations" onMouseDown={() => {
+                        setDestinationCode(eachStations.code)
+                        setDestinationPlace(eachStations.name)
+                        setDestinationSelected(false)
+                        setStationList([])
+                      }}  >
                         <p className="stations-p" >{eachStations.code}</p>
                         <p className="stations-p"   >{eachStations.name}</p>
 
                       </li>
                     ))}
 
-                  </ul>
-                }
+                  </ul> : (<div className="class-loader">
 
+                    <p>Loading....</p>
+                  </div>))}
               </div>
               <button type='submit' className='trains-btn' >Search for trains</button>
             </form>
