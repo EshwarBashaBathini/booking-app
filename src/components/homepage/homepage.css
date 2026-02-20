@@ -123,7 +123,10 @@ body {
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 30px;
+    justify-content: space-between;
     align-items: baseline;
+    margin-top: 10px;
+   
 
 }
 
@@ -144,11 +147,12 @@ body {
 
 .input-search {
     width: 45%;
-    margin: 3px;
-    padding: 10px;
+   
+    padding-right: 10px;
     align-items: baseline;
     position: relative;
     display: flex;
+    margin-bottom: 20px;
     flex-direction: column;
 
 }
@@ -198,17 +202,29 @@ body {
 .list-stations {
     display: flex;
     padding: 10px;
-    box-shadow: 0px 0px 10px #ecebeb;
-   
+    word-wrap: break-word;
+    padding: 10px;  
+    box-shadow: 0 0 0 #606060;
+    transition: 0.6s ease;
+    height: 60px;
+    cursor: pointer;
+}
+
+.list-stations:hover{
+    background-color: #cbcaca;
+    border-radius: 10px;
+    
 }
 
 .stations-p {
-    margin-left: 5px;
-    font-size: 10px;
-    text-wrap: wrap;
+    font-size: 15px;
     width: 100%;
     font-weight: 500;
-    text-overflow: inherit;
+}
+.stations-p-p {
+    margin-left: 5px;
+    font-size: 15px;
+    font-weight: 500;
 }
 
 
@@ -223,7 +239,7 @@ body {
     outline: none;
     color: #202020;
     font-size: 15px;
-    margin-left: 10px;
+    
 
 }
 

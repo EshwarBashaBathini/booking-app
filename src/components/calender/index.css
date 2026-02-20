@@ -94,3 +94,11 @@
 .arrow-btn:active {
   transform: scale(0.95);
 }
+
+.button-calender{
+  background-color: white;
+  color: black;
+  box-shadow: 1px 1px 1px #afaeae;
+  outline: none;
+  border: none;
+}

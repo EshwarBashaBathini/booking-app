@@ -189,7 +189,7 @@ const HomePage = () => {
                 <div className="first-container">
 
                     <h3 className="header-color1" ><Link className="header-color" to="/">Metro<span className="span-color">way</span></Link></h3>
-
+ 
                     <div className="metro">
                         <div className="metro1">
                             <div className="travellers-box">
@@ -247,7 +247,7 @@ const HomePage = () => {
                                                         setStationList([])
                                                     }}  >
                                                         <p className="stations-p" >{eachStations.code}</p>
-                                                        <p className="stations-p"   >{eachStations.name}</p>
+                                                        <p className="stations-p-p"   >{eachStations.name}</p>
 
                                                     </li>
                                                 ))}

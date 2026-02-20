@@ -178,11 +178,11 @@ const TrainList = () => {
 
 
   useEffect(() => {
-    const from1 = searchParams.get('from')
+    const from1 = searchParams.get('from') || ''
     setSourceCode(from1)
     setSourcePlace(from1)
 
-    const to = searchParams.get('to')
+    const to = searchParams.get('to') || ''
     setDestinationCode(to)
     setDestinationPlace(to)
 
@@ -348,12 +348,12 @@ const TrainList = () => {
           <div className='container-height' >
             <form onSubmit={onFormSubmit} className='search-container'>
               <div className='input-container-ee'>
-                <input type='text' value={sourcePlace} onBlur={() => setSourceSelected(false)} onChange={onSourceChange} className='input' placeholder='source' />
+                <input type='text' value={sourcePlace} onBlur={() => setSourceSelected(false)}  onChange={onSourceChange} className='input' placeholder='source' />
                 <hr />
                 {sourceSelected &&
                   (!stationsLoader ? (<ul className="ul-stations-book" >
                     {stationList.map(eachStations => (
-                      <li key={eachStations.id} className="list-stations"
+                       <li key={eachStations.id} className="list-stations-book"
                         onMouseDown={() => {
                           setSourceCode(eachStations.code),
                             setSourcePlace(eachStations.name)
@@ -365,7 +365,7 @@ const TrainList = () => {
 
                       >
                         <p className="stations-p" >{eachStations.code}</p>
-                        <p className="stations-p"   >{eachStations.name}</p>
+                        <p className="stations-p-p"   >{eachStations.name}</p>
 
                       </li>
                     ))}

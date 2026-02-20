@@ -137,7 +137,7 @@ const Payment = (props) => {
                                     </div>
                                     <div className="journey-details-to">
                                         <h3 className="margin-class">{destination}</h3>
-                                        <p className="margin-class1">{toStation.arr} <br />{toStation.code}, {fromStation.name}</p>
+                                        <p className="margin-class1">{toStation.arr} <br />{toStation.code}, {toStation.name}</p>
                                     </div>
 
                                 </div>

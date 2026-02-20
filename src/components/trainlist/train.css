@@ -107,6 +107,35 @@
     margin-top: 30px;
 }
 
+.list-stations-book{
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    word-wrap: break-word;
+    padding: 10px;  
+    box-shadow: 0 0 0 #606060;
+    transition: 0.6s ease;
+    height: 70px;
+}
+
+.list-stations-book:hover{
+    background-color: #cbcaca;
+    border-radius: 10px;
+}
+
+.stations-p {
+    font-size: 12px;
+ 
+    font-weight: 500;
+}
+.stations-p-p {
+    margin-left: 5px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+
+
 .plan-container {
     background-image: url("https://res.cloudinary.com/dtc3rf1du/image/upload/v1769850336/Frame_5_1_fxnhar.png");
     background-size: cover;

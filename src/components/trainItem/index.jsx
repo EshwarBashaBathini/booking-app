@@ -72,7 +72,7 @@ const TrainItem = (props) => {
             </div>
             <div className="journey-container">
                 <div className="journey-details-from">
-                    <h3 className="margin-class-14px">{source}</h3>
+                   
                     <p className="margin-class-14px">{fromStation.dep} <br />{fromStation.code}, {fromStation.name}</p>
                 </div>
                 <div className="journey-time">
@@ -81,8 +81,8 @@ const TrainItem = (props) => {
 
                 </div>
                 <div className="journey-details-to">
-                    <h3 className="margin-class-14px">{destination}</h3>
-                    <p className="text-alignment">{toStation.arr} <br />{toStation.code}, {fromStation.name}</p>
+                    
+                    <p className="text-alignment">{toStation.arr} <br />{toStation.code}, {toStation.name}</p>
                 </div>
             </div>
             <ul className="booking-seat1">

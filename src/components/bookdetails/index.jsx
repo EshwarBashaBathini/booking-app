@@ -267,7 +267,7 @@ const BookDetails = (props) => {
                             </div>
 
                         </div>
-                        <div className="travel-container">
+                        {/* <div className="travel-container">
                             <div className="irctc-container">
                                 <h2 className="irctc-name" >IRCTC Login</h2>
                                 <p className="irctc-p">Password is required later to complete booking</p>
@@ -291,7 +291,7 @@ const BookDetails = (props) => {
 
                             </div>
 
-                        </div>
+                        </div> */}
                         <div className="travel-container">
                             <div className="irctc-container">
                                 <h2 className="irctc-name">Contact Details</h2>
@@ -319,7 +319,7 @@ const BookDetails = (props) => {
                             <h2 className="boarding-name">Boarding Details</h2>
                             <div className="chng-container-book">
                                 <div className="container218">
-                                    <h3 className="train-name">{trainNo}-{name}</h3>
+                                    <h3 className="train-name1">{trainNo}-{name}</h3>
 
                                     <p className="margin-class time-table">Class {classCode} & {quotaCode} Quota</p>
 
@@ -336,7 +336,7 @@ const BookDetails = (props) => {
                                     </div>
                                     <div className="journey-details-to">
                                         <h3 className="margin-class">{destination}</h3>
-                                        <p className="margin-class1">{toStation.arr} <br />{toStation.code}, {fromStation.name}</p>
+                                        <p className="margin-class1">{toStation.arr} <br />{toStation.code}, {toStation.name}</p>
                                     </div>
                                 </div>
                                 <button type="button" className="chne-boarding">Change Boarding Station</button>

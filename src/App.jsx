@@ -11,6 +11,9 @@ import BookedStatus from './components/booked'
 import Register from './components/autho/register'
 import Login from './components/autho/login'
 import TrainDetails from './components/trainDetails'
+import NotFound from './components/notfound'
+import ProtectedRoute from './components/protectRoute'
+import PublicRoute from './components/publicRoute'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -19,19 +22,21 @@ function App() {
 
     <Router>
       <Routes>
-        <Route exact path="/" element={<HomePage />} />
-        <Route exact path="/book" element={<TrainList />} />
-        <Route exact path="/book/:name/:date" element={ <BookDetails />} />
-        <Route exact path="/payment/:name/checkout" element={<Payment />} />
-        <Route exact path='/payment/:trainNumber/booked/:id' element={<BookedStatus />} />
-        <Route exact path='/register' element={<Register />} />
-        <Route exact path='/login' element={<Login />} />
-        <Route exact path='/train/:id' element={<TrainDetails />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/book" element={<TrainList />} />
+        <Route path="/book/:name/:date" element={<ProtectedRoute><BookDetails /></ProtectedRoute>} />
+        <Route path="/payment/:name/checkout" element={<ProtectedRoute><Payment /></ProtectedRoute>} />
+        <Route path='/payment/:trainNumber/booked/:id' element={<ProtectedRoute><BookedStatus /></ProtectedRoute>} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
+
+        <Route path='/train/:id' element={<TrainDetails />} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </Router>
 
     // <TrainDetails />
-   
+
   )
 }
 

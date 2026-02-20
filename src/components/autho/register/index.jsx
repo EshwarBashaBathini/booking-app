@@ -1,7 +1,8 @@
 import './register.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import url from '../../url'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import Cookies from 'js-cookie'
 
 const Register = () => {
 
@@ -12,11 +13,15 @@ const Register = () => {
     const [password, setPassword] = useState('')
     const [errorPassword, setErrorPassword] = useState('')
     const [backendError, setBackendError] = useState('')
+    const [loader, setLoader] = useState(false)
+    const navigate = useNavigate()
 
     const onFormSubmit = async (e) => {
         e.preventDefault()
+        setLoader(false)
 
         if (fullName && email && password) {
+            setLoader(true)
 
             const data = {
                 fullName : fullName,
@@ -32,13 +37,20 @@ const Register = () => {
                 body: JSON.stringify(data)
             })
 
+            setFullName('')
+            setEmail('')
+            setPassword('')
+
             const res = await response.json()
             console.log(res)
             
            
             if (response.ok){
-                console.log(res)
+                setLoader(false)
+                navigate('/login')
+                
             }else{
+                setLoader(false)
                 console.log(res.error)
                 setBackendError(res.error)
             }
@@ -56,6 +68,14 @@ const Register = () => {
         }
     }
 
+     useEffect(() => {
+        
+    const token  = Cookies.get('auth_token')
+    if (token){
+        navigate('/')
+    }
+    },[])
+
 
    
 
@@ -65,10 +85,13 @@ const Register = () => {
             <form onSubmit={onFormSubmit} className='form-container-register'>
                 <h2 className='heading-register'>Register</h2>
                 <div className='input-container-register'>
-                    <label htmlFor='fullName'>Full Name: -</label>
+                    <label htmlFor='fullName'>Full Name</label>
                     <input onChange={(e) => {
-                        setFullName(e.target.value)
+                        setFullName(e.target.value),
+                        setErrorFullName(''),
+                        setBackendError('')
                     }} id="fullName"
+                    disabled={loader}
                     onBlur={(e) => {
                         fullName === "" && setErrorFullName('Please enter the details')
                         
@@ -77,10 +100,11 @@ const Register = () => {
                     {errorFullName && <p className='error-p-r'>{errorFullName}</p>}
                 </div>
                 <div className='input-container-register'>
-                    <label htmlFor='email'>Email: -</label>
+                    <label htmlFor='email'>Email</label>
                     <input id='email' onChange={(e) => {
-                        setEmail(e.target.value)
-                    }} 
+                        setEmail(e.target.value),
+                        setErrorEmail(''),setBackendError('')
+                    }} disabled={loader}
                     onBlur={(e) => {
                         email === "" && setErrorEmail('Please enter the details')
                         
@@ -89,23 +113,22 @@ const Register = () => {
 
                 </div>
                 <div className='input-container-register'>
-                    <label htmlFor='password'>Password: -</label>
-                    <input id='password' className='input-register'
+                    <label htmlFor='password'>Password</label>
+                    <input id='password' value={password} disabled={loader}  className='input-register'
                     
                     onChange={(e) => {
-                        setPassword(e.target.value)
-                    }} 
+                        setPassword(e.target.value),
+                        setErrorPassword(''),setBackendError('')
+                    }}                    
                     onBlur={() => {
                         password === "" && setErrorPassword('Please enter the details')
-                        
                     }}
-                    
-                    type='password' placeholder='Password' />
+                    type='password'  placeholder='Password' />
                     {errorPassword && <p className='error-p-r'>{errorPassword}</p>}
 
                 </div>
                 
-                <button type='submit' className='button-register' >Register</button>
+                <button type='submit' className='button-register' >{loader ? 'Registering...' : 'Register'}</button>
                 {backendError && <p className='error-p-r'>{backendError}</p>}
                 <p className='already-register'> <Link className='alredy-register' to='/login'> Already Registered? Login </Link></p>
 

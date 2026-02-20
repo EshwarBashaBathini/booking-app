@@ -1,0 +1,33 @@
+.not-found-container{
+    /* min-height: 80vh; */
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.notfound-img{
+    width: 50%;
+}
+
+/* .return-btn{
+    background-color: #0587ff;
+    color: white;
+    font-size: 20px;
+    width: max-content;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+} */
+
+
+@media screen and (max-width:900px) {
+    .not-found-container{
+        min-height: 70vh;
+    }
+    .notfound-img{
+        width: 90%;
+    }
+}

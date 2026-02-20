@@ -21,7 +21,7 @@ function HorizontalDatePicker() {
   // Move Forward 5 Days
   const nextDays = () => {
     const newDate = new Date(startDate);
-    newDate.setDate(newDate.getDate() + 5);
+    newDate.setDate(newDate.getDate() + 1);
     setStartDate(newDate);
   };
 
@@ -29,7 +29,7 @@ function HorizontalDatePicker() {
   const prevDays = () => {
     const today = new Date();
     const newDate = new Date(startDate);
-    newDate.setDate(newDate.getDate() - 5);
+    newDate.setDate(newDate.getDate() - 1);
 
     if (newDate >= today.setHours(0, 0, 0, 0)) {
       setStartDate(newDate);
@@ -38,7 +38,7 @@ function HorizontalDatePicker() {
 
   return (
     <div className="calendar-wrapper">
-      <button onClick={prevDays}>◀</button>
+      <button className="button-calender" onClick={prevDays}>◀</button>
 
       <div className="date-container">
         {dates.map((date, index) => (
@@ -60,7 +60,7 @@ function HorizontalDatePicker() {
         ))}
       </div>
 
-      <button onClick={nextDays}>▶</button>
+      <button className="button-calender" onClick={nextDays}>▶</button>
     </div>
   );
 }
