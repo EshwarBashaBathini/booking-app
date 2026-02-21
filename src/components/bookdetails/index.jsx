@@ -53,7 +53,7 @@ const BookDetails = (props) => {
 
     const { state } = useLocation()
     const { selectedClass, trainDetails } = state || {};
-    const { trainNo, name, source, destination, runsOnDays,  fromStation = {}, toStation= {}, travelDuration, fares } = trainDetails
+    const { trainNo, name, source, destination, runsOnDays, fromStation = {}, toStation = {}, travelDuration, fares } = trainDetails
     const { classCode, quotaCode, fare } = selectedClass[0]
 
 
@@ -62,14 +62,14 @@ const BookDetails = (props) => {
     const totalfare = (fare * personsList.length) + totalGst
 
     useEffect(() => {
-    
-            const token = Cookies.get('auth_token')
-            if (token === undefined){
-                navigate('/login', {replace: true})
-            }
-    
-        },[])
-    
+
+        const token = Cookies.get('auth_token')
+        if (token === undefined) {
+            navigate('/login', { replace: true })
+        }
+
+    }, [])
+
 
 
 
@@ -168,7 +168,8 @@ const BookDetails = (props) => {
     const isContent = isIrctcVerified ? "Verified" : "Verify"
 
     const onNextBtn = () => {
-        if (isIrctcVerified && mobileNum && email) {
+        // if (isIrctcVerified && mobileNum && email) {
+        if (mobileNum && email) {
             console.log("Hi User Successfully Completed the Verification")
             navigate(`/payment/${trainNo}/checkout`, {
                 state: {
@@ -208,7 +209,7 @@ const BookDetails = (props) => {
                             <div>
                                 <ul className="ul-person-list">
                                     {personsList.map(eachPerson => (
-                                        <PersonList  details={eachPerson} onEdit={onEditBtn} onDelete={onDeleteBtn} key={eachPerson.id} />
+                                        <PersonList details={eachPerson} onEdit={onEditBtn} onDelete={onDeleteBtn} key={eachPerson.id} />
                                     ))
 
                                     }
@@ -384,15 +385,15 @@ const BookDetails = (props) => {
                                 <div className="bill-container-box">
                                     <div className="bill-details1">
                                         <p className="bill-name-p" >Base Ticket Fare</p>
-                                        <p  className="bill-name-p">₹{fare}.00</p>
+                                        <p className="bill-name-p">₹{fare}.00</p>
                                     </div>
                                     <div className="bill-details1">
-                                        <p  className="bill-name-p" >Total Travellers</p>
-                                        <p  className="bill-name-p">{personsList.length}</p>
+                                        <p className="bill-name-p" >Total Travellers</p>
+                                        <p className="bill-name-p">{personsList.length}</p>
                                     </div>
                                     <div className="bill-details1">
-                                        <p  className="bill-name-p" >CGST & SGST</p>
-                                        <p  className="bill-name-p">₹{totalGst}.00</p>
+                                        <p className="bill-name-p" >CGST & SGST</p>
+                                        <p className="bill-name-p">₹{totalGst}.00</p>
                                     </div>
 
                                 </div>

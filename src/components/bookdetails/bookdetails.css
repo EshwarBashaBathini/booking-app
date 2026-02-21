@@ -33,6 +33,7 @@
     border: 1px solid #808080;
     padding: 45px;
     margin: 0 0 20px 0;
+    transition: 0.5s ease-in-out;
     border-radius: 20px;
 }
 .travel-container-top{
@@ -98,7 +99,7 @@ select {
 .input-t{
     width: 100%;
     margin-left: 5px;
-    color: #808080 ;
+    color: black ;
     font-size: 14px;
     font-weight: 500;
     outline: none;
@@ -139,7 +140,7 @@ hr-line{
     border: none ;
 }
 .error-msg{
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 500;
     color: rgb(245, 51, 51);
 }
@@ -160,7 +161,7 @@ hr-line{
     height: fit-content;
     padding: 0px;
     margin: 30px 0 30px 0;
-    align-items: center;
+    align-items: baseline;
     justify-content: space-between;
 }
 .ul-person-list{
@@ -219,9 +220,10 @@ hr-line{
 }
 .contact-container{
     display: flex;
-    align-items: center;
+    align-items: baseline;
     width: 100%;
     margin-top: 30px;
+    transition: 0.3s ease;
 }
 .top-container-css{
     padding: 30px 100px 30px 100px;
@@ -233,7 +235,7 @@ hr-line{
 .input-mobile{
     width: 100%;
     font-size: 14px;
-    color: #808080;
+    color: black;
     margin-left: 10px;
     font-weight: 500;
     background: none ;

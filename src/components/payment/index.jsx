@@ -22,7 +22,8 @@ const paymentOptions = [
             "PhonePe",
             "Paytm",
             "BHIM"
-        ]
+        ],
+        imgUrl:'https://res.cloudinary.com/dtc3rf1du/image/upload/v1771652937/Rectangle_104_whctbx.png'
     },
     {
         id: "card",
@@ -33,7 +34,8 @@ const paymentOptions = [
             "Mastercard",
             "Rupay",
             "American Express"
-        ]
+        ],
+        imgUrl:'https://res.cloudinary.com/dtc3rf1du/image/upload/v1771652937/Rectangle_104_1_qbdoop.png'
     },
     {
         id: "paylater",
@@ -45,7 +47,8 @@ const paymentOptions = [
             "ZestMoney",
             "ICICI PayLater",
             "HDFC Flexipay"
-        ]
+        ],
+        imgUrl:'https://res.cloudinary.com/dtc3rf1du/image/upload/v1771652937/Rectangle_104_2_vkklqe.png'
     },
     {
         id: "netbanking",
@@ -57,7 +60,8 @@ const paymentOptions = [
             "ICICI Bank",
             "Axis Bank",
             "Kotak Mahindra Bank"
-        ]
+        ],
+        imgUrl:'https://res.cloudinary.com/dtc3rf1du/image/upload/v1771652937/Rectangle_104_3_xoaeam.png'
     },
     {
         id: "wallets",
@@ -68,7 +72,8 @@ const paymentOptions = [
             "Mobikwik",
             "Payzapp",
             "PayPal"
-        ]
+        ],
+        imgUrl:'https://res.cloudinary.com/dtc3rf1du/image/upload/v1771652938/Rectangle_104_4_dmgjo7.png'
     }
 ];
 
@@ -120,7 +125,7 @@ const Payment = (props) => {
                                 <h2 className="boarding-name">Boarding Details</h2>
 
                                 <div className="container2">
-                                    <h3 className="train-name">{trainNo}-{name}</h3>
+                                    <p className="train-name-p">{trainNo}-{name}</p>
 
                                     <p className="margin-class time-table">Class {selectedClass[0].classCode} & {quotaCode} Quota</p>
 
@@ -172,7 +177,7 @@ const Payment = (props) => {
                                 {paymentOptions.map(eachOption => (
                                     <li key={eachOption.id} onClick={() => onBookNavigation(eachOption.id)} className="option-list">
                                         <div className="container-upi">
-                                            <TbCoinRupeeFilled size={40} />
+                                           <img src={eachOption.imgUrl} />
                                             <div className="upi-description">
                                                 <p>{eachOption.title}</p>
                                                 <p>{eachOption.description}</p>

@@ -114,8 +114,14 @@
     align-items: center;
     justify-content: space-between;
    padding: 25px;
+   cursor: pointer;
    border-bottom: 1px solid #c0bdbd;
-   
+   transition: 0.7s ease;
+}
+
+.option-list:hover{
+    background-color: rgb(241, 240, 240);
+    border-radius: 10px;
 }
 
 .upi-description{
@@ -130,6 +136,12 @@
     align-items: center;
     
     
+}
+
+.train-name-p{
+    color: black;
+    font-size: 20px;
+    font-weight: 500;
 }
 
 
