@@ -203,6 +203,7 @@ body {
     display: flex;
     padding: 10px;
     word-wrap: break-word;
+    align-items: center;
     padding: 10px;  
     box-shadow: 0 0 0 #606060;
     transition: 0.6s ease;
@@ -217,13 +218,12 @@ body {
 }
 
 .stations-p {
-    font-size: 15px;
-    width: 100%;
-    font-weight: 500;
+    font-size: 20px;
+    font-weight: 500;margin-left: 10px;
 }
 .stations-p-p {
-    margin-left: 5px;
-    font-size: 15px;
+    margin-left: 10px;
+    font-size: 20px;
     font-weight: 500;
 }
 

@@ -221,7 +221,7 @@ const HomePage = () => {
 
                                                     >
                                                         <p className="stations-p" >{eachStations.code}</p>
-                                                        <p className="stations-p"   >{eachStations.name}</p>
+                                                        <p className="stations-p-p"   >{eachStations.name}</p>
 
                                                     </li>
                                                 ))}
