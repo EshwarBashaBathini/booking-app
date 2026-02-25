@@ -318,9 +318,11 @@ const TrainList = () => {
   const onFormSubmit = async (e) => {
     e.preventDefault()
     setStatus('pending')
+   
 
 
     if (sourcePlace && destinationPlace) {
+      navigate(`?from=${sourceCode}&to=${destinationCode}`);
 
       const response = await fetch(`${url}/trains/search?from=${sourceCode}&to=${destinationCode}`)
       const res = await response.json()

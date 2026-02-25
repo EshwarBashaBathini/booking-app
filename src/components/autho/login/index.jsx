@@ -53,7 +53,7 @@ const Login = () => {
                 if (token) {
                     setLoader(false)
                     Cookies.set('auth_token', token, { expires: 1 })
-                    navigate('/')
+                    navigate(-1)
 
                 }
             } else {
