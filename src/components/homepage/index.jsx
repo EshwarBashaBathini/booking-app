@@ -6,6 +6,7 @@ import Footer from "../footer";
 import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import { useRef } from "react";
+import { useSourceHome , useDestinationHome} from "../../hook/useHome";
 
 
 
@@ -21,6 +22,17 @@ const HomePage = () => {
     const [destinationError, setDestinationError] = useState("")
 
     const [stationList, setStationList] = useState([])
+    const {
+        data: sourceData,
+        isLoading: sourceLoading,
+        isErrro: sourceIsError,
+    } = useSourceHome(sourcePlace);
+   
+
+    const {
+        data: destinationData,
+        isLoading: destinationLoading
+    } = useDestinationHome(destinationPlace);
 
     const [sourceCode, setSourceCode] = useState("")
     const [destinationCode, setDestinationCode] = useState("")
@@ -29,72 +41,24 @@ const HomePage = () => {
     const [destinationSelected, setDestinationSelected] = useState(false)
     const timeoutRef = useRef(null);
 
-    const [stationsLoader, setStationsLoader] = useState(false)
 
     const navigate = useNavigate();
 
-    // function debounce(func, delay) {
-    //     let timeoutId;
-
-    //     return function (...args) {
-    //         clearTimeout(timeoutId);
-
-    //         timeoutId = setTimeout(() => {
-    //             func(...args);
-    //         }, delay);
-    //     };
-    // }
-
-
-
-    const searchStations = (query) => {
-
-        const fetchStations = async () => {
-
-            try {
-                const response = await fetch(
-                    `${url}/stations/search?q=${query}`
-                );
-
-                const res = await response.json();
-
-                setStationList(res);
-                setStationsLoader(false)
-                console.log(res);
-
-            } catch (error) {
-                console.error("Error fetching stations:", error);
-            }
-
-        };
-
-        fetchStations();
-    };
-
-
-    // const debouncedSearch = useMemo(
-    //     () => debounce(searchStations, 500),
-    //     [searchStations]
-    // );
-
-
-
+  
 
     const onSourcePlace = (event) => {
-        setSourcePlace(event.target.value)
         setSourceError("");
-        setStationsLoader(true)
+        setSourcePlace(event.target.value);
+        
         setSourceSelected(true)
         // debouncedSearch(event.target.value);
-        console.log(event.target.value)
-
         if (timeoutRef.current) {
             clearTimeout(timeoutRef.current);
         }
 
         // 🔥 Set new timer
         timeoutRef.current = setTimeout(() => {
-            searchStations(event.target.value);
+            setSourcePlace(event.target.value);
         }, 500);
 
     }
@@ -109,7 +73,7 @@ const HomePage = () => {
     const onDestinationPlace = (event) => {
         setDestinationPlace(event.target.value)
         setDestinationError("")
-        setStationsLoader(true)
+        
         setDestinationSelected(true)
 
         if (timeoutRef.current) {
@@ -118,7 +82,7 @@ const HomePage = () => {
 
         // 🔥 Set new timer
         timeoutRef.current = setTimeout(() => {
-            searchStations(event.target.value);
+            setDestinationPlace(event.target.value);
         }, 500);
 
 
@@ -189,7 +153,7 @@ const HomePage = () => {
                 <div className="first-container">
 
                     <h3 className="header-color1" ><Link className="header-color" to="/">Metro<span className="span-color">way</span></Link></h3>
- 
+
                     <div className="metro">
                         <div className="metro1">
                             <div className="travellers-box">
@@ -207,8 +171,8 @@ const HomePage = () => {
                                         <hr className="hr-line" />
                                         <p className="error">{sourceError}</p>
                                         {sourceSelected &&
-                                            ( !stationsLoader ? (<ul className="ul-stations" >
-                                                {stationList.map(eachStations => (
+                                            (!sourceLoading ? (<ul className="ul-stations" >
+                                                {sourceData.map(eachStations => (
                                                     <li key={eachStations.id} className="list-stations"
                                                         onMouseDown={() => {
                                                             setSourceCode(eachStations.code),
@@ -228,7 +192,7 @@ const HomePage = () => {
 
                                             </ul>) : (<div className="class-loader">
 
-                                              <p>Loading....</p>
+                                                <p>Loading....</p>
                                             </div>))
                                         }
 
@@ -238,8 +202,8 @@ const HomePage = () => {
                                         <hr className="hr-line" />
                                         <p className="error">{destinationError}</p>
                                         {destinationSelected &&
-                                            ( !stationsLoader ? <ul className="ul-stations">
-                                                {stationList.map(eachStations => (
+                                            (!destinationLoading ? <ul className="ul-stations">
+                                                {destinationData.map(eachStations => (
                                                     <li key={eachStations.id} className="list-stations" onMouseDown={() => {
                                                         setDestinationCode(eachStations.code)
                                                         setDestinationPlace(eachStations.name)
@@ -252,9 +216,9 @@ const HomePage = () => {
                                                     </li>
                                                 ))}
 
-                                            </ul>: (<div className="class-loader">
+                                            </ul> : (<div className="class-loader">
 
-                                              <p>Loading....</p>
+                                                <p>Loading....</p>
                                             </div>))
                                         }
 

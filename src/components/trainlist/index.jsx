@@ -6,6 +6,7 @@ import { GiSettingsKnobs } from "react-icons/gi";
 import TrainItem from '../trainItem';
 import url from '../url'
 import HorizontalDatePicker from '../calender';
+import { useNavigate } from 'react-router-dom';
 
 import { useEffect, useState } from 'react';
 import LoadingSpinner from '../loader';
@@ -13,7 +14,9 @@ import LoadingSpinner from '../loader';
 import { useSearchParams } from 'react-router-dom';
 
 import { useRef } from "react";
+import { useTrainsList } from '../../hook/useTrainList';
 
+import { useSourceHome, useDestinationHome } from "../../hook/useHome";
 
 
 
@@ -165,16 +168,47 @@ const TrainList = () => {
   const [destinationSelected, setDestinationSelected] = useState(false)
   const [sourceCode, setSourceCode] = useState('')
   const [destinationCode, setDestinationCode] = useState('')
-  const [trainsList, setTrainList] = useState([])
+  const navigate = useNavigate()
+
   const [status, setStatus] = useState('empty')
 
-  const [isLoading, setLoader] = useState(true)
-  const [stationsLoader, setStationLoader] = useState(true)
+  // const [isLoading, setLoader] = useState(true)
 
   const [stationList, setStationList] = useState([])
 
   const [searchParams] = useSearchParams();
   const timeoutRef = useRef(null);
+
+
+
+
+
+  const { data, isLoading, } = useTrainsList(sourceCode, destinationCode)
+  console.log(data)
+  const {
+    data: sourceData,
+    isLoading: sourceLoading,
+    isErrro: sourceIsError,
+  } = useSourceHome(sourcePlace);
+
+
+  const {
+    data: destinationData,
+    isLoading: destinationLoading
+  } = useDestinationHome(destinationPlace);
+
+
+  useEffect(() => {
+    if (isLoading) {
+      setStatus('pending')
+    }
+    else if (data?.length === 0) {
+      setStatus('empty')
+    }
+    else if (data?.length > 0) {
+      setStatus('success')
+    }
+  },[data, isLoading])
 
 
   useEffect(() => {
@@ -183,87 +217,37 @@ const TrainList = () => {
     setSourcePlace(from1)
 
     const to = searchParams.get('to') || ''
+
     setDestinationCode(to)
     setDestinationPlace(to)
+    
+  }, [searchParams, ])
 
 
-  }, [searchParams])
 
 
-  useEffect(() => {
-    if (!sourceCode || !destinationCode) return;
-    setStatus('pending')
-
-
-    const fetchTrains = async () => {
-
-      const response = await fetch(
-        `${url}/trains/search?from=${sourceCode}&to=${destinationCode}`
-      );
-
-      const res = await response.json();
-
-      if (response.ok) {
-        console.log(res);
-        setLoader(false)
-        setStatus('success')
-        setTrainList(res.data);
-
-      }
-    };
-
-    console.log(sourceCode === "" || destinationCode === "")
-
-    if (sourceCode === null || destinationCode === null) {
-      setLoader(false)
-    }
-
-    fetchTrains();
-  }, [sourceCode, destinationCode]);
-
-  const searchStations = (query) => {
-
-    const fetchStations = async () => {
-
-      try {
-        const response = await fetch(
-          `${url}/stations/search?q=${query}`
-        );
-
-        const res = await response.json();
-
-        setStationList(res);
-        console.log(res);
-        setStationLoader(false)
-
-      } catch (error) {
-        console.error("Error fetching stations:", error);
-      }
-
-    };
-
-    fetchStations();
-  };
 
   const onSourceChange = (e) => {
+    navigate(`?from=${sourceCode}&to=${destinationCode}`);
     setSourcePlace(e.target.value)
     setSourceSelected(true)
-    setStationLoader(true)
+    
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
 
     // 🔥 Set new timer
     timeoutRef.current = setTimeout(() => {
-      searchStations(e.target.value);
+      setSourcePlace(e.target.value)
     }, 500);
 
   }
 
   const onDestinationChange = (e) => {
     setDestinationPlace(e.target.value)
-    setStationLoader(true)
+
     setDestinationSelected(true)
+     navigate(`?from=${sourceCode}&to=${destinationCode}`);
 
 
     if (timeoutRef.current) {
@@ -272,7 +256,7 @@ const TrainList = () => {
 
     // 🔥 Set new timer
     timeoutRef.current = setTimeout(() => {
-      searchStations(e.target.value);
+      setDestinationPlace(e.target.value)
     }, 500);
   }
 
@@ -293,9 +277,10 @@ const TrainList = () => {
   }
 
   const renderTrains = () => {
+    console.log(data)
     return (
       <ul className='ul-trains-list'>
-        {trainsList.map(eachTrain => (
+        {data?.map(eachTrain => (
           <TrainItem trainDetails={eachTrain} key={eachTrain.trainNo} />
         ))}
 
@@ -315,27 +300,18 @@ const TrainList = () => {
     }
   }
 
-  const onFormSubmit = async (e) => {
-    e.preventDefault()
-    setStatus('pending')
-   
+  const onFormSubmit = (e) => {
+
+    e.preventDefault();
+
+    if (!sourceCode || !destinationCode) return;
+
+    setStatus('pending');
+
+    navigate(`?from=${sourceCode}&to=${destinationCode}`);
 
 
-    if (sourcePlace && destinationPlace) {
-      navigate(`?from=${sourceCode}&to=${destinationCode}`);
-
-      const response = await fetch(`${url}/trains/search?from=${sourceCode}&to=${destinationCode}`)
-      const res = await response.json()
-
-      if (response.ok) {
-        setTrainList(res.data)
-        setStatus('success')
-      }
-
-
-    }
   }
-
 
 
 
@@ -350,12 +326,12 @@ const TrainList = () => {
           <div className='container-height' >
             <form onSubmit={onFormSubmit} className='search-container'>
               <div className='input-container-ee'>
-                <input type='text' value={sourcePlace} onBlur={() => setSourceSelected(false)}  onChange={onSourceChange} className='input' placeholder='source' />
+                <input type='text' value={sourcePlace} onBlur={() => setSourceSelected(false)} onChange={onSourceChange} className='input' placeholder='source' />
                 <hr />
                 {sourceSelected &&
-                  (!stationsLoader ? (<ul className="ul-stations-book" >
-                    {stationList.map(eachStations => (
-                       <li key={eachStations.id} className="list-stations-book"
+                  (!sourceLoading ? (<ul className="ul-stations-book" >
+                    {sourceData?.map(eachStations => (
+                      <li key={eachStations.id} className="list-stations-book"
                         onMouseDown={() => {
                           setSourceCode(eachStations.code),
                             setSourcePlace(eachStations.name)
@@ -382,8 +358,8 @@ const TrainList = () => {
                 <input className='input' value={destinationPlace} onChange={onDestinationChange} onBlur={() => setDestinationSelected(false)} placeholder='destination' type='text' />
                 <hr />
                 {destinationSelected &&
-                  (!stationsLoader ? <ul className="ul-stations-book">
-                    {stationList.map(eachStations => (
+                  (!destinationLoading ? <ul className="ul-stations-book">
+                    {destinationData?.map(eachStations => (
                       <li key={eachStations.id} className="list-stations" onMouseDown={() => {
                         setDestinationCode(eachStations.code)
                         setDestinationPlace(eachStations.name)
@@ -427,7 +403,7 @@ const TrainList = () => {
           <div className='available-trains'>
             <div className='trains-available'>
               <h2 className='train-h1'>Available Trains</h2>
-              <p className='p-train'>{trainsList.length} Trains Available </p>
+              <p className='p-train'>{data?.length} Trains Available </p>
 
             </div>
             <GiSettingsKnobs color='#0578ff' size={20} />

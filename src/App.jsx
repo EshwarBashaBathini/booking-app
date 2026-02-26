@@ -20,7 +20,7 @@ function App() {
 
   return (
 
-    <Router>
+   
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/book" element={<TrainList />} />
@@ -33,7 +33,7 @@ function App() {
         <Route path='/train/:id' element={<TrainDetails />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
-    </Router>
+  
 
     // <TrainDetails />
 
