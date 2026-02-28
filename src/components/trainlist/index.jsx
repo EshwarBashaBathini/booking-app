@@ -1,320 +1,151 @@
 import './train.css'
 import Header from '../header'
-
 import Footer from '../footer'
 import { GiSettingsKnobs } from "react-icons/gi";
 import TrainItem from '../trainItem';
-import url from '../url'
 import HorizontalDatePicker from '../calender';
-import { useNavigate } from 'react-router-dom';
-
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import LoadingSpinner from '../loader';
 
-import { useSearchParams } from 'react-router-dom';
-
-import { useRef } from "react";
 import { useTrainsList } from '../../hook/useTrainList';
-
-import { useSourceHome, useDestinationHome } from "../../hook/useHome";
-
-
-
-const data = [
-  {
-    "trainNumber": "12430",
-    "trainName": "NDLS LKO AC SF",
-    "runsOn": "Everyday",
-    "journey": {
-      "startDate": "2026-11-16",
-      "endDate": "2026-11-17",
-      "duration": "8h 0m"
-    },
-    "from": {
-      "stationCode": "NDLS",
-      "stationName": "New Delhi",
-      "departureTime": "12:25 PM"
-    },
-    "to": {
-      "stationCode": "LKO",
-      "stationName": "Lucknow",
-      "arrivalTime": "07:25 AM"
-    },
-    "classes": [
-      { "id": "12430-3A", "class": "3A", "availability": "AVL 046", "quota": "Tatkal", "price": 800 },
-      { "id": "12430-2A", "class": "2A", "availability": "AVL 006", "quota": "Tatkal", "price": 1000 },
-      { "id": "12430-1A", "class": "1A", "availability": "WL 36", "quota": "Tatkal", "price": 1200 },
-      { "id": "12430-SL", "class": "SL", "availability": "Not Available", "quota": "", "price": null }
-    ]
-  },
-
-  {
-    "trainNumber": "12230",
-    "trainName": "Lucknow Mail",
-    "runsOn": "Everyday",
-    "journey": {
-      "startDate": "2026-11-16",
-      "endDate": "2026-11-17",
-      "duration": "8h 50m"
-    },
-    "from": {
-      "stationCode": "NDLS",
-      "stationName": "New Delhi",
-      "departureTime": "11:25 PM"
-    },
-    "to": {
-      "stationCode": "LKO",
-      "stationName": "Lucknow",
-      "arrivalTime": "07:25 AM"
-    },
-    "classes": [
-      { "id": "12230-3A", "class": "3A", "availability": "AVL 020", "quota": "Tatkal", "price": 780 },
-      { "id": "12230-2A", "class": "2A", "availability": "AVL 012", "quota": "Tatkal", "price": 980 },
-      { "id": "12230-1A", "class": "1A", "availability": "WL 10", "quota": "Tatkal", "price": 1180 },
-      { "id": "12230-SL", "class": "SL", "availability": "AVL 150", "quota": "General", "price": 450 }
-    ]
-  },
-
-  {
-    "trainNumber": "12555",
-    "trainName": "Gorakhdham Express",
-    "runsOn": "Mon, Wed, Fri",
-    "journey": {
-      "startDate": "2026-11-16",
-      "endDate": "2026-11-17",
-      "duration": "9h 15m"
-    },
-    "from": {
-      "stationCode": "NDLS",
-      "stationName": "New Delhi",
-      "departureTime": "03:40 PM"
-    },
-    "to": {
-      "stationCode": "LKO",
-      "stationName": "Lucknow",
-      "arrivalTime": "12:55 AM"
-    },
-    "classes": [
-      { "id": "12555-3A", "class": "3A", "availability": "AVL 065", "quota": "Tatkal", "price": 820 },
-      { "id": "12555-2A", "class": "2A", "availability": "AVL 020", "quota": "Tatkal", "price": 1020 },
-      { "id": "12555-1A", "class": "1A", "availability": "WL 5", "quota": "Tatkal", "price": 1300 },
-      { "id": "12555-SL", "class": "SL", "availability": "AVL 210", "quota": "General", "price": 470 }
-    ]
-  },
-
-  {
-    "trainNumber": "12004",
-    "trainName": "Shatabdi Express",
-    "runsOn": "Except Sun",
-    "journey": {
-      "startDate": "2026-11-16",
-      "endDate": "2026-11-16",
-      "duration": "6h 15m"
-    },
-    "from": {
-      "stationCode": "NDLS",
-      "stationName": "New Delhi",
-      "departureTime": "06:10 AM"
-    },
-    "to": {
-      "stationCode": "LKO",
-      "stationName": "Lucknow",
-      "arrivalTime": "12:25 PM"
-    },
-    "classes": [
-      { "id": "12004-CC", "class": "CC", "availability": "AVL 090", "quota": "General", "price": 900 },
-      { "id": "12004-EC", "class": "EC", "availability": "AVL 015", "quota": "General", "price": 1600 }
-    ]
-  },
-
-  {
-    "trainNumber": "12583",
-    "trainName": "Anvt Lko Double Decker",
-    "runsOn": "Tue, Thu, Sun",
-    "journey": {
-      "startDate": "2026-11-16",
-      "endDate": "2026-11-16",
-      "duration": "7h 45m"
-    },
-    "from": {
-      "stationCode": "ANVT",
-      "stationName": "Anand Vihar",
-      "departureTime": "02:30 PM"
-    },
-    "to": {
-      "stationCode": "LKO",
-      "stationName": "Lucknow",
-      "arrivalTime": "10:15 PM"
-    },
-    "classes": [
-      { "id": "12583-CC", "class": "CC", "availability": "AVL 120", "quota": "General", "price": 750 },
-      { "id": "12583-2S", "class": "2S", "availability": "AVL 300", "quota": "General", "price": 350 }
-    ]
-  }
-]
+import { useSourceHome } from "../../hook/useHome";
+import { useDebounce } from "../../hook/useDebounce";
 
 const statusOfTrains = {
-  "empty": "empty",
-  'pending': 'pending',
-  'success': 'success'
+  empty: "empty",
+  pending: "pending",
+  success: "success"
 }
-
 
 const TrainList = () => {
 
-  const [sourcePlace, setSourcePlace] = useState('')
-  const [destinationPlace, setDestinationPlace] = useState('')
-  const [sourceSelected, setSourceSelected] = useState(false)
-  const [destinationSelected, setDestinationSelected] = useState(false)
-  const [sourceCode, setSourceCode] = useState('')
-  const [destinationCode, setDestinationCode] = useState('')
-  const navigate = useNavigate()
-
-  const [status, setStatus] = useState('empty')
-
-  // const [isLoading, setLoader] = useState(true)
-
-  const [stationList, setStationList] = useState([])
-
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const timeoutRef = useRef(null);
 
+  // INPUT STATES
+  const [sourcePlace, setSourcePlace] = useState('');
+  const [destinationPlace, setDestinationPlace] = useState('');
 
+  // DEBOUNCED VALUES
+  const debouncedSourcePlace = useDebounce(sourcePlace, 500);
+  const debouncedDestinationPlace = useDebounce(destinationPlace, 500);
 
+  // SELECTED STATION CODE
+  const [sourceCode, setSourceCode] = useState('');
+  const [destinationCode, setDestinationCode] = useState('');
 
+  const [sourceSelected, setSourceSelected] = useState(false);
+  const [destinationSelected, setDestinationSelected] = useState(false);
 
-  const { data, isLoading, } = useTrainsList(sourceCode, destinationCode)
+  const [status, setStatus] = useState(statusOfTrains.empty);
+
+  // FETCH TRAINS
+  const { data, isLoading } = useTrainsList(
+    sourceCode,
+    destinationCode
+  );
+
   console.log(data)
+
+  // FETCH SOURCE SUGGESTIONS (DEBOUNCED)
   const {
     data: sourceData,
-    isLoading: sourceLoading,
-    isErrro: sourceIsError,
-  } = useSourceHome(sourcePlace);
+    isLoading: sourceLoading
+  } = useSourceHome(debouncedSourcePlace);
 
-
+  // FETCH DESTINATION SUGGESTIONS (DEBOUNCED)
   const {
     data: destinationData,
     isLoading: destinationLoading
-  } = useDestinationHome(destinationPlace);
+  } = useSourceHome(debouncedDestinationPlace);
 
 
+  // STATUS CONTROL
   useEffect(() => {
     if (isLoading) {
-      setStatus('pending')
+      setStatus(statusOfTrains.pending);
     }
-    else if (data?.length === 0) {
-      setStatus('empty')
+    else if (!data || data.length === 0) {
+      setStatus(statusOfTrains.empty);
     }
-    else if (data?.length > 0) {
-      setStatus('success')
+    else {
+      setStatus(statusOfTrains.success);
     }
-  },[data, isLoading])
+  }, [data, isLoading]);
 
 
+  // GET PARAMS FROM URL
   useEffect(() => {
-    const from1 = searchParams.get('from') || ''
-    setSourceCode(from1)
-    setSourcePlace(from1)
 
-    const to = searchParams.get('to') || ''
+    const from = searchParams.get('from') || '';
+    const to = searchParams.get('to') || '';
 
-    setDestinationCode(to)
-    setDestinationPlace(to)
-    
-  }, [searchParams, ])
+    setSourceCode(from);
+    setDestinationCode(to);
 
+    setSourcePlace(from);
+    setDestinationPlace(to);
 
-
+  }, [searchParams]);
 
 
+  // INPUT HANDLERS
   const onSourceChange = (e) => {
-    navigate(`?from=${sourceCode}&to=${destinationCode}`);
-    setSourcePlace(e.target.value)
-    setSourceSelected(true)
-    
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-
-    // 🔥 Set new timer
-    timeoutRef.current = setTimeout(() => {
-      setSourcePlace(e.target.value)
-    }, 500);
-
-  }
+    setSourcePlace(e.target.value);
+    setSourceSelected(true);
+  };
 
   const onDestinationChange = (e) => {
-    setDestinationPlace(e.target.value)
+    setDestinationPlace(e.target.value);
+    setDestinationSelected(true);
+  };
 
-    setDestinationSelected(true)
-     navigate(`?from=${sourceCode}&to=${destinationCode}`);
 
-
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-
-    // 🔥 Set new timer
-    timeoutRef.current = setTimeout(() => {
-      setDestinationPlace(e.target.value)
-    }, 500);
-  }
-
-  const renderEmpty = () => {
-    return (
-      <div className='loader-container'>
-        <p>No Trains Listed</p>
-      </div>
-    )
-  }
-
-  const renderLoader = () => {
-    return (
-      <div className='loader-container'>
-        <LoadingSpinner />
-      </div>
-    )
-  }
-
-  const renderTrains = () => {
-    console.log(data)
-    return (
-      <ul className='ul-trains-list'>
-        {data?.map(eachTrain => (
-          <TrainItem trainDetails={eachTrain} key={eachTrain.trainNo} />
-        ))}
-
-      </ul>
-    )
-
-  }
-
-  const renderStatus = () => {
-    switch (status) {
-      case statusOfTrains.empty:
-        return renderEmpty()
-      case statusOfTrains.pending:
-        return renderLoader()
-      default:
-        return renderTrains()
-    }
-  }
-
+  // FORM SUBMIT
   const onFormSubmit = (e) => {
 
     e.preventDefault();
 
     if (!sourceCode || !destinationCode) return;
 
-    setStatus('pending');
+    setStatus(statusOfTrains.pending);
 
     navigate(`?from=${sourceCode}&to=${destinationCode}`);
+  };
 
 
-  }
+  // RENDER METHODS
+  const renderEmpty = () => (
+    <div className='loader-container'>
+      <p>No Trains Listed</p>
+    </div>
+  );
 
+  const renderLoader = () => (
+    <div className='loader-container'>
+      <LoadingSpinner />
+    </div>
+  );
 
+  const renderTrains = () => (
+    <ul className='ul-trains-list'>
+      {data?.map(train => (
+        <TrainItem key={train.trainNo} trainDetails={train} />
+      ))}
+    </ul>
+  );
 
+  const renderStatus = () => {
+    switch (status) {
+      case statusOfTrains.empty:
+        return renderEmpty();
+      case statusOfTrains.pending:
+        return renderLoader();
+      default:
+        return renderTrains();
+    }
+  };
 
 
   return (
@@ -336,8 +167,7 @@ const TrainList = () => {
                           setSourceCode(eachStations.code),
                             setSourcePlace(eachStations.name)
                           setSourceSelected(false);
-                          setStationList([])
-
+                         
                         }}
 
 
@@ -364,7 +194,7 @@ const TrainList = () => {
                         setDestinationCode(eachStations.code)
                         setDestinationPlace(eachStations.name)
                         setDestinationSelected(false)
-                        setStationList([])
+                        
                       }}  >
                         <p className="stations-p" >{eachStations.code}</p>
                         <p className="stations-p"   >{eachStations.name}</p>
@@ -410,13 +240,7 @@ const TrainList = () => {
 
           </div>
           <hr className='hr' />
-          {/* <ul className='ul-trains-list'>
-            {!isLoading ? trainsList.map(eachTrain => (
-              <TrainItem trainDetails={eachTrain} key={eachTrain.trainNo} />
-            )) : <div className='loader-container'><LoadingSpinner /></div>
-
-            }
-          </ul> */}
+        
           {renderStatus()}
         </div>
 

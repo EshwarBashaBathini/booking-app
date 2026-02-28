@@ -1,24 +1,14 @@
 import "./index.css"
-import { useState } from "react"
 
 const Bhogi = (props) => {
     const { bhogiDetails, onSelected , className} = props
     const { classCode, currency, quotaCode, fare } = bhogiDetails
 
-
     const onSelectedClass = () => {
-        onSelected(classCode,quotaCode)
-       
-        
+        onSelected(classCode,quotaCode)       
     }
-
-
-
-   
-
-    const bg = "available-green"
-   
-    
+ 
+    const bg = "available-green"    
     const availabe = () => {
         return (
            (

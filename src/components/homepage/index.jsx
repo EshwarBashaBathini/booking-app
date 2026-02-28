@@ -1,148 +1,134 @@
 import "./homepage.css"
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
-import { useState, useMemo } from "react";
+import { useState, useEffect } from "react";
 import Footer from "../footer";
-import { useNavigate } from 'react-router-dom';
-import { Link } from "react-router-dom";
-import { useRef } from "react";
-import { useSourceHome , useDestinationHome} from "../../hook/useHome";
-
-
-
-import url from '../url'
+import { useNavigate, Link } from 'react-router-dom';
+import { useSourceHome } from "../../hook/useHome";
+import { useDebounce } from "../../hook/useDebounce";
 
 const HomePage = () => {
 
-    const [selectedDate, setSelectedDate] = useState(null);
-    const [sourcePlace, setSourcePlace] = useState('')
-    const [destinationPlace, setDestinationPlace] = useState('')
-    const [sourceError, setSourceError] = useState("")
-    const [selectedDateError, setSelectedDateError] = useState("")
-    const [destinationError, setDestinationError] = useState("")
-
-    const [stationList, setStationList] = useState([])
-    const {
-        data: sourceData,
-        isLoading: sourceLoading,
-        isErrro: sourceIsError,
-    } = useSourceHome(sourcePlace);
-   
-
-    const {
-        data: destinationData,
-        isLoading: destinationLoading
-    } = useDestinationHome(destinationPlace);
-
-    const [sourceCode, setSourceCode] = useState("")
-    const [destinationCode, setDestinationCode] = useState("")
-
-    const [sourceSelected, setSourceSelected] = useState(false)
-    const [destinationSelected, setDestinationSelected] = useState(false)
-    const timeoutRef = useRef(null);
-
-
     const navigate = useNavigate();
 
-  
+    const [selectedDate, setSelectedDate] = useState(null);
 
+    // INPUT STATES (instant typing)
+    const [sourceInput, setSourceInput] = useState("");
+    const [destinationInput, setDestinationInput] = useState("");
+
+    // DEBOUNCED STATES (used for API)
+    const [sourcePlace, setSourcePlace] = useState("");
+    const [destinationPlace, setDestinationPlace] = useState("");
+
+    const [sourceCode, setSourceCode] = useState("");
+    const [destinationCode, setDestinationCode] = useState("");
+
+    const [sourceError, setSourceError] = useState("");
+    const [destinationError, setDestinationError] = useState("");
+    const [selectedDateError, setSelectedDateError] = useState("");
+
+    const [sourceSelected, setSourceSelected] = useState(false);
+    const [destinationSelected, setDestinationSelected] = useState(false);
+
+    // ✅ Debounce values
+    const debouncedSource = useDebounce(sourceInput, 500);
+    const debouncedDestination = useDebounce(destinationInput, 500);
+
+    // update debounced values
+    useEffect(() => {
+        setSourcePlace(debouncedSource);
+    }, [debouncedSource]);
+
+    useEffect(() => {
+        setDestinationPlace(debouncedDestination);
+    }, [debouncedDestination]);
+
+    // API calls
+    const {
+        data: sourceData = [],
+        isLoading: sourceLoading,
+    } = useSourceHome(sourcePlace);
+
+    const {
+        data: destinationData = [],
+        isLoading: destinationLoading
+    } = useSourceHome(destinationPlace);
+
+    // handlers
     const onSourcePlace = (event) => {
+
+        const value = event.target.value;
+
         setSourceError("");
-        setSourcePlace(event.target.value);
-        
-        setSourceSelected(true)
-        // debouncedSearch(event.target.value);
-        if (timeoutRef.current) {
-            clearTimeout(timeoutRef.current);
-        }
-
-        // 🔥 Set new timer
-        timeoutRef.current = setTimeout(() => {
-            setSourcePlace(event.target.value);
-        }, 500);
-
-    }
-
-    const onSourceBlur = (event) => {
-        if (sourcePlace === "") {
-            setSourceError("Please Enter the Source Place!..");
-        }
-        setSourceSelected(false)
+        setSourceInput(value);
+        setSourceSelected(true);
     }
 
     const onDestinationPlace = (event) => {
-        setDestinationPlace(event.target.value)
-        setDestinationError("")
-        
-        setDestinationSelected(true)
 
-        if (timeoutRef.current) {
-            clearTimeout(timeoutRef.current);
-        }
+        const value = event.target.value;
 
-        // 🔥 Set new timer
-        timeoutRef.current = setTimeout(() => {
-            setDestinationPlace(event.target.value);
-        }, 500);
-
-
-
+        setDestinationError("");
+        setDestinationInput(value);
+        setDestinationSelected(true);
     }
 
-    const onDestinationBlur = (event) => {
-        if (event.target.value === "") {
-            setDestinationError("Please Enter the Destination Place!..")
+    const onSourceBlur = () => {
+
+        if (!sourceInput) {
+            setSourceError("Please Enter the Source Place!..");
         }
-        setDestinationSelected(false)
+
+        setTimeout(() => setSourceSelected(false), 200);
     }
 
-    const onDateBlur = (event) => {
-        if (event.target.value === "") {
-            setSelectedDateError("Please Enter Date")
+    const onDestinationBlur = () => {
+
+        if (!destinationInput) {
+            setDestinationError("Please Enter the Destination Place!..");
         }
+
+        setTimeout(() => setDestinationSelected(false), 200);
     }
 
     const handleChange = (date) => {
         setSelectedDate(date);
-        setSelectedDateError("")
+        setSelectedDateError("");
     };
+
+    const onDateBlur = () => {
+        if (!selectedDate) {
+            setSelectedDateError("Please Select Date");
+        }
+    }
 
     const onSubmitBtn = (event) => {
+
         event.preventDefault();
-        // Resetting error messages before validation
-        setSourceError('');
-        setDestinationError('');
-        setSelectedDateError('');
 
-        if (selectedDate && sourcePlace && destinationPlace) {
+        setSourceError("");
+        setDestinationError("");
+        setSelectedDateError("");
 
+        if (!sourceCode)
+            return setSourceError("Please select source station");
 
-            navigate(`/book?from=${sourceCode}&to=${destinationCode}`);
-            setSelectedDate(null)
-            setDestinationPlace("")
-            setSourcePlace("")
-        } else if (!selectedDate && !sourcePlace && !destinationPlace) {
-            setDestinationError("Please Enter the Destination Place!..");
-            setSelectedDateError("Please Select the Date!..");
-            setSourceError("Please Enter the Source Place!..");
-        } else {
-            // Individual checks
-            if (!selectedDate) {
-                setSelectedDateError("Please Select the Date!..");
-            }
+        if (!destinationCode)
+            return setDestinationError("Please select destination station");
 
-            if (!destinationPlace) {
-                setDestinationError("Please Enter the Destination Place!..");
-            }
+        if (!selectedDate)
+            return setSelectedDateError("Please select date");
 
-            if (!sourcePlace) {
-                setSourceError("Please Enter the Source Place!..");
-            }
-        }
+        navigate(`/book?from=${sourceCode}&to=${destinationCode}`);
+
+        // reset
+        setSelectedDate(null);
+        setSourceInput("");
+        setDestinationInput("");
+        setSourcePlace("");
+        setDestinationPlace("");
     };
-
-
-
 
 
     return (
@@ -167,7 +153,7 @@ const HomePage = () => {
                             <form onSubmit={onSubmitBtn} className="search-container1">
                                 <div className="search-container2">
                                     <div className="input-search">
-                                        <input onChange={onSourcePlace} onBlur={onSourceBlur} value={sourcePlace} className="input-btn" type="search" placeholder="enter source place" />
+                                        <input onChange={onSourcePlace} onBlur={onSourceBlur} value={sourceInput} className="input-btn" type="search" placeholder="enter source place" />
                                         <hr className="hr-line" />
                                         <p className="error">{sourceError}</p>
                                         {sourceSelected &&
@@ -176,9 +162,9 @@ const HomePage = () => {
                                                     <li key={eachStations.id} className="list-stations"
                                                         onMouseDown={() => {
                                                             setSourceCode(eachStations.code),
-                                                                setSourcePlace(eachStations.name)
+                                                                setSourceInput(eachStations.name)
                                                             setSourceSelected(false);
-                                                            setStationList([])
+
 
                                                         }}
 
@@ -198,7 +184,7 @@ const HomePage = () => {
 
                                     </div>
                                     <div className="input-search">
-                                        <input className="input-btn" onBlur={onDestinationBlur} value={destinationPlace} onChange={onDestinationPlace} type="search" placeholder="enter destination place" />
+                                        <input className="input-btn" onBlur={onDestinationBlur} value={destinationInput} onChange={onDestinationPlace} type="search" placeholder="enter destination place" />
                                         <hr className="hr-line" />
                                         <p className="error">{destinationError}</p>
                                         {destinationSelected &&
@@ -206,9 +192,9 @@ const HomePage = () => {
                                                 {destinationData.map(eachStations => (
                                                     <li key={eachStations.id} className="list-stations" onMouseDown={() => {
                                                         setDestinationCode(eachStations.code)
-                                                        setDestinationPlace(eachStations.name)
+                                                        setDestinationInput(eachStations.name)
                                                         setDestinationSelected(false)
-                                                        setStationList([])
+
                                                     }}  >
                                                         <p className="stations-p" >{eachStations.code}</p>
                                                         <p className="stations-p-p"   >{eachStations.name}</p>

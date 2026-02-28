@@ -1,24 +1,8 @@
-import axios from "axios";
-import url from "../components/url";
+import {apiClient} from '../lib/apiClient'
 
-export const fetchingSourceStations = async(name) => {
+export const fetchingStations = async(name) => {
 
-    const response = await axios.get(`${url}/stations/search?q=${name}`,{
-        headers: {
-            'Content-type': 'application/json',
-        }
-    })
-    return response.data
-
-}
-
-export const fetchingDestinationStations = async(name) => {
-
-    const response = await axios.get(`${url}/stations/search?q=${name}`,{
-        headers: {
-            'Content-type': 'application/json',
-        }
-    })
+    const response = await apiClient.get(`/stations/search?q=${name}`)
     return response.data
 
 }

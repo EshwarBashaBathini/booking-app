@@ -41,7 +41,7 @@ const BookDetails = (props) => {
 
     const [isIrctcVerified, setIrctcVerified] = useState(false)
     const [irctcContent, setIrctcContent] = useState("")
-    const [errorIrctc, setIrctcError] = useState(false)
+    // const [errorIrctc, setIrctcError] = useState(false)
 
     const [mobileNum, setMobileNum] = useState("")
     const [email, setEmail] = useState("")

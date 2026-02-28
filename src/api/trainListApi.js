@@ -8,9 +8,6 @@ export const fetchTrainsList = async (sourceCode, destinationCode) => {
             'Content-type': 'application/json',
         }
     })
-    console.log('hiiiiiiiiiiiiii')
-    console.log(response.data.data)
-    console.log('hiiiiiiiiiiiiii')
-
+   
     return response.data.data
 }
